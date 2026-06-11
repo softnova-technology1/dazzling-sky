@@ -1,13 +1,28 @@
-import logo from './logo.svg';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Navbar from './components/Navbar';
+import Contact from './pages/Contact';
+import Footer from './components/Footer';
 import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-       <h1>Project Successfully Completed😂</h1>
-      </header>
-    </div>
+    <Router>
+      <div className="App">
+        <Navbar />
+        {/* Main Content Area */}
+        <main style={{ marginTop: '160px', padding: '20px', textAlign: 'center' }}>
+          <Routes>
+            <Route path="/" element={<h1>Welcome to Dazzling Sky</h1>} />
+            <Route path="/about" element={<h1>About Us</h1>} />
+            <Route path="/shop" element={<h1>Shop Collection</h1>} />
+            <Route path="/contacts" element={<Contact />} />
+            <Route path="/blog" element={<h1>Our Blog</h1>} />
+            <Route path="/faq" element={<h1>FAQ</h1>} />
+          </Routes>
+        </main>
+        <Footer />
+      </div>
+    </Router>
   );
 }
 
