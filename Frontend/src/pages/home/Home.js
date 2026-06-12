@@ -539,7 +539,7 @@ export default function Home() {
             {/* Accent image showcase */}
             <div className={styles.contactAccentWrapper}>
               <img
-                src="/contact_accent.png"
+                src="/contact.png"
                 alt="Luxury Floral Arrangement Atelier"
                 className={styles.contactAccentImg}
               />

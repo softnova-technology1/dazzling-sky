@@ -94,7 +94,9 @@
   width: 420px;
   max-width: 85vw;
   height: 100vh;
-  background: rgba(13, 9, 20, 0.88);
+  background: linear-gradient(135deg, rgba(13, 9, 20, 0.96) 0%, rgba(24, 14, 40, 0.9) 50%, rgba(13, 9, 20, 0.96) 100%), 
+              url('./images/offcanvas_bg.png') no-repeat center center / cover;
+  background-blend-mode: overlay;
   border-right: 1px solid rgba(179, 136, 255, 0.15);
   backdrop-filter: blur(30px);
   -webkit-backdrop-filter: blur(30px);
@@ -126,6 +128,13 @@
   border-radius: 50%;
   border: 1px solid rgba(255, 255, 255, 0.05);
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  opacity: 0;
+  transform: scale(0.8);
+}
+
+.homepage-offcanvas.open .offcanvas-close-btn {
+  opacity: 1;
+  transform: scale(1);
 }
 
 .offcanvas-close-btn:hover {
@@ -150,6 +159,15 @@
   flex-direction: column;
   align-items: flex-start;
   margin-bottom: 4rem;
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: 0.1s;
+}
+
+.homepage-offcanvas.open .offcanvas-brand {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .offcanvas-brand-logo {
@@ -186,9 +204,28 @@
   color: #ffffff;
   text-decoration: none;
   font-weight: 300;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   position: relative;
   padding: 4px 0;
+  opacity: 0;
+  transform: translateX(-30px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s ease;
+}
+
+.homepage-offcanvas.open .offcanvas-link {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.homepage-offcanvas.open .offcanvas-nav .offcanvas-link:nth-child(1) { transition-delay: 0.15s; }
+.homepage-offcanvas.open .offcanvas-nav .offcanvas-link:nth-child(2) { transition-delay: 0.22s; }
+.homepage-offcanvas.open .offcanvas-nav .offcanvas-link:nth-child(3) { transition-delay: 0.29s; }
+.homepage-offcanvas.open .offcanvas-nav .offcanvas-link:nth-child(4) { transition-delay: 0.36s; }
+.homepage-offcanvas.open .offcanvas-nav .offcanvas-link:nth-child(5) { transition-delay: 0.43s; }
+
+.homepage-offcanvas.open .offcanvas-link:hover {
+  transform: translateX(12px);
+  color: #ff8ad8;
+  transition-delay: 0s !important;
 }
 
 .link-num {
@@ -202,11 +239,6 @@
   width: 24px;
 }
 
-.offcanvas-link:hover {
-  transform: translateX(12px);
-  color: #ff8ad8;
-}
-
 .offcanvas-footer {
   border-top: 1px solid rgba(255, 255, 255, 0.08);
   padding-top: 2rem;
@@ -214,6 +246,15 @@
   flex-direction: column;
   gap: 0.4rem;
   margin-top: 4rem;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: 0.5s;
+}
+
+.homepage-offcanvas.open .offcanvas-footer {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .offcanvas-footer-title {

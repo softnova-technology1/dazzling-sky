@@ -2066,7 +2066,7 @@
   position: relative;
   width: 100%;
   max-width: 480px;
-  height: 220px;
+  height: 250px;
   border-radius: var(--borderRadius-xl);
   overflow: hidden;
   border: 1px solid rgba(179, 136, 255, 0.15);
@@ -2172,9 +2172,10 @@
   background: rgba(20, 14, 30, 0.35);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(179, 136, 255, 0.12);
+  border: 1px solid rgba(179, 170, 193, 0.348);
   border-radius: var(--borderRadius-xl);
   padding: 3rem;
+  margin-top: 7rem;
   box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
   position: relative;
   overflow: hidden;

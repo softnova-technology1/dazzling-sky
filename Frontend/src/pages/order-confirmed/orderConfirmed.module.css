@@ -1,0 +1,287 @@
+.confirmationPageWrapper {
+    background-color: #0A0A0A;
+    color: #e5e2e1;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    min-height: 100vh;
+    padding-bottom: 80px;
+    padding-top: 60px;
+}
+
+.confirmationContainer {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 24px;
+    text-align: center;
+}
+
+/* Success Card */
+.successCard {
+    background: rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(24px);
+    border: 1px solid rgba(255, 138, 216, 0.15);
+    border-radius: 24px;
+    padding: 48px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+    box-shadow: 0 20px 50px rgba(136, 60, 138, 0.1);
+}
+
+.successIconWrapper {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    background: rgba(209, 188, 255, 0.1);
+    color: #d1bcff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 54px !important;
+    box-shadow: 0 0 25px rgba(209, 188, 255, 0.15);
+    animation: scaleIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.successHeading {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.successTitle {
+    font-family: 'Bodoni Moda', serif;
+    font-size: 36px;
+    font-weight: 500;
+    line-height: 44px;
+    margin: 0;
+    color: #ffffff;
+}
+
+.successSubtitle {
+    color: rgba(229, 226, 225, 0.5);
+    font-size: 16px;
+    margin: 0;
+    line-height: 24px;
+}
+
+/* Info Grid (Order Details Recap) */
+.infoGrid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.01);
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    border-radius: 16px;
+    padding: 24px;
+    text-align: left;
+}
+
+@media (min-width: 640px) {
+    .infoGrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.infoItem {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.infoLabel {
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: rgba(229, 226, 225, 0.4);
+}
+
+.infoValue {
+    font-size: 15px;
+    color: #ffffff;
+    font-weight: 500;
+}
+
+/* Items List Recap */
+.itemsRecapSection {
+    width: 100%;
+    text-align: left;
+}
+
+.recapTitle {
+    font-family: 'Bodoni Moda', serif;
+    font-size: 20px;
+    margin: 0 0 16px 0;
+    color: #ffffff;
+}
+
+.recapList {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.recapItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.01);
+    border-radius: 12px;
+    padding: 12px 16px;
+    border: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.recapItemInfo {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.recapImg {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.recapName {
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.recapQty {
+    color: rgba(229, 226, 225, 0.4);
+    font-size: 13px;
+    margin-left: 8px;
+}
+
+.recapPrice {
+    font-weight: 600;
+    color: #ff8ad8;
+}
+
+/* Charges Recap */
+.chargesRecap {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    padding-top: 24px;
+}
+
+.chargeRow {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    color: rgba(229, 226, 225, 0.6);
+}
+
+.chargeTotalRow {
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 18px;
+    margin-top: 8px;
+}
+
+.chargeTotalVal {
+    color: #ff8ad8;
+    font-size: 20px;
+}
+
+/* Actions */
+.actions {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+    align-items: center;
+}
+
+@media (min-width: 480px) {
+    .actions {
+        flex-direction: row;
+        justify-content: center;
+    }
+}
+
+.continueShoppingBtn {
+    background: linear-gradient(90deg, #883c8a, #ff8ad8);
+    color: #ffffff;
+    border: none;
+    padding: 16px 36px;
+    font-weight: 600;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-radius: 9999px;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.continueShoppingBtn:hover {
+    box-shadow: 0 0 25px rgba(255, 138, 216, 0.35);
+    transform: translateY(-2px);
+}
+
+.invoiceBtn {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    padding: 16px 36px;
+    font-weight: 600;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-radius: 9999px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.invoiceBtn:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: #ff8ad8;
+}
+
+/* Animations */
+@keyframes scaleIn {
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+    .successCard {
+        padding: 32px 20px;
+    }
+    .successTitle {
+        font-size: 28px;
+        line-height: 36px;
+    }
+}
+
+/* 4K and Ultra-wide screens support */
+@media (min-width: 1920px) {
+    .confirmationContainer {
+        max-width: 1000px;
+    }
+}
+
+@media (min-width: 2560px) {
+    .confirmationContainer {
+        max-width: 1200px;
+    }
+    .successTitle {
+        font-size: 48px;
+        line-height: 56px;
+    }
+}
