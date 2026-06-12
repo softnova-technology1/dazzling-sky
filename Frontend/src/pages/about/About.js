@@ -135,7 +135,7 @@ const About = () => {
           {/* Left Column: Boutique Showcase Image */}
           <div className={styles.storyImageWrapper}>
             <img 
-              src="/flower_boutique_interior.png" 
+              src="/int.png" 
               alt="Dazzling Sky Flower Boutique interior" 
               className={styles.storyImage}
             />

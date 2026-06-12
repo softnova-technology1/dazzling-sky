@@ -36,7 +36,7 @@
     overflow-x: clip;
     /* Prevents horizontal scrollbar while keeping position: sticky active */
     letter-spacing: -0.01em;
-    padding-top: 20px;
+    /* padding-top: 20px; */
     padding-bottom: 20px;
     width: 100%;
     box-sizing: border-box;
@@ -56,7 +56,7 @@
 /* Hero Section */
 .heroSection {
     position: relative;
-    padding-top: 40px;
+    /* padding-top: 40px; */
     padding-bottom: 80px;
     overflow: hidden;
     min-height: 600px;
@@ -170,6 +170,22 @@
     padding-top: 16px;
 }
 
+@media (max-width: 480px) {
+    .heroActions {
+        flex-direction: column;
+        align-items: stretch;
+        width: 100%;
+        gap: 16px;
+    }
+
+    .btnPrimary,
+    .btnOutline {
+        width: 100%;
+        padding: 16px 20px !important;
+        text-align: center;
+    }
+}
+
 /* Primary Button in Lavender */
 .btnPrimary {
     background: linear-gradient(90deg, #883c8a, #ff8ad8);
@@ -180,7 +196,8 @@
     font-weight: 600;
     letter-spacing: 0.05em;
     text-transform: uppercase;
-    border-radius: 20px 4px 20px 4px; /* Asymmetric leaf shape */
+    border-radius: 20px 4px 20px 4px;
+    /* Asymmetric leaf shape */
     cursor: pointer;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -188,7 +205,8 @@
 .btnPrimary:hover {
     box-shadow: 0 0 35px rgba(255, 138, 216, 0.5);
     transform: scale(1.05);
-    border-radius: 4px 20px 4px 20px; /* Morphing shape animation */
+    border-radius: 4px 20px 4px 20px;
+    /* Morphing shape animation */
 }
 
 .btnOutline {
@@ -201,7 +219,8 @@
     font-weight: 600;
     letter-spacing: 0.05em;
     text-transform: uppercase;
-    border-radius: 4px 20px 4px 20px; /* Complementary leaf shape */
+    border-radius: 4px 20px 4px 20px;
+    /* Complementary leaf shape */
     cursor: pointer;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -211,7 +230,8 @@
     border-color: #ff8ad8;
     box-shadow: 0 0 25px rgba(255, 138, 216, 0.25);
     transform: scale(1.05);
-    border-radius: 20px 4px 20px 4px; /* Morphing shape animation */
+    border-radius: 20px 4px 20px 4px;
+    /* Morphing shape animation */
 }
 
 .heroImageCol {
@@ -293,60 +313,14 @@
     margin: 0;
 }
 
-/* Category Tabs Section */
-.categoryTabsSection {
-    max-width: 1280px;
-    margin: 0 auto 80px;
-    padding: 16px 24px;
-    overflow-x: auto;
-    white-space: nowrap;
-}
-
-.categoryTabsSection::-webkit-scrollbar {
-    display: none;
-}
-
-.tabsContainer {
-    display: flex;
-    gap: 14px;
-    width: fit-content;
-    margin: 20px auto;
-}
-
-.tabBtn {
-    padding: 14px 28px;
-    border-radius: 12px;
-    font-size: 14px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    background: rgba(255, 255, 255, 0.02);
-    backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.06);
-    color: rgba(255, 255, 255, 0.7);
-}
-
-.tabBtn:hover {
-    color: #ffffff;
-    background: rgba(255, 255, 255, 0.06);
-    border-color: rgba(255, 138, 216, 0.3);
-    transform: translateY(-2px);
-}
-
-.tabBtnActive {
-    background: rgba(136, 60, 138, 0.15);
-    border: 1.5px solid #ff8ad8;
-    color: #ff8ad8;
-    font-weight: 600;
-    box-shadow: 0 8px 25px rgba(255, 138, 216, 0.15);
-    transform: translateY(-2px);
-}
 
 /* Main Layout Grid */
 .mainLayoutGrid {
     max-width: 1280px;
-    margin: 0 auto 80px auto; /* Centered layout */
-    padding: 0 24px 90px 24px; /* Optimized padding to fit screen resolutions */
+    margin: 0 auto 80px auto;
+    /* Centered layout */
+    padding: 0 24px 90px 24px;
+    /* Optimized padding to fit screen resolutions */
     display: grid;
     grid-template-columns: 1fr;
     gap: 40px;
@@ -364,18 +338,22 @@
 /* Filter Sidebar */
 .filterSidebar {
     position: sticky;
-    top: 180px; /* offset to stay fixed below navbar while scrolling */
+    top: 180px;
+    /* offset to stay fixed below navbar while scrolling */
     height: fit-content;
-    align-self: start; /* prevents stretching so sticky scrolling works */
+    align-self: start;
+    /* prevents stretching so sticky scrolling works */
     z-index: 10;
 }
 
 .sidebarCard {
     background: rgba(19, 19, 19, 0.65);
     backdrop-filter: blur(30px);
-    border: 1px solid rgba(255, 138, 216, 0.15); /* Pink glowing border */
+    border: 1px solid rgba(255, 138, 216, 0.15);
+    /* Pink glowing border */
     padding: 32px 28px;
-    border-radius: 60px 12px 60px 12px; /* Leaf/Petal organic shape */
+    border-radius: 60px 12px 60px 12px;
+    /* Leaf/Petal organic shape */
     display: flex;
     flex-direction: column;
     gap: 40px;
@@ -504,7 +482,8 @@
     width: 20px;
     height: 20px;
     border: 2px solid rgba(255, 138, 216, 0.3);
-    border-radius: 50%; /* Circle checkboxes */
+    border-radius: 50%;
+    /* Circle checkboxes */
     background: transparent;
     cursor: pointer;
     display: inline-flex;
@@ -587,6 +566,22 @@
     margin-bottom: 24px;
 }
 
+@media (max-width: 640px) {
+    .productsMeta {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+    }
+
+    .sortWrapper {
+        width: 100%;
+    }
+
+    .sortSelect {
+        width: 100%;
+    }
+}
+
 .metaCount {
     font-size: 14px;
     color: var(--on-surface-variant);
@@ -597,18 +592,40 @@
 }
 
 .sortSelect {
-    display: flex;
-    align-items: center;
-    gap: 4px;
+    appearance: none;
+    -webkit-appearance: none;
     background: rgba(255, 255, 255, 0.05);
     backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 8px 16px;
-    border-radius: 8px;
-    color: var(--on-surface-variant);
+    border: 1px solid rgba(255, 138, 216, 0.2);
+    padding: 10px 36px 10px 20px;
+    border-radius: 9999px;
+    color: var(--on-surface);
     font-family: var(--font-sans);
-    font-size: 12px;
+    font-size: 14px;
+    font-weight: 500;
     cursor: pointer;
+    outline: none;
+    transition: var(--transition-smooth);
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ff8ad8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    background-size: 12px;
+}
+
+.sortSelect:hover {
+    border-color: var(--primary);
+    box-shadow: 0 0 12px rgba(255, 138, 216, 0.15);
+    background-color: rgba(255, 255, 255, 0.08);
+}
+
+.sortSelect:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 15px rgba(255, 138, 216, 0.3);
+}
+
+.sortSelect option {
+    background-color: #131313;
+    color: #ffffff;
 }
 
 .productsGrid {
@@ -646,7 +663,8 @@
     padding: 20px;
     display: flex;
     flex-direction: column;
-    aspect-ratio: 1/1.6; /* Locks card height to its width for identical sizing */
+    aspect-ratio: 1/1.6;
+    /* Locks card height to its width for identical sizing */
     transition: var(--transition-smooth);
     cursor: pointer;
 }
@@ -718,6 +736,7 @@
     cursor: pointer;
     opacity: 0;
     transition: var(--transition-smooth);
+    z-index: 10;
 }
 
 .productCard:hover .wishlistBtn {
@@ -732,10 +751,23 @@
     color: var(--primary) !important;
 }
 
+.wished span {
+    animation: heartBeat 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    font-variation-settings: 'FILL' 1 !important;
+}
+
+@keyframes heartBeat {
+    0% { transform: scale(1); }
+    30% { transform: scale(1.4); }
+    60% { transform: scale(0.85); }
+    100% { transform: scale(1); }
+}
+
 .productOverlay {
     position: absolute;
     inset: 0;
-    background: rgba(10, 10, 10, 0.4); /* subtle dark mask */
+    background: rgba(10, 10, 10, 0.4);
+    /* subtle dark mask */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -755,7 +787,8 @@
     color: #ffffff;
     border: none;
     padding: 10px 24px;
-    border-radius: 16px 4px 16px 4px; /* complementary leaf corner shape */
+    border-radius: 16px 4px 16px 4px;
+    /* complementary leaf corner shape */
     font-size: 14px;
     font-weight: 600;
     letter-spacing: 0.05em;
@@ -763,6 +796,11 @@
     cursor: pointer;
     transform: translateY(15px);
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-width: 140px;
 }
 
 .productImageWrapper:hover .viewBtn {
@@ -770,10 +808,58 @@
     box-shadow: 0 6px 20px rgba(136, 60, 138, 0.4);
 }
 
-.viewBtn:hover {
+.viewBtn:hover:not(:disabled) {
     transform: scale(1.08) translateY(0);
     box-shadow: 0 8px 25px rgba(255, 138, 216, 0.5);
-    border-radius: 4px 16px 4px 16px; /* morphing corner on button hover */
+    border-radius: 4px 16px 4px 16px;
+    /* morphing corner on button hover */
+}
+
+.viewBtnClicked {
+    background: linear-gradient(135deg, #000000 0%, #cc00ff 100%) !important;
+    border-radius: 9999px !important;
+    transform: scale(0.95) translateY(0) !important;
+    box-shadow: 0 4px 15px rgba(255, 0, 225, 0.4) !important;
+    min-width: 100px !important;
+    padding: 10px 20px !important;
+}
+
+.btnContent {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.goText {
+    animation: slideGoText 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.btnContent span[class*="material-symbols-outlined"] {
+    animation: slideGoIcon 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes slideGoText {
+    0% {
+        opacity: 0;
+        transform: translateX(-15px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideGoIcon {
+    0% {
+        opacity: 0;
+        transform: translateX(15px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
 
 .productDetails {
@@ -1049,4 +1135,253 @@
 .sidebarSelect option {
     background-color: var(--surface-container-lowest);
     color: var(--on-surface);
+}
+
+/* 4K and Ultra-wide screens support */
+@media (min-width: 1920px) {
+    .mainLayoutGrid {
+        max-width: 1600px;
+    }
+
+    .heroContainer {
+        max-width: 1600px;
+    }
+
+    .newsletterSection {
+        max-width: 1600px;
+    }
+
+    .productsGrid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media (min-width: 2560px) {
+    .mainLayoutGrid {
+        max-width: 2200px;
+        grid-template-columns: 320px 1fr;
+    }
+
+    .heroContainer {
+        max-width: 2200px;
+    }
+
+    .newsletterSection {
+        max-width: 2200px;
+    }
+
+    .productsGrid {
+        grid-template-columns: repeat(5, 1fr);
+    }
+
+    .heroTitle {
+        font-size: 96px;
+        line-height: 104px;
+    }
+}
+
+/* Custom Success Cart Popup (Toast) */
+.cartPopupOverlay {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 1000;
+    animation: slideUpPopup 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+.cartPopupCard {
+    background: rgba(19, 19, 19, 0.85);
+    backdrop-filter: blur(24px);
+    border: 1px solid rgba(255, 138, 216, 0.25);
+    padding: 16px 24px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    box-shadow: 0 10px 30px rgba(136, 60, 138, 0.2);
+    max-width: 450px;
+}
+
+.popupCheck {
+    color: #d1bcff;
+    font-size: 28px !important;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 28px;
+    width: 28px;
+    line-height: 1;
+    animation: checkPop 0.5s ease forwards;
+}
+
+.popupImg {
+    width: 48px;
+    height: 48px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.popupInfo {
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2px;
+}
+
+.popupTitle {
+    font-size: 14px;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0;
+}
+
+.popupName {
+    font-size: 13px;
+    color: rgba(229, 226, 225, 0.6);
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 150px;
+}
+
+.popupProductLink {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-grow: 1;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+}
+
+.popupProductLink:hover {
+    opacity: 0.8;
+}
+
+.popupGoArrow {
+    color: var(--primary);
+    font-size: 11px;
+    margin-left: 4px;
+    transition: transform 0.2s ease;
+    display: inline-block;
+}
+
+.popupProductLink:hover .popupGoArrow {
+    transform: translateX(10px);
+}
+
+.popupActions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.popupBtnProduct {
+    background: rgba(255, 255, 255, 0.05);
+    color: #ffffff;
+    border: 1px solid rgba(255, 138, 216, 0.3);
+    padding: 8px 18px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.popupBtnProduct:hover {
+    background: rgba(255, 138, 216, 0.15);
+    border-color: var(--primary);
+    box-shadow: 0 0 10px rgba(255, 138, 216, 0.25);
+    transform: scale(1.05);
+}
+
+.popupBtnView {
+    background: linear-gradient(90deg, #883c8a, #ff8ad8);
+    color: #ffffff;
+    border: none;
+    height: 36px;
+    padding: 0 15px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.popupBtnView:hover {
+    box-shadow: 0 0 15px rgba(255, 138, 216, 0.4);
+    transform: scale(1.05);
+}
+
+.popupBtnClose {
+    background: none;
+    border: none;
+    color: rgba(229, 226, 225, 0.5);
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.popupBtnClose:hover {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.closeIcon {
+    font-size: 18px !important;
+    line-height: 1 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 18px;
+    height: 18px;
+}
+
+@keyframes slideUpPopup {
+    from {
+        transform: translateY(50px) scale(0.9);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes checkPop {
+    0% { transform: scale(0.7); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+@media (max-width: 640px) {
+    .cartPopupOverlay {
+        bottom: 20px;
+        left: 20px;
+        right: 20px;
+    }
+    .cartPopupCard {
+        max-width: 100%;
+        gap: 16px;
+        padding: 12px 16px;
+    }
+    .popupBtnView {
+        padding: 8px 12px;
+    }
 }

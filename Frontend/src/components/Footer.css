@@ -57,11 +57,11 @@
 }
 
 .footer-logo-img {
-  max-width: 220px; 
+  max-width: 260px; 
   height: auto;
   object-fit: contain;
   filter: invert(1) brightness(2);
-  margin-top: -30px; /* Pull the logo up */
+  margin-top: -35px; /* Pull the logo up */
   margin-bottom: 0px;
 }
 
@@ -161,19 +161,20 @@
 /* The Grand Finale: Massive Typography */
 .footer-massive-text {
   position: absolute;
-  bottom: -4vw;
+  bottom: 0px; 
   left: 0;
   width: 100%;
   text-align: center;
-  font-size: 16vw;
+  font-size: 11vw; /* Reduced to fit the whole word horizontally */
+  line-height: 1;
   font-family: serif;
   font-weight: 700;
-  color: rgba(255, 255, 255, 0.02);
+  color: rgba(255, 255, 255, 0.04); /* Reduced opacity so it doesn't clash with bottom text */
   white-space: nowrap;
   pointer-events: none;
   z-index: 1;
   user-select: none;
-  letter-spacing: -2px;
+  letter-spacing: 2px;
 }
 
 /* Responsive */

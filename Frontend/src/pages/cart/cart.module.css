@@ -1,0 +1,437 @@
+.cartPageWrapper {
+    background-color: #0A0A0A;
+    color: #e5e2e1;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    min-height: 100vh;
+    padding-bottom: 80px;
+    padding-top: 40px;
+}
+
+.cartContainer {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+/* Page Header & Progress Stepper */
+.pageHeader {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    margin-bottom: 48px;
+    text-align: left;
+}
+
+.pageTitle {
+    font-family: 'Bodoni Moda', serif;
+    font-size: 40px;
+    font-weight: 500;
+    line-height: 48px;
+    margin: 0;
+}
+
+.stepper {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.step {
+    color: rgba(229, 226, 225, 0.4);
+}
+
+.stepActive {
+    color: #ff8ad8;
+}
+
+.stepDivider {
+    color: rgba(229, 226, 225, 0.2);
+}
+
+/* Main Layout Grid */
+.cartGrid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 48px;
+    align-items: start;
+}
+
+@media (min-width: 1024px) {
+    .cartGrid {
+        grid-template-columns: 1.8fr 1fr;
+    }
+}
+
+/* Cart Items Section */
+.itemsSection {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.cartItem {
+    display: flex;
+    gap: 20px;
+    background: rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(24px);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 16px;
+    padding: 20px;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+.cartItem:hover {
+    border-color: rgba(255, 138, 216, 0.25);
+    box-shadow: 0 10px 30px rgba(136, 60, 138, 0.05);
+}
+
+.itemImageWrapper {
+    width: 100px;
+    height: 100px;
+    border-radius: 12px;
+    overflow: hidden;
+    flex-shrink: 0;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.itemImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.itemInfo {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    text-align: left;
+}
+
+.itemName {
+    font-family: 'Bodoni Moda', serif;
+    font-size: 18px;
+    font-weight: 500;
+    margin: 0;
+    color: #e5e2e1;
+}
+
+.itemCollection {
+    font-size: 12px;
+    color: rgba(229, 226, 225, 0.4);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin: 0;
+}
+
+.itemPrice {
+    font-size: 16px;
+    font-weight: 600;
+    color: #ff8ad8;
+    margin: 4px 0 0 0;
+}
+
+.viewDetailBtn {
+    background: none;
+    border: none;
+    color: #ff8ad8;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    text-align: left;
+    padding: 0;
+    margin-top: 8px;
+    width: fit-content;
+    transition: all 0.2s ease;
+    text-decoration: underline;
+}
+
+.viewDetailBtn:hover {
+    color: #ffffff;
+}
+
+.itemActions {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+/* Quantity Selector */
+.quantitySelector {
+    display: flex;
+    align-items: center;
+    border: 1px solid rgba(229, 226, 225, 0.1);
+    border-radius: 9999px;
+    overflow: hidden;
+    height: 38px;
+    background: rgba(255, 255, 255, 0.01);
+}
+
+.qtyBtn {
+    background: none;
+    border: none;
+    color: #ffffff;
+    width: 36px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.qtyBtn:hover:not(:disabled) {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.qtyValue {
+    width: 32px;
+    text-align: center;
+    font-weight: 700;
+    font-size: 14px;
+}
+
+.removeBtn {
+    background: none;
+    border: none;
+    color: rgba(229, 226, 225, 0.4);
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.removeBtn:hover {
+    color: #f87171;
+    background-color: rgba(248, 113, 113, 0.08);
+}
+
+/* Summary Section */
+.summarySection {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(24px);
+    border: 1px solid rgba(255, 138, 216, 0.15);
+    padding: 32px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    position: sticky;
+    top: 180px;
+}
+
+.summaryTitle {
+    font-family: 'Bodoni Moda', serif;
+    font-size: 24px;
+    margin: 0;
+    text-align: left;
+}
+
+.summaryRows {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.summaryRow {
+    display: flex;
+    justify-content: space-between;
+    font-size: 15px;
+    color: rgba(229, 226, 225, 0.7);
+}
+
+.summaryDivider {
+    height: 1px;
+    background-color: rgba(255, 255, 255, 0.06);
+}
+
+.totalRow {
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 18px;
+}
+
+.totalPrice {
+    color: #ff8ad8;
+    font-size: 22px;
+}
+
+/* Promo Code Input */
+.promoContainer {
+    display: flex;
+    gap: 12px;
+}
+
+.promoInput {
+    flex-grow: 1;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 9999px;
+    padding: 12px 20px;
+    color: #ffffff;
+    outline: none;
+    font-size: 14px;
+    transition: border-color 0.2s ease;
+}
+
+.promoInput:focus {
+    border-color: #ff8ad8;
+}
+
+.promoBtn {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    padding: 0 24px;
+    border-radius: 9999px;
+    font-weight: 600;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.promoBtn:hover {
+    background-color: #ff8ad8;
+    color: #0A0A0A;
+    border-color: #ff8ad8;
+}
+
+/* Checkout Button */
+.checkoutBtn {
+    background: linear-gradient(90deg, #883c8a, #ff8ad8);
+    color: #ffffff;
+    border: none;
+    padding: 16px;
+    font-weight: 600;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    border-radius: 9999px;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.checkoutBtn:hover {
+    box-shadow: 0 0 30px rgba(255, 138, 216, 0.4);
+    transform: translateY(-2px);
+}
+
+.checkoutBtn:active {
+    transform: translateY(0);
+}
+
+/* Empty State */
+.emptyState {
+    text-align: center;
+    padding: 80px 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+}
+
+.emptyIcon {
+    font-size: 64px !important;
+    color: rgba(229, 226, 225, 0.15);
+}
+
+.emptyTitle {
+    font-family: 'Bodoni Moda', serif;
+    font-size: 28px;
+    margin: 0;
+}
+
+.emptyText {
+    color: rgba(229, 226, 225, 0.5);
+    font-size: 16px;
+    max-width: 320px;
+    margin: 0;
+    line-height: 24px;
+}
+
+.shopNowBtn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(90deg, #883c8a, #ff8ad8);
+    color: #ffffff;
+    border: none;
+    padding: 14px 36px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    border-radius: 9999px;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    text-decoration: none;
+}
+
+.shopNowBtn:hover {
+    box-shadow: 0 0 25px rgba(255, 138, 216, 0.35);
+    transform: translateY(-2px);
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+    .cartItem {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .itemImageWrapper {
+        width: 100%;
+        height: 200px;
+    }
+    
+    .itemActions {
+        justify-content: space-between;
+        margin-top: 12px;
+        padding-top: 12px;
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    
+    .pageTitle {
+        font-size: 32px;
+        line-height: 40px;
+    }
+}
+
+/* 4K and Ultra-wide screens support */
+@media (min-width: 1920px) {
+    .cartContainer {
+        max-width: 1600px;
+    }
+    .itemName {
+        font-size: 22px;
+    }
+    .summarySection {
+        max-width: 500px;
+    }
+}
+
+@media (min-width: 2560px) {
+    .cartContainer {
+        max-width: 2200px;
+    }
+    .pageTitle {
+        font-size: 54px;
+        line-height: 62px;
+    }
+    .itemName {
+        font-size: 26px;
+    }
+}
