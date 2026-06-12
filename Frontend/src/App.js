@@ -1,6 +1,8 @@
+import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Contact from './pages/Contact';
+import FAQ from './pages/faq/Faq';
 import Footer from './components/Footer';
 import About from './pages/about/About';
 import Shop from './pages/shop/Shop';
@@ -10,9 +12,13 @@ import Shipping from './pages/shipping/Shipping';
 import Payment from './pages/payment/Payment';
 import OrderConfirmed from './pages/order-confirmed/OrderConfirmed';
 import Wishlist from './pages/wishlist/Wishlist';
+import Blog from './pages/blog/Blog';
+import BlogDetails from './pages/blog/BlogDetails';
 import './App.css';
 
 function App() {
+  const [selectedFlower, setSelectedFlower] = useState(null);
+
   return (
     <Router>
       <div className="App">
@@ -30,8 +36,18 @@ function App() {
             <Route path="/payment" element={<Payment />} />
             <Route path="/order-confirmed" element={<OrderConfirmed />} />
             <Route path="/contacts" element={<Contact />} />
-            <Route path="/blog" element={<h1>Our Blog</h1>} />
-            <Route path="/faq" element={<h1>FAQ</h1>} />
+            <Route path="/blog" element={
+              selectedFlower ? (
+                <BlogDetails 
+                  flower={selectedFlower} 
+                  onBack={() => setSelectedFlower(null)} 
+                  onSelectFlower={(flower) => setSelectedFlower(flower)}
+                />
+              ) : (
+                <Blog onReadMore={(flower) => setSelectedFlower(flower)} />
+              )
+            } />
+            <Route path="/faq" element={<FAQ />} />
           </Routes>
         </main>
         <Footer />
