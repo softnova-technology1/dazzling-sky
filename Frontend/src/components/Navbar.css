@@ -117,12 +117,37 @@
   padding: 8px;
   transition: all 0.3s ease;
   opacity: 0.8;
+  position: relative;
 }
 
 .icon-btn:hover {
   opacity: 1;
   color: var(--accent);
   transform: translateY(-2px);
+}
+
+.badge {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: linear-gradient(135deg, #883c8a, #ff8ad8);
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: 700;
+  min-width: 16px;
+  height: 16px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 4px;
+  box-shadow: 0 0 8px rgba(255, 138, 216, 0.4);
+  animation: badgePop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+@keyframes badgePop {
+  0% { transform: scale(0.5); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
 }
 
 /* Responsive adjustments */

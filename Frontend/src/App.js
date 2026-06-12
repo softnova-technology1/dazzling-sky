@@ -5,6 +5,11 @@ import Footer from './components/Footer';
 import About from './pages/about/About';
 import Shop from './pages/shop/Shop';
 import ProductDetails from './pages/shop/ProductDetails';
+import Cart from './pages/cart/Cart';
+import Shipping from './pages/shipping/Shipping';
+import Payment from './pages/payment/Payment';
+import OrderConfirmed from './pages/order-confirmed/OrderConfirmed';
+import Wishlist from './pages/wishlist/Wishlist';
 import './App.css';
 
 function App() {
@@ -19,6 +24,11 @@ function App() {
             <Route path="/about" element={<About />} />
             <Route path="/shop" element={<Shop />} />
             <Route path="/product/:id" element={<ProductDetails />} />
+            <Route path="/cart" element={<Cart />} />
+            <Route path="/wishlist" element={<Wishlist />} />
+            <Route path="/checkout" element={<Shipping />} />
+            <Route path="/payment" element={<Payment />} />
+            <Route path="/order-confirmed" element={<OrderConfirmed />} />
             <Route path="/contacts" element={<Contact />} />
             <Route path="/blog" element={<h1>Our Blog</h1>} />
             <Route path="/faq" element={<h1>FAQ</h1>} />

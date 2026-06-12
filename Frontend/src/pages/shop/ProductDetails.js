@@ -7,7 +7,7 @@ export default function ProductDetails() {
     const { id } = useParams();
     const navigate = useNavigate();
     const product = PRODUCTS.find(p => p.id === parseInt(id, 10));
-    
+
     const [selectedImage, setSelectedImage] = useState('');
     const [quantity, setQuantity] = useState(1);
     const [activeInfoTab, setActiveInfoTab] = useState('Description');
@@ -20,6 +20,9 @@ export default function ProductDetails() {
         if (product) {
             setSelectedImage(product.image);
             setQuantity(1);
+            const local = localStorage.getItem('dazzling_sky_wishlist');
+            const ids = local ? JSON.parse(local) : [];
+            setIsWished(ids.includes(product.id));
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
     }, [product, id]);
@@ -43,15 +46,42 @@ export default function ProductDetails() {
         setFaqOpen(prev => ({ ...prev, [key]: !prev[key] }));
     };
 
+    const toggleWishlist = () => {
+        const local = localStorage.getItem('dazzling_sky_wishlist');
+        let ids = local ? JSON.parse(local) : [];
+        if (isWished) {
+            ids = ids.filter(itemId => itemId !== product.id);
+        } else {
+            ids.push(product.id);
+        }
+        localStorage.setItem('dazzling_sky_wishlist', JSON.stringify(ids));
+        window.dispatchEvent(new Event('wishlist_updated'));
+        setIsWished(!isWished);
+    };
+
     const handleBuyNowClick = () => {
         setIsBuying(true);
+        const checkoutItems = [{ id: product.id, quantity: quantity }];
+        localStorage.setItem('dazzling_sky_checkout_items', JSON.stringify(checkoutItems));
+        localStorage.setItem('dazzling_sky_checkout_source', 'direct');
+        
         setTimeout(() => {
             setIsBuying(false);
+            navigate('/checkout');
         }, 1500);
     };
 
     const handleAddToCartClick = () => {
         setIsAdding(true);
+        const existingCart = JSON.parse(localStorage.getItem('dazzling_sky_cart') || '[]');
+        const existingItemIndex = existingCart.findIndex(item => item.id === product.id);
+        if (existingItemIndex > -1) {
+            existingCart[existingItemIndex].quantity += quantity;
+        } else {
+            existingCart.push({ id: product.id, quantity: quantity });
+        }
+        localStorage.setItem('dazzling_sky_cart', JSON.stringify(existingCart));
+        window.dispatchEvent(new Event('cart_updated'));
         setTimeout(() => {
             setIsAdding(false);
         }, 1500);
@@ -67,7 +97,7 @@ export default function ProductDetails() {
     return (
         <div className={styles.detailsPageWrapper}>
             <main className={styles.detailsContainer}>
-                
+
                 {/* Back Link */}
                 <div style={{ marginBottom: '24px', textAlign: 'left' }}>
                     <button onClick={() => navigate('/shop')} className={styles.backBtn}>
@@ -108,7 +138,7 @@ export default function ProductDetails() {
                                 <span className={styles.breadActive}>{product.collection}</span>
                             </nav>
                             <h1 className={styles.productName}>{product.name}</h1>
-                            
+
                             <div className={styles.ratingsContainer}>
                                 <div className={styles.stars}>
                                     {Array.from({ length: 5 }).map((_, index) => (
@@ -152,8 +182,8 @@ export default function ProductDetails() {
                             </div>
 
                             <div className={styles.btnRow}>
-                                <button 
-                                    className={`${styles.cartBtn} ${isAdding ? styles.cartBtnActive : ''}`} 
+                                <button
+                                    className={`${styles.cartBtn} ${isAdding ? styles.cartBtnActive : ''}`}
                                     onClick={handleAddToCartClick}
                                     disabled={!product.inStock || isAdding}
                                 >
@@ -162,8 +192,8 @@ export default function ProductDetails() {
                                     </span>
                                     <span>{isAdding ? 'Saved' : 'Add to Cart'}</span>
                                 </button>
-                                <button 
-                                    className={`${styles.buyBtn} ${isBuying ? styles.buyBtnActive : ''}`} 
+                                <button
+                                    className={`${styles.buyBtn} ${isBuying ? styles.buyBtnActive : ''}`}
                                     onClick={handleBuyNowClick}
                                     disabled={!product.inStock || isBuying}
                                 >
@@ -177,11 +207,11 @@ export default function ProductDetails() {
                                 </button>
                             </div>
 
-                            <button 
+                             <button
                                 className={`${styles.wishlistAction} ${isWished ? styles.wished : ''}`}
-                                onClick={() => setIsWished(!isWished)}
+                                onClick={toggleWishlist}
                             >
-                                <span 
+                                <span
                                     className={`material-symbols-outlined ${isWished ? styles.heartPop : ''}`}
                                     style={{
                                         fontVariationSettings: isWished ? "'FILL' 1" : "'FILL' 0"
@@ -231,7 +261,7 @@ export default function ProductDetails() {
                             </button>
                         ))}
                     </div>
-                    
+
                     <div className={styles.tabsContent}>
                         {activeInfoTab === 'Description' && (
                             <div className={styles.descriptionTabGrid}>
