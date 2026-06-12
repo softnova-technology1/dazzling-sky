@@ -57,11 +57,11 @@
 }
 
 .footer-logo-img {
-  max-width: 220px; 
+  max-width: 260px; 
   height: auto;
   object-fit: contain;
   filter: invert(1) brightness(2);
-  margin-top: -30px; /* Pull the logo up */
+  margin-top: -35px; /* Pull the logo up */
   margin-bottom: 0px;
 }
 

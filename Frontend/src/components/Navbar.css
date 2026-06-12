@@ -1,67 +1,86 @@
 .navbar-container {
   width: 100%;
-  padding: 10px 40px;
+  padding: 20px 40px; /* Pushed down slightly from the top */
   position: fixed;
   top: 0;
   left: 0;
   z-index: 1000;
+  display: flex;
+  justify-content: center; /* Centers the floating pill */
+  pointer-events: none; /* Allows clicking through the empty space around the pill */
 }
 
 .navbar-content {
+  pointer-events: auto;
+  width: 95%; 
+  max-width: 1400px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 4px 24px; /* Reduced padding to make it slimmer */
-  background: linear-gradient(90deg, rgba(136, 60, 138, 0.3) 0%, rgba(255, 138, 216, 0.15) 50%, rgba(136, 60, 138, 0.3) 100%); /* Much brighter purple gradient so the shape is visible */
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border-radius: 50px; /* Fully rounded pill shape */
-  border: 1px solid rgba(255, 138, 216, 0.5); /* Stronger border outline */
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8), 0 0 30px rgba(255, 138, 216, 0.2); /* Outer glow and strong shadow */
+  padding: 12px 32px; 
+  background: rgba(30, 20, 30, 0.4); /* Reverted to subtle frosted glass */
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border-radius: 16px; /* Reverted to normal rounded corners */
+  border: 1px solid rgba(255, 255, 255, 0.1); 
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); 
   transition: all 0.3s ease;
   position: relative;
 }
 
 /* Unique Animated Glow Border on Hover */
 .navbar-content:hover {
-  border-color: rgba(255, 138, 216, 0.5);
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6), inset 0 0 25px rgba(255, 138, 216, 0.15);
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
 }
 
 /* Left Links */
 .nav-links {
   display: flex;
   gap: 28px;
-  flex: 1;
+  flex: 1 1 0; /* Force equal width for perfect centering */
+  align-items: center;
 }
 
 .nav-link {
-  font-size: 0.9rem; /* Slightly smaller font */
+  font-size: 0.95rem; 
   font-weight: 500;
-  color: #ffffff; /* Pure white for maximum visibility */
+  color: #ffffff; /* Pure white text */
   text-decoration: none;
   position: relative;
-  padding: 6px 14px; /* Reduced padding */
-  border-radius: 30px;
+  padding: 8px 0;
   transition: all 0.3s ease;
-  border: 1px solid transparent;
+  white-space: nowrap;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: #ff8ad8; /* Reverted to pink underline */
+  transition: width 0.4s ease;
 }
 
 .nav-link:hover {
-  color: #ff8ad8;
-  background: rgba(255, 138, 216, 0.08);
-  border-color: rgba(255, 138, 216, 0.2);
-  box-shadow: 0 0 15px rgba(255, 138, 216, 0.1);
-  transform: translateY(-2px);
+  color: #ff8ad8; /* Reverted to pink hover */
+}
+
+.nav-link:hover::after {
+  width: 100%;
 }
 
 /* Center Logo */
 .nav-logo {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  flex: 1;
 }
 
 .nav-logo a {
@@ -71,13 +90,11 @@
 }
 
 .nav-logo-img {
-  height: 65px; /* Reduced from 90px to make the navbar shorter */
+  height: 80px;
   width: auto;
   object-fit: contain;
-  margin: -8px 0; /* Reduced negative margin */
-  /* Since the theme is dark and the logo is black, we invert it so it shows up beautifully in white/light-gray */
-  filter: invert(1) brightness(2) drop-shadow(0 0 8px rgba(179, 136, 255, 0.4));
-  transition: transform 0.3s ease;
+  margin: -12px 0;
+  transition: all 0.4s ease;
 }
 
 .nav-logo-img:hover {
@@ -88,29 +105,53 @@
 .nav-icons {
   display: flex;
   justify-content: flex-end;
+  align-items: center;
   gap: 24px;
-  flex: 1;
+  flex: 1 1 0; /* Force equal width for perfect centering */
 }
 
 .icon-btn {
-  background: rgba(255, 255, 255, 0.08); /* Lighter glass background so the circle is visible */
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 50%;
-  color: #ffffff; /* Pure white icons for maximum visibility */
+  background: transparent; 
+  border: none;
+  color: #ffffff; 
   cursor: pointer;
-  padding: 8px; /* Reduced padding */
+  padding: 8px;
   transition: all 0.3s ease;
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative; 
 }
 
+/* Removed the gold divider */
+
 .icon-btn:hover {
-  color: #fff;
-  background: linear-gradient(90deg, #883c8a, #ff8ad8);
-  border-color: #ff8ad8;
-  transform: translateY(-3px) rotate(5deg);
-  box-shadow: 0 5px 15px rgba(255, 138, 216, 0.4);
+  color: #ff8ad8; /* Reverted to pink hover */
+  transform: translateY(-2px);
+}
+
+.badge {
+  position: absolute;
+  top: 1px;
+  right: 1px; 
+  background: linear-gradient(135deg, #883c8a, #ff8ad8); /* Reverted to original pink gradient */
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: 700;
+  min-width: 18px;
+  height: 18px;
+  border-radius: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 4px;
+  box-shadow: 0 0 8px rgba(255, 138, 216, 0.4);
+  animation: badgePop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+@keyframes badgePop {
+  0% { transform: scale(0.5); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
 }
 
 /* Responsive adjustments */

@@ -3,17 +3,6 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { PRODUCTS } from '../../data/productsData';
 import styles from './shop.module.css';
 import heroimg from '../../images/shop-head.png';
-// Mock Data for Tabs
-const TABS = [
-    'All Flowers',
-    'Signature Roses',
-    'Artisanal Bouquets',
-    'Bridal & Weddings',
-    'Dried Florals',
-    'Luxury Subscriptions',
-    'Workshops'
-];
-
 
 
 // Color palette options matching Luxury Black & Lavender
@@ -28,7 +17,8 @@ const COLORS = [
 export default function Shop() {
     const location = useLocation();
     const navigate = useNavigate();
-    const [activeTab, setActiveTab] = useState('All Flowers');
+
+    const [clickedProductId, setClickedProductId] = useState(null);
     const [searchQuery, setSearchQuery] = useState('');
     const [priceRange, setPriceRange] = useState(500);
     const [selectedColor, setSelectedColor] = useState('all');
@@ -38,8 +28,12 @@ export default function Shop() {
     const [rating4, setRating4] = useState(false);
     const [inStockOnly, setInStockOnly] = useState(false);
     const [sortBy, setSortBy] = useState('featured');
-    const [favorites, setFavorites] = useState([]);
+    const [favorites, setFavorites] = useState(() => {
+        const local = localStorage.getItem('dazzling_sky_wishlist');
+        return local ? JSON.parse(local) : [];
+    });
     const [cart, setCart] = useState([1, 2, 3]); // default initial cart count as in HTML
+    const [popupProduct, setPopupProduct] = useState(null);
 
     // Pagination State
     const [currentPage, setCurrentPage] = useState(1);
@@ -58,27 +52,44 @@ export default function Shop() {
     };
 
     const toggleFavorite = (productId) => {
-        setFavorites(prev =>
-            prev.includes(productId)
+        setFavorites(prev => {
+            const updated = prev.includes(productId)
                 ? prev.filter(id => id !== productId)
-                : [...prev, productId]
-        );
+                : [...prev, productId];
+            localStorage.setItem('dazzling_sky_wishlist', JSON.stringify(updated));
+            window.dispatchEvent(new Event('wishlist_updated'));
+            return updated;
+        });
     };
 
     const addToCart = (product) => {
-        setCart(prev => [...prev, product.id]);
+        const existingCart = JSON.parse(localStorage.getItem('dazzling_sky_cart') || '[]');
+        const existingItemIndex = existingCart.findIndex(item => item.id === product.id);
+        if (existingItemIndex > -1) {
+            existingCart[existingItemIndex].quantity += 1;
+        } else {
+            existingCart.push({ id: product.id, quantity: 1 });
+        }
+        localStorage.setItem('dazzling_sky_cart', JSON.stringify(existingCart));
+        window.dispatchEvent(new Event('cart_updated'));
+        setPopupProduct(product);
+        // Auto close toast/popup after 4 seconds
+        setTimeout(() => {
+            setPopupProduct(current => current && current.id === product.id ? null : current);
+        }, 4000);
     };
 
     // Reset page and scroll to absolute top of page on location/navigation change (e.g. clicking navbar link)
     useEffect(() => {
         setCurrentPage(1);
+        setClickedProductId(null);
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }, [location]);
 
     // Reset pagination to page 1 whenever filters change
     useEffect(() => {
         setCurrentPage(1);
-    }, [searchQuery, priceRange, selectedColor, selectedOccasion, selectedFlowerType, inStockOnly, sortBy, activeTab]);
+    }, [searchQuery, priceRange, selectedColor, selectedOccasion, selectedFlowerType, inStockOnly, sortBy]);
 
     const handlePageChange = (pageNum) => {
         setCurrentPage(pageNum);
@@ -99,21 +110,7 @@ export default function Shop() {
 
     const filteredProducts = useMemo(() => {
         return PRODUCTS.filter(prod => {
-            if (activeTab !== 'All Flowers') {
-                if (activeTab === 'Signature Roses') {
-                    if (prod.flowerType !== 'Roses' && prod.collection !== 'Signature Collection') return false;
-                } else if (activeTab === 'Artisanal Bouquets') {
-                    if (prod.collection !== 'Artisanal Choice') return false;
-                } else if (activeTab === 'Bridal & Weddings') {
-                    if (prod.collection !== 'Wedding Exclusive') return false;
-                } else if (activeTab === 'Dried Florals') {
-                    if (prod.collection !== 'Seasonal Limited' || prod.flowerType !== 'Peonies') return false;
-                } else if (activeTab === 'Luxury Subscriptions') {
-                    if (prod.collection !== 'Seasonal Limited' || prod.flowerType !== 'Lilies') return false;
-                } else if (activeTab === 'Workshops') {
-                    return false;
-                }
-            }
+
             if (searchQuery && !prod.name.toLowerCase().includes(searchQuery.toLowerCase())) return false;
             if (prod.price > priceRange) return false;
             if (selectedColor !== 'all' && prod.color !== selectedColor) return false;
@@ -152,16 +149,16 @@ export default function Shop() {
                         <div className={styles.heroTextCol}>
                             <span className={styles.heroTagline}>Welcome our Dazzlingsky...</span>
                             <h1 className={styles.heroTitle}>
-                                Make Your Home as Comfortable 
+                                Make Your Home as Comfortable
                                 <span className={styles.textGradientRose}> as Possible</span>
                             </h1>
                             <p className={styles.heroSubtitle}>
                                 Make your home as comfortable as possible with the natural charm of fresh flowers.
                                 Add comfort and elegance to your home with beautifully crafted fresh flower bouquets
                             </p>
-                            <div className={styles.heroActions}>
+                             <div className={styles.heroActions}>
                                 <button className={styles.btnPrimary} onClick={handleShopNowClick}>Shop Now</button>
-                                <button className={styles.btnOutline}>View Lookbook</button>
+                                <button className={styles.btnOutline} onClick={() => navigate('/blog')}>View Lookbook</button>
                             </div>
                         </div>
                         <div className={styles.heroImageCol}>
@@ -181,20 +178,7 @@ export default function Shop() {
                 </div>
             </header>
 
-            {/* Category Section tabs */}
-            <section className={styles.categoryTabsSection}>
-                <div className={styles.tabsContainer}>
-                    {TABS.map(tab => (
-                        <button
-                            key={tab}
-                            onClick={() => setActiveTab(tab)}
-                            className={`${styles.tabBtn} ${activeTab === tab ? styles.tabBtnActive : ''}`}
-                        >
-                            {tab}
-                        </button>
-                    ))}
-                </div>
-            </section>
+
 
             {/* Main Content Area */}
             <main className={styles.mainLayoutGrid} ref={catalogRef}>
@@ -211,7 +195,7 @@ export default function Shop() {
                             <p className={styles.filterLabel}>Price Range</p>
                             <input
                                 type="range"
-                                  min="50"
+                                min="50"
                                 max="500"
                                 value={priceRange}
                                 onChange={(e) => setPriceRange(Number(e.target.value))}
@@ -358,6 +342,28 @@ export default function Shop() {
                                     >
                                         <span className="material-symbols-outlined">favorite</span>
                                     </button>
+                                    <div className={styles.productOverlay}>
+                                        <button
+                                            className={`${styles.viewBtn} ${clickedProductId === prod.id ? styles.viewBtnClicked : ''}`}
+                                            onClick={(e) => {
+                                                e.stopPropagation();
+                                                setClickedProductId(prod.id);
+                                                setTimeout(() => {
+                                                    navigate(`/product/${prod.id}`);
+                                                }, 500);
+                                            }}
+                                            disabled={clickedProductId === prod.id}
+                                        >
+                                            {clickedProductId === prod.id ? (
+                                                <span className={styles.btnContent}>
+                                                    <span className={styles.goText}>Go</span>
+                                                    <span className="material-symbols-outlined" style={{ fontSize: '18px' }}>arrow_forward</span>
+                                                </span>
+                                            ) : (
+                                                "View Product"
+                                            )}
+                                        </button>
+                                    </div>
                                 </div>
                                 <div className={styles.productDetails}>
                                     <div className={styles.productStars}>
@@ -407,7 +413,7 @@ export default function Shop() {
                             >
                                 <span className="material-symbols-outlined">chevron_left</span>
                             </button>
-                            
+
                             {Array.from({ length: totalPages }).map((_, i) => {
                                 const pageNum = i + 1;
                                 return (
@@ -452,6 +458,32 @@ export default function Shop() {
                     </div>
                 </div>
             </section>
+            {/* Success Cart Popup Toast */}
+            {popupProduct && (
+                <div className={styles.cartPopupOverlay}>
+                    <div className={styles.cartPopupCard}>
+                        <div 
+                            className={styles.popupProductLink}
+                            onClick={() => navigate(`/product/${popupProduct.id}`)}
+                        >
+                            <span className={`material-symbols-outlined ${styles.popupCheck}`}>task_alt</span>
+                            <img className={styles.popupImg} src={popupProduct.image} alt={popupProduct.name} />
+                            <div className={styles.popupInfo}>
+                                <h4 className={styles.popupTitle}>Added to Cart</h4>
+                                <p className={styles.popupName}>
+                                    {popupProduct.name} <span className={styles.popupGoArrow}>➔</span>
+                                </p>
+                            </div>
+                        </div>
+                        <div className={styles.popupActions}>
+                            <button className={styles.popupBtnView} onClick={() => navigate('/cart')}>View Cart</button>
+                            <button className={styles.popupBtnClose} onClick={() => setPopupProduct(null)}>
+                                <span className={`material-symbols-outlined ${styles.closeIcon}`}>close</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     );
 }
