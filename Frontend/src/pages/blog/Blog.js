@@ -93,7 +93,7 @@ const Blog = ({ onReadMore }) => {
         <div className={styles.blur1}></div>
         <div className={styles.blur2}></div>
 
-        {/* Separated Image for Parallax and Bloom */}
+        
         <div
           ref={imageRef}
           className={styles.heroImage}
