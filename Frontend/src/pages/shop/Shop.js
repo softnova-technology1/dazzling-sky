@@ -152,11 +152,11 @@ export default function Shop() {
                         <div className={styles.heroTextCol}>
                             <span className={styles.heroTagline}>Welcome our Dazzlingsky...</span>
                             <h1 className={styles.heroTitle}>
-                                Make Your Home as Comfortable <br />
-                                <span className={styles.textGradientRose}>as Possible</span>
+                                Make Your Home as Comfortable 
+                                <span className={styles.textGradientRose}> as Possible</span>
                             </h1>
                             <p className={styles.heroSubtitle}>
-                                Make your home as comfortable as possible with the natural charm of fresh flowers.<br />
+                                Make your home as comfortable as possible with the natural charm of fresh flowers.
                                 Add comfort and elegance to your home with beautifully crafted fresh flower bouquets
                             </p>
                             <div className={styles.heroActions}>
@@ -341,19 +341,23 @@ export default function Shop() {
 
                     <div className={styles.productsGrid}>
                         {paginatedProducts.map(prod => (
-                            <article key={prod.id} className={styles.productCard}>
+                            <article
+                                key={prod.id}
+                                className={styles.productCard}
+                                onClick={() => navigate(`/product/${prod.id}`)}
+                            >
                                 <div className={styles.productImageWrapper}>
                                     <img className={styles.productImage} alt={prod.name} src={prod.image} />
                                     {prod.tag && <div className={styles.productBadge}>{prod.tag}</div>}
                                     <button
                                         className={`${styles.wishlistBtn} ${favorites.includes(prod.id) ? styles.wished : ''}`}
-                                        onClick={() => toggleFavorite(prod.id)}
+                                        onClick={(e) => {
+                                            e.stopPropagation();
+                                            toggleFavorite(prod.id);
+                                        }}
                                     >
                                         <span className="material-symbols-outlined">favorite</span>
                                     </button>
-                                    <div className={styles.productOverlay}>
-                                        <button className={styles.viewBtn} onClick={() => navigate(`/product/${prod.id}`)}>View</button>
-                                    </div>
                                 </div>
                                 <div className={styles.productDetails}>
                                     <div className={styles.productStars}>
@@ -378,7 +382,13 @@ export default function Shop() {
                                         <span className={styles.price}>${prod.price}</span>
                                         {prod.originalPrice && <span className={styles.originalPrice}>${prod.originalPrice}</span>}
                                     </div>
-                                    <button className={styles.cartBtn} onClick={() => addToCart(prod)}>
+                                    <button
+                                        className={styles.cartBtn}
+                                        onClick={(e) => {
+                                            e.stopPropagation();
+                                            addToCart(prod);
+                                        }}
+                                    >
                                         <span className="material-symbols-outlined">add_shopping_cart</span>
                                     </button>
                                 </div>

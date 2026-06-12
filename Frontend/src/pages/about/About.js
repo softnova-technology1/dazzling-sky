@@ -124,11 +124,7 @@ const About = () => {
               </p>
             </div>
 
-            {/* Cursive Founder Signature */}
-            <div className={styles.signatureContainer}>
-              <div className={styles.signatureText}>Elena V.</div>
-              <div className={styles.signatureTitle}>Elena V., Founder & Creative Director</div>
-            </div>
+            
           </div>
 
         </div>

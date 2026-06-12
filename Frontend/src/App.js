@@ -13,7 +13,7 @@ function App() {
       <div className="App">
         <Navbar />
         {/* Main Content Area */}
-        <main style={{ marginTop: '160px', padding: '20px', textAlign: 'center' }}>
+        <main style={{ marginTop: '86px', padding: '20px', textAlign: 'center' }}>
           <Routes>
             <Route path="/" element={<h1>Welcome to Dazzling Sky</h1>} />
             <Route path="/about" element={<About />} />
