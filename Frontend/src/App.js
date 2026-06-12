@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Contact from './pages/Contact';
+import FAQ from './pages/faq/Faq';
 import Footer from './components/Footer';
 import About from './pages/about/About';
 import Shop from './pages/shop/Shop';
@@ -21,7 +22,7 @@ function App() {
             <Route path="/product/:id" element={<ProductDetails />} />
             <Route path="/contacts" element={<Contact />} />
             <Route path="/blog" element={<h1>Our Blog</h1>} />
-            <Route path="/faq" element={<h1>FAQ</h1>} />
+            <Route path="/faq" element={<FAQ />} />
           </Routes>
         </main>
         <Footer />
