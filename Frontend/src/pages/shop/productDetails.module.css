@@ -26,7 +26,7 @@
     font-weight: 500;
     cursor: pointer;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    margin-top: 40px;
+    /* margin-top: 40px; */
 }
 
 .backBtn:hover {
@@ -39,15 +39,23 @@
 .gridContainer {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 80px;
+    gap: 32px;
     align-items: start;
+}
+
+@media (min-width: 768px) {
+    .gridContainer {
+        gap: 48px;
+    }
 }
 
 @media (min-width: 1024px) {
     .gridContainer {
         grid-template-columns: 1fr 1fr;
+        gap: 80px;
     }
 }
+
 
 /* Left: Gallery */
 .galleryWrapper {
@@ -177,6 +185,13 @@
     line-height: 56px;
     margin: 0;
     color: #e5e2e1;
+}
+
+@media (max-width: 768px) {
+    .productName {
+        font-size: 32px;
+        line-height: 40px;
+    }
 }
 
 .ratingsContainer {
@@ -320,6 +335,9 @@
 .cartBtn:hover:not(:disabled) {
     transform: scale(1.02);
     box-shadow: 0 20px 45px -5px rgba(255, 138, 216, 0.35);
+    background-color: #ffb7e8;
+    /* Lighter pink on hover */
+    color: #000000;
 }
 
 .cartBtn:active:not(:disabled) {
@@ -344,6 +362,7 @@
         transform: translateX(-40px) scale(0.5);
         opacity: 0;
     }
+
     100% {
         transform: translateX(0) scale(1);
         opacity: 1;
@@ -370,6 +389,8 @@
 .buyBtn:hover:not(:disabled) {
     transform: scale(1.02);
     box-shadow: 0 20px 45px -5px rgba(136, 60, 138, 0.35);
+    background-color: #a34fa5;
+    /* Lighter purple on hover */
 }
 
 .buyBtn:active:not(:disabled) {
@@ -401,14 +422,17 @@
         left: -40px;
         transform: scaleX(1);
     }
+
     45% {
         left: 50%;
         transform: translate(-50%) scaleX(1.1);
     }
+
     55% {
         left: 50%;
         transform: translate(-50%) scaleX(1.1);
     }
+
     100% {
         left: calc(100% + 40px);
         transform: scaleX(1.2);
@@ -455,10 +479,21 @@
 }
 
 @keyframes heartBeat {
-    0% { transform: scale(1); }
-    30% { transform: scale(1.4); }
-    60% { transform: scale(0.85); }
-    100% { transform: scale(1); }
+    0% {
+        transform: scale(1);
+    }
+
+    30% {
+        transform: scale(1.4);
+    }
+
+    60% {
+        transform: scale(0.85);
+    }
+
+    100% {
+        transform: scale(1);
+    }
 }
 
 /* Delivery Card */
@@ -598,6 +633,13 @@
     margin: 0;
 }
 
+@media (max-width: 768px) {
+    .tabHeading {
+        font-size: 24px;
+        line-height: 32px;
+    }
+}
+
 .tabText {
     font-size: 18px;
     line-height: 28px;
@@ -693,12 +735,27 @@
     margin-bottom: 32px;
 }
 
+@media (max-width: 640px) {
+    .reviewsHeader {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+    }
+}
+
 .reviewsHeading {
     font-family: 'Bodoni Moda', serif;
     font-size: 32px;
     font-weight: 400;
     line-height: 40px;
     margin: 0 0 8px 0;
+}
+
+@media (max-width: 768px) {
+    .reviewsHeading {
+        font-size: 26px;
+        line-height: 34px;
+    }
 }
 
 .reviewsSubheading {
@@ -737,7 +794,13 @@
     gap: 24px;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 640px) {
+    .reviewsGrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
     .reviewsGrid {
         grid-template-columns: repeat(3, 1fr);
     }
@@ -956,4 +1019,44 @@
     font-size: 15px;
     border-top: 1px solid rgba(255, 255, 255, 0.05);
     text-align: left;
+}
+
+/* 4K and Ultra-wide screens support */
+@media (min-width: 1920px) {
+    .detailsContainer {
+        max-width: 1600px;
+    }
+
+    .reviewsGrid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .relatedGrid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 32px;
+    }
+}
+
+@media (min-width: 2560px) {
+    .detailsContainer {
+        max-width: 2200px;
+    }
+
+    .reviewsGrid {
+        grid-template-columns: repeat(5, 1fr);
+    }
+
+    .relatedGrid {
+        grid-template-columns: repeat(5, 1fr);
+        gap: 40px;
+    }
+
+    .productName {
+        font-size: 64px;
+        line-height: 72px;
+    }
+
+    .price {
+        font-size: 44px;
+    }
 }
