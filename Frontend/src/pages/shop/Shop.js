@@ -2,7 +2,7 @@ import React, { useState, useMemo, useEffect, useRef } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { PRODUCTS } from '../../data/productsData';
 import styles from './shop.module.css';
-import heroimg from '../../images/shophero.png';
+import heroimg from '../../images/shop-head.png';
 // Mock Data for Tabs
 const TABS = [
     'All Flowers',
