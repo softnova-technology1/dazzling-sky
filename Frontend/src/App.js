@@ -1,13 +1,23 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
+import Blog from './pages/blog/Blog';
+import BlogDetails from './pages/blog/BlogDetails';
 
 function App() {
+  const [selectedFlower, setSelectedFlower] = useState(null);
+
   return (
-    <div className="App">
-      <header className="App-header">
-       <h1>Project Successfully Completed😂</h1>
-      </header>
-    </div>
+    <>
+      {selectedFlower ? (
+        <BlogDetails 
+          flower={selectedFlower} 
+          onBack={() => setSelectedFlower(null)} 
+          onSelectFlower={(flower) => setSelectedFlower(flower)}
+        />
+      ) : (
+        <Blog onReadMore={(flower) => setSelectedFlower(flower)} />
+      )}
+    </>
   );
 }
 

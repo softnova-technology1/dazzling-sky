@@ -1,0 +1,462 @@
+.detailsPage {
+  width: 100%;
+  background-color: #050208;
+  min-height: 100vh;
+  color: #f5f5f5;
+  font-family: 'Inter', sans-serif;
+}
+
+.heroContainer {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 800px;
+  background-color: #050208;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.heroImage {
+  position: absolute;
+  top: -5%;
+  left: -5%;
+  width: 110%;
+  height: 110%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 0;
+  animation: bloom 1.2s ease forwards;
+}
+
+@keyframes bloom {
+  from {
+    opacity: 0;
+    transform: scale(.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to right, 
+    rgba(5, 2, 8, 1) 0%, 
+    rgba(5, 2, 8, 0.9) 35%, 
+    rgba(5, 2, 8, 0.4) 65%, 
+    rgba(5, 2, 8, 0) 100%
+  );
+  z-index: 1;
+}
+
+.contentWrapper {
+  position: relative;
+  z-index: 2;
+  max-width: 700px;
+  padding: 0 5%;
+  margin-left: 5%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.backBtn {
+  background: transparent;
+  border: 1px solid rgba(209, 165, 255, 0.3);
+  color: #d1a5ff;
+  padding: 0.5rem 1rem;
+  border-radius: 50px;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  width: fit-content;
+  transition: all 0.3s ease;
+  margin-bottom: 2rem;
+  opacity: 0;
+  animation: slideUp 1s ease forwards;
+}
+
+.backBtn:hover {
+  background: rgba(209, 165, 255, 0.1);
+  border-color: rgba(209, 165, 255, 0.8);
+  color: white;
+}
+
+.headline {
+  font-family: 'Playfair Display', serif;
+  font-size: 4.5rem;
+  font-weight: 400;
+  line-height: 1.1;
+  margin: 0;
+  color: #ffffff;
+}
+
+.heroTitle {
+  opacity: 0;
+  animation: slideUp 1s ease 0.2s forwards;
+}
+
+.italicHighlight {
+  font-style: italic;
+  font-weight: 400;
+  color: #d1a5ff;
+}
+
+.descriptionBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 1rem;
+  max-width: 500px;
+  opacity: 0;
+  animation: slideUp 1s ease 0.4s forwards;
+}
+
+.description {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: #a69ea1;
+  font-weight: 300;
+  margin: 0;
+}
+
+.shopBtn {
+  background: #b57cff;
+  color: white;
+  border: none;
+  padding: 1rem 2.5rem;
+  border-radius: 50px;
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  width: fit-content;
+  margin-top: 1.5rem;
+  box-shadow: 0 0 30px #b57cff;
+  transition: 0.4s;
+  opacity: 0;
+  animation: slideUp 1s ease 0.6s forwards;
+}
+
+.shopBtn:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 60px #b57cff;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.blur1 {
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  background: #b57cff;
+  filter: blur(150px);
+  animation: float 8s infinite ease-in-out;
+  top: 10%;
+  left: 20%;
+  z-index: 0;
+  opacity: 0.6;
+}
+
+.blur2 {
+  position: absolute;
+  width: 350px;
+  height: 350px;
+  background: #ff8ad8;
+  filter: blur(150px);
+  animation: float 10s infinite ease-in-out reverse;
+  bottom: 20%;
+  right: 15%;
+  z-index: 0;
+  opacity: 0.5;
+}
+
+@keyframes float {
+  0% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-30px) rotate(5deg); }
+  100% { transform: translateY(0px) rotate(0deg); }
+}
+
+.flower {
+  position: absolute;
+  z-index: 1;
+  opacity: 0.8;
+  animation: float 4s ease-in-out infinite;
+  mix-blend-mode: screen;
+}
+
+.f1 { top: 20%; left: 10%; animation-duration: 5s; width: 60px; height: auto; }
+.f2 { top: 60%; left: 80%; animation-duration: 6s; width: 60px; height: auto; }
+.f3 { top: 80%; left: 30%; animation-duration: 4.5s; width: 60px; height: auto; }
+.f4 { top: 15%; left: 70%; animation-duration: 7s; width: 60px; height: auto; }
+.f5 { top: 50%; left: 40%; animation-duration: 5.5s; width: 60px; height: auto; }
+
+.scrollIndicator {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 5;
+  color: white;
+  font-size: 2rem;
+  opacity: 0.8;
+}
+
+.scrollIcon {
+  animation: bounce 1.5s infinite;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(10px); }
+}
+
+.detailsContent {
+  padding: 5rem 10%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.detailsContent h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.5rem;
+  color: #d1a5ff;
+  margin-bottom: 1.5rem;
+}
+
+.detailsContent p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #a69ea1;
+  margin-bottom: 1.5rem;
+}
+
+@media (max-width: 1024px) {
+  .headline {
+    font-size: 3.8rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .overlay {
+    background: linear-gradient(
+      to bottom, 
+      rgba(5, 2, 8, 0.8) 0%, 
+      rgba(5, 2, 8, 0.95) 60%, 
+      rgba(5, 2, 8, 1) 100%
+    );
+  }
+
+  .contentWrapper {
+    margin-left: 0;
+    margin-top: auto;
+    padding-bottom: 4rem;
+  }
+
+  .headline {
+    font-size: 3rem;
+  }
+}
+
+.contentGrid {
+  max-width: 1200px;
+  margin: 5rem auto 0 auto;
+  padding: 0 5% 5rem 5%;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 5rem;
+}
+
+.mainContent {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.flowerImageWrapper {
+  width: 100%;
+  height: 450px;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+
+.mainImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.mainImage:hover {
+  transform: scale(1.03);
+}
+
+.flowerTitle {
+  font-family: 'Inter', sans-serif;
+  font-size: 2.2rem;
+  color: #ffffff;
+  font-weight: 600;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.sectionTitle {
+  font-family: 'Inter', sans-serif;
+  font-size: 2.2rem;
+  color: #ffffff;
+  font-weight: 600;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.flowerDesc, .flowerPara {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: #a69ea1;
+  margin: 0;
+}
+
+.careList {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: #a69ea1;
+  margin: 0.5rem 0 0 0;
+  padding-left: 2rem;
+}
+
+.careList li {
+  margin-bottom: 0.5rem;
+}
+
+.flowerDesc {
+  margin-bottom: 1rem;
+}
+
+.quoteBox {
+  border-left: 4px solid #ff4d6d;
+  background: rgba(255, 77, 109, 0.05);
+  padding: 1.5rem 2rem;
+  margin: 1.5rem 0;
+  border-radius: 0 8px 8px 0;
+}
+
+.quoteBox p {
+  font-style: italic;
+  color: #ff4d6d;
+  margin: 0;
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+/* Sidebar Styles */
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  position: sticky;
+  top: 5rem;
+  height: max-content;
+}
+
+.sidebarTitle {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.8rem;
+  color: #ffffff;
+  font-weight: 600;
+  margin-top: 0;
+  margin-bottom: 2rem;
+}
+
+.recentPostsContainer {
+  max-height: 480px;
+  overflow: hidden;
+  position: relative;
+  -webkit-mask-image: linear-gradient(to bottom, transparent, black 5%, black 95%, transparent);
+  mask-image: linear-gradient(to bottom, transparent, black 5%, black 95%, transparent);
+}
+
+.recentPostsList {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  animation: scrollVertical 20s linear infinite;
+}
+
+.recentPostsList:hover {
+  animation-play-state: paused;
+}
+
+@keyframes scrollVertical {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(calc(-50% - 0.75rem)); }
+}
+
+.recentPostItem {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  transition: opacity 0.3s ease;
+  cursor: pointer;
+}
+
+.recentPostItem:hover {
+  opacity: 0.8;
+}
+
+.recentPostImage {
+  width: 80px;
+  height: 80px;
+  border-radius: 8px;
+  background-size: cover;
+  background-position: center;
+  flex-shrink: 0;
+}
+
+.recentPostInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.recentPostTitle {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
+  color: #ffffff;
+  font-weight: 500;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.recentPostMeta {
+  font-size: 0.8rem;
+  color: #7a7a7a;
+}
+
+@media (max-width: 992px) {
+  .contentGrid {
+    grid-template-columns: 1fr;
+    gap: 4rem;
+  }
+}
