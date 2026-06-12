@@ -1,4 +1,14 @@
+<<<<<<< HEAD
 import React, { useState } from 'react';
+=======
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Navbar from './components/Navbar';
+import Contact from './pages/Contact';
+import Footer from './components/Footer';
+import About from './pages/about/About';
+import Shop from './pages/shop/Shop';
+import ProductDetails from './pages/shop/ProductDetails';
+>>>>>>> 3b354c013856bf9a0b21c05482d49c6245fa656e
 import './App.css';
 import Blog from './pages/blog/Blog';
 import BlogDetails from './pages/blog/BlogDetails';
@@ -7,6 +17,7 @@ function App() {
   const [selectedFlower, setSelectedFlower] = useState(null);
 
   return (
+<<<<<<< HEAD
     <>
       {selectedFlower ? (
         <BlogDetails 
@@ -18,6 +29,26 @@ function App() {
         <Blog onReadMore={(flower) => setSelectedFlower(flower)} />
       )}
     </>
+=======
+    <Router>
+      <div className="App">
+        <Navbar />
+        {/* Main Content Area */}
+        <main style={{ marginTop: '86px', padding: '20px', textAlign: 'center' }}>
+          <Routes>
+            <Route path="/" element={<h1>Welcome to Dazzling Sky</h1>} />
+            <Route path="/about" element={<About />} />
+            <Route path="/shop" element={<Shop />} />
+            <Route path="/product/:id" element={<ProductDetails />} />
+            <Route path="/contacts" element={<Contact />} />
+            <Route path="/blog" element={<h1>Our Blog</h1>} />
+            <Route path="/faq" element={<h1>FAQ</h1>} />
+          </Routes>
+        </main>
+        <Footer />
+      </div>
+    </Router>
+>>>>>>> 3b354c013856bf9a0b21c05482d49c6245fa656e
   );
 }
 
