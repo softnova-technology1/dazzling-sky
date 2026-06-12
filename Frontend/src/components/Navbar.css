@@ -1,0 +1,133 @@
+.navbar-container {
+  width: 100%;
+  padding: 10px 40px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
+
+.navbar-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 32px;
+  background: var(--nav-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border-radius: 16px;
+  box-shadow: var(--nav-shadow);
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+/* Unique Static Gradient Border */
+.navbar-content::before {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  right: -1px;
+  bottom: -1px;
+  border-radius: 17px; /* Matches the inner 16px radius */
+  background: linear-gradient(135deg, rgba(179, 136, 255, 0.7) 0%, rgba(216, 67, 116, 0.4) 50%, rgba(179, 136, 255, 0.05) 100%);
+  z-index: -1;
+  opacity: 0.9;
+}
+
+/* Left Links */
+.nav-links {
+  display: flex;
+  gap: 28px;
+  flex: 1;
+}
+
+.nav-link {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--text-main);
+  text-decoration: none;
+  position: relative;
+  padding: 8px 0;
+  transition: color 0.3s ease;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: var(--accent);
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover {
+  opacity: 1;
+  color: #fff;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* Center Logo */
+.nav-logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+}
+
+.nav-logo a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-logo-img {
+  height: 120px;
+  width: auto;
+  object-fit: contain;
+  margin: -24px 0; /* Allows logo to be larger than the navbar itself */
+  /* Since the theme is dark and the logo is black, we invert it so it shows up beautifully in white/light-gray */
+  filter: invert(1) brightness(2) drop-shadow(0 0 8px rgba(179, 136, 255, 0.4));
+  transition: transform 0.3s ease;
+}
+
+.nav-logo-img:hover {
+  transform: scale(1.05);
+}
+
+/* Right Icons */
+.nav-icons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 24px;
+  flex: 1;
+}
+
+.icon-btn {
+  background: none;
+  border: none;
+  color: var(--text-main);
+  cursor: pointer;
+  padding: 8px;
+  transition: all 0.3s ease;
+  opacity: 0.8;
+}
+
+.icon-btn:hover {
+  opacity: 1;
+  color: var(--accent);
+  transform: translateY(-2px);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .nav-links, .nav-icons {
+    display: none;
+  }
+}

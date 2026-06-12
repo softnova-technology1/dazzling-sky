@@ -1,0 +1,195 @@
+/* ====================================================
+   ULTRA-PREMIUM GLOBAL FOOTER
+   ==================================================== */
+
+.premium-footer {
+  position: relative;
+  width: 100%;
+  background-color: #030105; /* Deepest black-purple */
+  color: #fff;
+  overflow: hidden;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  z-index: 10;
+}
+
+/* Background Glowing Orb */
+.footer-orb {
+  position: absolute;
+  top: -150px;
+  left: -100px;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(179, 136, 255, 0.08) 0%, transparent 70%);
+  border-radius: 50%;
+  filter: blur(80px);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.footer-container {
+  max-width: 95%;
+  margin: 0 auto;
+  padding: 50px 40px 30px; /* Reduced top padding to decrease gap */
+  position: relative;
+  z-index: 2;
+}
+
+/* 4-Column Grid */
+.footer-top-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1.5fr;
+  gap: 40px;
+  margin-bottom: 80px;
+}
+
+/* Logo Column */
+.footer-brand-col {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Push the logo fully to the left edge */
+}
+
+.footer-logo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 10px; /* Reduced gap between logo and social icons */
+}
+
+.footer-logo-img {
+  max-width: 260px; 
+  height: auto;
+  object-fit: contain;
+  filter: invert(1) brightness(2);
+  margin-top: -35px; /* Pull the logo up */
+  margin-bottom: 0px;
+}
+
+.footer-socials {
+  display: flex;
+  gap: 20px;
+}
+
+.social-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #c9bfd9;
+  transition: all 0.4s ease;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.social-icon:hover {
+  background: var(--accent);
+  color: #000;
+  border-color: var(--accent);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(179, 136, 255, 0.2);
+}
+
+/* Links Columns */
+.footer-links-col {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  margin-top: 15px; /* Push the text down slightly to align beautifully with the logo's center */
+}
+
+.footer-title {
+  font-size: 0.95rem;
+  font-weight: 500;
+  margin-bottom: 25px;
+  color: #fff;
+  letter-spacing: 1px;
+  text-align: left;
+}
+
+.footer-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  text-align: left;
+}
+
+.footer-list li, .footer-list a {
+  color: #9e8fb8;
+  font-size: 0.85rem;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  line-height: 1.5;
+  text-align: left;
+}
+
+.footer-list a:hover {
+  color: var(--accent);
+  padding-left: 5px;
+}
+
+.address-line {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+/* Bottom Bar */
+.footer-bottom-bar {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 25px;
+  text-align: center;
+}
+
+.footer-bottom-bar p {
+  color: #7b6d91;
+  font-size: 0.8rem;
+  letter-spacing: 0.5px;
+}
+
+.footer-bottom-bar span {
+  color: #fff;
+  font-weight: 500;
+  margin-left: 5px;
+}
+
+/* The Grand Finale: Massive Typography */
+.footer-massive-text {
+  position: absolute;
+  bottom: -4vw;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  font-size: 16vw;
+  font-family: serif;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.02);
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 1;
+  user-select: none;
+  letter-spacing: -2px;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .footer-top-grid {
+    grid-template-columns: 1fr 1fr;
+    row-gap: 50px;
+  }
+}
+
+@media (max-width: 576px) {
+  .footer-top-grid {
+    grid-template-columns: 1fr;
+  }
+  .footer-massive-text {
+    bottom: 20px;
+    font-size: 20vw;
+  }
+}
