@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap');
 
 :root {
-  --bg-color: #0d0914;
+  --bg-color: #0d0d0e;
   --text-main: #f4effc;
   --text-muted: #9e8fb8;
   --accent: #b388ff;
@@ -26,7 +26,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-color: var(--bg-color);
   color: var(--text-main);
-  background: radial-gradient(circle at top left, #23153c 0%, #0d0914 100%);
+  /* background: radial-gradient(circle at top left, #23153c 0%, #0d0914 100%); */
   min-height: 100vh;
 }
 
