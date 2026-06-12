@@ -102,7 +102,7 @@ const Blog = ({ onReadMore }) => {
 
         <div className={styles.overlay}></div>
 
-        {/* Floating Flowers Animation */}
+     
         <img src={floatingBouquet} className={`${styles.flower} ${styles.f1}`} alt="Floating Bouquet" />
         <img src={floatingBouquet} className={`${styles.flower} ${styles.f2}`} alt="Floating Bouquet" />
         <img src={floatingBouquet} className={`${styles.flower} ${styles.f3}`} alt="Floating Bouquet" />
