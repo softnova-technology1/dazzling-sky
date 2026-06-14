@@ -372,15 +372,80 @@
 
 /* Responsiveness */
 @media (max-width: 768px) {
+    .paymentPageWrapper {
+        padding-top: 24px;
+        padding-bottom: 48px;
+    }
+    .paymentGrid {
+        gap: 32px;
+    }
     .formSection, .summarySection {
-        padding: 24px;
+        padding: 20px;
     }
     .pageTitle {
         font-size: 32px;
         line-height: 40px;
     }
+}
+
+@media (max-width: 576px) {
     .methodTabs {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    .stepper {
+        font-size: 11px;
+        gap: 6px;
+        flex-wrap: wrap;
+    }
+    .pageTitle {
+        font-size: 24px;
+        line-height: 32px;
+    }
+    .methodTab {
+        padding: 10px 6px;
+        font-size: 11px;
+        gap: 6px;
+    }
+    .methodTab span.material-symbols-outlined {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 425px) {
+    .paymentContainer {
+        padding: 0 16px;
+    }
+    .pageHeader {
+        gap: 16px;
+        margin-bottom: 24px;
+    }
+    .formSection, .summarySection {
+        padding: 14px;
+    }
+    .successOverlay {
+        padding: 16px;
+    }
+    .successCard {
+        padding: 24px 16px;
+        gap: 16px;
+    }
+    .successTitle {
+        font-size: 24px;
+    }
+}
+
+@media (max-width: 360px) {
+    .methodTab {
+        padding: 8px 4px;
+        font-size: 10px;
+        gap: 4px;
+    }
+    .methodTab span.material-symbols-outlined {
+        font-size: 18px;
     }
 }
 

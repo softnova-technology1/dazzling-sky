@@ -25,7 +25,13 @@
   position: relative;
   width: 100%;
   height: 60vh;
+<<<<<<< HEAD
   min-height: 700px;
+=======
+  min-height: 400px;
+  padding-top: 80px; /* Offset for fixed navbar */
+  box-sizing: border-box;
+>>>>>>> 7409f6e8cc94e42c85c9b841795e73efb59b13e8
   background-color: var(--blog-bg-color);
   display: flex;
   align-items: center;
@@ -321,8 +327,12 @@
 @media (max-width: 768px) {
   .heroContainer {
     background-position: 70% center;
+<<<<<<< HEAD
     min-height: 480px !important;
     padding: 200px 0 40px 0 !important;
+=======
+    padding-top: 70px;
+>>>>>>> 7409f6e8cc94e42c85c9b841795e73efb59b13e8
   }
   
   .overlay {
