@@ -4,6 +4,7 @@
   background-color: #000000;
   overflow-x: hidden;
   position: relative;
+  margin-top: -160px;
 }
 
 /* Hero Section Wrapper */
@@ -15,7 +16,7 @@
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  padding: 80px 40px 60px 40px;
+  padding: 240px 40px 60px 40px;
   box-sizing: border-box;
 }
 
@@ -306,17 +307,17 @@
 /* Responsive Styles */
 @media (max-width: 1024px) {
   .heroSection {
-    padding: 80px 20px 40px 20px;
+    padding: 200px 20px 40px 20px;
   }
   
   .heroCard {
     grid-template-columns: 1fr;
-    max-width: 640px;
+    max-width: 500px;
     min-height: auto;
   }
 
   .contentColumn {
-    padding: 48px 40px;
+    padding: 28px 24px;
     order: 2;
     text-align: center;
     align-items: center;
@@ -336,7 +337,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 290px;
+    height: 200px;
     padding: 12px 0;
     order: 1;
   }
@@ -383,7 +384,7 @@
 
 @media (max-width: 576px) {
   .heroSection {
-    padding: 70px 12px 24px 12px;
+    padding: 200px 12px 24px 12px;
   }
 
   .contentColumn {
