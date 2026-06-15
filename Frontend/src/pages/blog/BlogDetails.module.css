@@ -94,7 +94,7 @@
 
 .headline {
   font-family: 'Playfair Display', serif;
-  font-size: 3.2rem;
+  font-size: 48px;
   font-weight: 400;
   line-height: 1.1;
   text-align: left;
@@ -125,11 +125,14 @@
 }
 
 .description {
-  font-size: 1.1rem;
-  line-height: 1.7;
-  color: #a69ea1;
-  font-weight: 300;
-  margin: 0;
+  font-family: var(--font-body-lg-family);
+  font-size: 15px;
+  font-weight: var(--fontWeight-body-lg);
+  line-height: 1.6;
+  color: var(--on-surface-variant);
+  margin-bottom: 3.5rem;
+  max-width: 44rem;
+  opacity: 0.95;
 }
 
 .shopBtn {
