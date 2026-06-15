@@ -34,6 +34,7 @@ export default function Shop() {
     });
     const [cart, setCart] = useState([1, 2, 3]); // default initial cart count as in HTML
     const [popupProduct, setPopupProduct] = useState(null);
+    const [showMobileFilters, setShowMobileFilters] = useState(false);
 
     // Pagination State
     const [currentPage, setCurrentPage] = useState(1);
@@ -183,7 +184,7 @@ export default function Shop() {
             {/* Main Content Area */}
             <main className={styles.mainLayoutGrid} ref={catalogRef}>
                 {/* Sidebar Filter */}
-                <aside className={styles.filterSidebar}>
+                <aside className={`${styles.filterSidebar} ${showMobileFilters ? styles.showFilters : ''}`}>
                     <div className={styles.sidebarCard}>
                         <div className={styles.sidebarHeader}>
                             <h3 className={styles.sidebarTitle}>Filters</h3>
@@ -310,16 +311,25 @@ export default function Shop() {
                 <section className={styles.productsSection}>
                     <div className={styles.productsMeta}>
                         <p className={styles.metaCount}>Showing {filteredProducts.length} of 142 arrangements</p>
-                        <div className={styles.sortWrapper}>
-                            <select
-                                value={sortBy}
-                                onChange={(e) => setSortBy(e.target.value)}
-                                className={styles.sortSelect}
+                        <div className={styles.metaActions}>
+                            <button
+                                className={styles.mobileFilterToggle}
+                                onClick={() => setShowMobileFilters(!showMobileFilters)}
                             >
-                                <option value="featured">Sort by: Featured</option>
-                                <option value="price-low">Price: Low to High</option>
-                                <option value="price-high">Price: High to Low</option>
-                            </select>
+                                <span className="material-symbols-outlined">filter_list</span>
+                                {showMobileFilters ? 'Hide Filters' : 'Show Filters'}
+                            </button>
+                            <div className={styles.sortWrapper}>
+                                <select
+                                    value={sortBy}
+                                    onChange={(e) => setSortBy(e.target.value)}
+                                    className={styles.sortSelect}
+                                >
+                                    <option value="featured">Sort by: Featured</option>
+                                    <option value="price-low">Price: Low to High</option>
+                                    <option value="price-high">Price: High to Low</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
 
