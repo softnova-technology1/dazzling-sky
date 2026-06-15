@@ -1,6 +1,6 @@
 import React from 'react';
 import { Mail, Phone, MapPin } from 'lucide-react';
-import styles from './Contact.module.css';
+import styles from './contact.module.css';
 import darkBouquet from '../../images/dark_floral_bouquet.png';
 import floralDecor from '../../images/dark_floral_decor.png';
 
