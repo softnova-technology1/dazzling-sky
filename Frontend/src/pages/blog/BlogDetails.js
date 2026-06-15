@@ -48,7 +48,7 @@ const BlogDetails = ({ flower, onBack, onSelectFlower }) => {
           </button>
 
           <h1 className={`${styles.headline} ${styles.heroTitle}`}>
-            Make Your Home as
+            Make Your Home as 
             <span className={styles.italicHighlight}> Comfortable</span> as Possible
           </h1>
 

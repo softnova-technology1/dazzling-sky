@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation, Link } from 'react-router-dom';
 import { ShoppingCart } from 'lucide-react';
 import Navbar from './components/Navbar';
-import Contact from './pages/Contact';
+import Contact from './pages/contact/Contact';
 import FAQ from './pages/faq/Faq';
 import Footer from './components/Footer';
 import About from './pages/about/About';
@@ -83,9 +83,7 @@ function MainLayout() {
       )}
       {/* Main Content Area: remove margin and padding for homepage to align hero correctly */}
       <main style={{ 
-        marginTop: isHomepage ? '0' : '86px', 
-        padding: isHomepage ? '0' : '20px', 
-        textAlign: isHomepage ? 'left' : 'center' 
+        marginTop: isHomepage ? '0' : '86px',         
       }}>
         <Routes>
           <Route path="/" element={<Home />} />
