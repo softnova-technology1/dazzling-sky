@@ -503,6 +503,7 @@
     justify-content: center;
     gap: 2px;
     flex-grow: 1;
+    min-width: 0;
 }
 
 .popupTitle {
@@ -519,6 +520,7 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    max-width: 100%;
 }
 
 .popupBtnClose {
@@ -666,6 +668,16 @@
     100% { transform: scale(1); }
 }
 
+@media (max-width: 768px) {
+    .formSection, .summarySection {
+        padding: 20px;
+    }
+    .pageTitle {
+        font-size: 32px;
+        line-height: 40px;
+    }
+}
+
 @media (max-width: 640px) {
     .addressPopupOverlay {
         bottom: 20px;
@@ -676,6 +688,92 @@
         max-width: 100%;
         gap: 16px;
         padding: 12px 16px;
+    }
+}
+
+@media (max-width: 576px) {
+    .addressCard {
+        flex-direction: column;
+        gap: 12px;
+        align-items: stretch;
+    }
+    .addressActions {
+        align-self: flex-end;
+        margin-top: 8px;
+        width: 100%;
+        justify-content: flex-end;
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
+        padding-top: 8px;
+    }
+    .addNewBtn {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .stepper {
+        font-size: 11px;
+        gap: 8px;
+        flex-wrap: wrap;
+    }
+    .pageTitle {
+        font-size: 26px;
+        line-height: 34px;
+    }
+}
+
+@media (max-width: 425px) {
+    .addressCard {
+        display: grid !important;
+        grid-template-columns: 24px 1fr !important;
+        grid-template-rows: auto auto !important;
+        gap: 12px !important;
+        padding: 14px  !important;
+    }
+    .radioInput {
+        grid-column: 1;
+        grid-row: 1;
+        margin-top: 4px;
+    }
+    .addressInfo {
+        grid-column: 2;
+        grid-row: 1;
+        min-width: 0;
+    }
+    .addressActions {
+        grid-column: 2 !important;
+        grid-row: 2 !important;
+        display: flex !important;
+        justify-content: flex-end !important;
+        gap: 12px !important;
+        border-top: 1px solid rgba(255, 255, 255, 0.05) !important;
+        padding-top: 8px !important;
+        margin-top: 4px !important;
+        width: 100% !important;
+        align-self: stretch !important;
+    }
+    .summarySection {
+        padding: 16px !important;
+    }
+    .optionCard {
+        display: grid !important;
+        grid-template-columns: 24px 1fr auto !important;
+        gap: 10px !important;
+        padding: 12px !important;
+        align-items: center !important;
+    }
+    .optionDetails {
+        gap: 2px !important;
+    }
+    .optionName {
+        font-size: 13px !important;
+    }
+    .optionTime {
+        font-size: 11px !important;
+    }
+    .optionPrice {
+        font-size: 14px !important;
     }
 }
 

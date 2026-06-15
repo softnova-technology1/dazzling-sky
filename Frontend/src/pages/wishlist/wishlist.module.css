@@ -326,6 +326,7 @@
     flex-direction: column;
     justify-content: center;
     gap: 2px;
+    min-width: 0;
 }
 
 .popupTitle {
@@ -342,7 +343,7 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    max-width: 150px;
+    max-width: 100%;
 }
 
 .popupProductLink {
@@ -352,6 +353,7 @@
     flex-grow: 1;
     cursor: pointer;
     transition: opacity 0.2s ease;
+    min-width: 0;
 }
 
 .popupProductLink:hover {
@@ -374,6 +376,7 @@
     display: flex;
     align-items: center;
     gap: 12px;
+    flex-shrink: 0;
 }
 
 .popupBtnView {
