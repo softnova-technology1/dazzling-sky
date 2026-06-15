@@ -15,7 +15,7 @@
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  padding: 80px 40px 60px 40px;
+  padding: 20px 40px 60px 40px;
   box-sizing: border-box;
 }
 
@@ -103,10 +103,10 @@
   border-radius: 24px;
   border: 1px solid rgba(255, 138, 216, 0.3);
   box-shadow: 0 40px 100px rgba(0, 0, 0, 0.7),
-              inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
   overflow: hidden;
   z-index: 5;
- 
+
   -webkit-backdrop-filter: blur(20px);
   animation: slideInCard 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
@@ -165,7 +165,7 @@
   font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
   font-size: 14px;
   font-weight: 400;
- 
+
   color: rgba(255, 255, 255, 0.65);
   margin-bottom: 40px;
 }
@@ -187,7 +187,8 @@
   font-size: 16px;
   font-weight: 600;
   border: 1px solid #ff8ad8;
-  border-radius: 20px 4px 20px 4px; /* Asymmetric leaf shape */
+  border-radius: 20px 4px 20px 4px;
+  /* Asymmetric leaf shape */
   padding: 16px 44px;
   cursor: pointer;
   width: 150px;
@@ -207,7 +208,8 @@
   right: -6px;
   bottom: -6px;
   border: 1px solid #ff8ad8;
-  border-radius: 24px 8px 24px 8px; /* Slightly larger to fit concentrically */
+  border-radius: 24px 8px 24px 8px;
+  /* Slightly larger to fit concentrically */
   pointer-events: none;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -215,11 +217,13 @@
 .shopButton:hover {
   box-shadow: 0 0 35px rgba(255, 138, 216, 0.5);
   transform: translateY(-2px) scale(1.05);
-  border-radius: 4px 20px 4px 20px; /* Morphing shape animation */
+  border-radius: 4px 20px 4px 20px;
+  /* Morphing shape animation */
 }
 
 .shopButton:hover::after {
-  border-radius: 8px 24px 8px 24px; /* Morphing outer border */
+  border-radius: 8px 24px 8px 24px;
+  /* Morphing outer border */
   border-color: #ff8ad8;
 }
 
@@ -261,9 +265,11 @@
   0% {
     transform: translate(0, 0) rotate(0deg);
   }
+
   50% {
     transform: translate(-12px, 15px) rotate(1.5deg);
   }
+
   100% {
     transform: translate(0, 0) rotate(0deg);
   }
@@ -273,9 +279,11 @@
   0% {
     transform: translate(0, 0) rotate(0deg);
   }
+
   50% {
     transform: translate(15px, -12px) rotate(-1.5deg);
   }
+
   100% {
     transform: translate(0, 0) rotate(0deg);
   }
@@ -286,6 +294,7 @@
     opacity: 0;
     transform: translateX(-50%) translateY(10px);
   }
+
   to {
     opacity: 1;
     transform: translateX(-50%) translateY(0);
@@ -297,6 +306,7 @@
     opacity: 0;
     transform: translateY(30px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -308,7 +318,7 @@
   .heroSection {
     padding: 80px 20px 40px 20px;
   }
-  
+
   .heroCard {
     grid-template-columns: 1fr;
     max-width: 640px;
@@ -340,19 +350,19 @@
     padding: 12px 0;
     order: 1;
   }
-  
+
   .mainImage {
     max-width: 90%;
     max-height: 100%;
     object-fit: contain;
     border-radius: 0;
   }
-  
+
   .title {
     font-size: 36px;
     margin-bottom: 20px;
   }
-  
+
   .description {
     margin-bottom: 30px;
   }
@@ -367,6 +377,7 @@
     right: -100px;
     z-index: 4;
   }
+
   .flowerTopRight {
     width: 240px;
   }
@@ -376,6 +387,7 @@
     left: -120px;
     z-index: 4;
   }
+
   .flowerBottomLeft {
     width: 240px;
   }
@@ -430,7 +442,7 @@
   .flowerBottomLeftWrapper {
     display: none;
   }
-  
+
   .bgTextTop,
   .bgTextBottom {
     display: none;
@@ -526,7 +538,7 @@
   font-weight: 400;
   line-height: 1.8;
   color: rgba(255, 255, 255, 0.7);
-  text-align:left;
+  text-align: left;
 }
 
 .storyText p {
@@ -736,15 +748,15 @@
   border: 1px solid rgba(255, 138, 216, 0.12);
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
   transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
-              border-color 0.4s ease,
-              box-shadow 0.4s ease;
+    border-color 0.4s ease,
+    box-shadow 0.4s ease;
 }
 
 .exploreCard:hover {
   transform: scale(1.012);
   border-color: rgba(255, 138, 216, 0.5);
   box-shadow: 0 0 0 1px rgba(255, 138, 216, 0.2),
-              0 30px 70px rgba(255, 138, 216, 0.1);
+    0 30px 70px rgba(255, 138, 216, 0.1);
 }
 
 /* Pink glow bar at bottom */
@@ -760,7 +772,10 @@
   transition: opacity 0.4s ease;
   z-index: 10;
 }
-.exploreCard:hover::after { opacity: 1; }
+
+.exploreCard:hover::after {
+  opacity: 1;
+}
 
 .cardBgImage {
   position: absolute;
@@ -771,10 +786,11 @@
   object-position: center 30%;
   z-index: 1;
   transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
-              filter 0.6s ease;
+    filter 0.6s ease;
   filter: brightness(0.5) saturate(0.85);
   will-change: transform;
 }
+
 .exploreCard:hover .cardBgImage {
   transform: scale(1.06);
   filter: brightness(0.62) saturate(0.9);
@@ -785,11 +801,10 @@
   position: absolute;
   inset: 0;
   background: linear-gradient(to right,
-    rgba(0,0,0,0.92) 0%,
-    rgba(0,0,0,0.7) 35%,
-    rgba(0,0,0,0.15) 70%,
-    transparent 100%
-  );
+      rgba(0, 0, 0, 0.92) 0%,
+      rgba(0, 0, 0, 0.7) 35%,
+      rgba(0, 0, 0, 0.15) 70%,
+      transparent 100%);
   z-index: 2;
 }
 
@@ -798,11 +813,10 @@
   position: absolute;
   inset: 0;
   background: linear-gradient(to left,
-    rgba(0,0,0,0.92) 0%,
-    rgba(0,0,0,0.7) 35%,
-    rgba(0,0,0,0.15) 70%,
-    transparent 100%
-  );
+      rgba(0, 0, 0, 0.92) 0%,
+      rgba(0, 0, 0, 0.7) 35%,
+      rgba(0, 0, 0, 0.15) 70%,
+      transparent 100%);
   z-index: 2;
 }
 
@@ -846,6 +860,7 @@
   opacity: 1;
   visibility: visible;
 }
+
 .exploreCard:hover .cardDesc {
   opacity: 1;
   visibility: visible;
@@ -871,6 +886,7 @@
   visibility: visible;
   pointer-events: auto;
 }
+
 .exploreCard:hover .cardBtn {
   opacity: 1;
   visibility: visible;
@@ -887,13 +903,19 @@
   background: #ff8ad8;
   transition: width 0.45s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.exploreCard:hover .cardBtn::after { width: 100%; }
+
+.exploreCard:hover .cardBtn::after {
+  width: 100%;
+}
 
 .btnArrow {
   display: inline-block;
   transition: transform 0.3s ease;
 }
-.exploreCard:hover .btnArrow { transform: translateX(5px); }
+
+.exploreCard:hover .btnArrow {
+  transform: translateX(5px);
+}
 
 /* Responsiveness for Explore Section */
 @media (max-width: 968px) {
@@ -920,11 +942,10 @@
 
   .exploreCard:nth-child(2) .cardOverlay {
     background: linear-gradient(to right,
-      rgba(0,0,0,0.92) 0%,
-      rgba(0,0,0,0.7) 35%,
-      rgba(0,0,0,0.15) 70%,
-      transparent 100%
-    );
+        rgba(0, 0, 0, 0.92) 0%,
+        rgba(0, 0, 0, 0.7) 35%,
+        rgba(0, 0, 0, 0.15) 70%,
+        transparent 100%);
   }
 
   .cardTitle {
@@ -963,13 +984,11 @@
   /* On mobile, all cards: overlay from bottom, text at bottom-left */
   .exploreCard:nth-child(1) .cardOverlay,
   .exploreCard:nth-child(2) .cardOverlay {
-    background: linear-gradient(
-      to top,
-      rgba(0,0,0,0.95) 0%,
-      rgba(0,0,0,0.75) 40%,
-      rgba(0,0,0,0.1) 75%,
-      transparent 100%
-    );
+    background: linear-gradient(to top,
+        rgba(0, 0, 0, 0.95) 0%,
+        rgba(0, 0, 0, 0.75) 40%,
+        rgba(0, 0, 0, 0.1) 75%,
+        transparent 100%);
   }
 
   .exploreCard:nth-child(1) .cardContent,
@@ -1186,7 +1205,7 @@
   .chooseSection {
     padding: 25px 24px 100px 24px;
   }
-  
+
   .chooseHeader {
     margin-bottom: 48px;
   }
@@ -1448,7 +1467,8 @@
   height: 420px;
   background-size: cover;
   background-position: center;
-  background-attachment: fixed; /* Parallax effect */
+  background-attachment: fixed;
+  /* Parallax effect */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -1461,12 +1481,10 @@
 .contactCtaOverlay {
   position: absolute;
   inset: 0;
-  background: radial-gradient(
-    circle at center,
-    rgba(0, 0, 0, 0.72) 0%,
-    rgba(0, 0, 0, 0.85) 60%,
-    rgba(0, 0, 0, 0.94) 100%
-  );
+  background: radial-gradient(circle at center,
+      rgba(0, 0, 0, 0.72) 0%,
+      rgba(0, 0, 0, 0.85) 60%,
+      rgba(0, 0, 0, 0.94) 100%);
   z-index: 1;
 }
 
@@ -1515,7 +1533,8 @@
   letter-spacing: 0.08em;
   text-transform: uppercase;
   border: 1px solid #ff8ad8;
-  border-radius: 20px 4px 20px 4px; /* Asymmetric leaf shape */
+  border-radius: 20px 4px 20px 4px;
+  /* Asymmetric leaf shape */
   padding: 16px 48px;
   cursor: pointer;
   display: flex;
@@ -1534,7 +1553,8 @@
   right: -6px;
   bottom: -6px;
   border: 1px solid #ff8ad8;
-  border-radius: 24px 8px 24px 8px; /* Slightly larger to fit concentrically */
+  border-radius: 24px 8px 24px 8px;
+  /* Slightly larger to fit concentrically */
   pointer-events: none;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -1543,11 +1563,13 @@
   background: linear-gradient(90deg, #ff8ad8, #883c8a);
   box-shadow: 0 15px 35px rgba(255, 138, 216, 0.45);
   transform: translateY(-3px) scale(1.03);
-  border-radius: 4px 20px 4px 20px; /* morph shape */
+  border-radius: 4px 20px 4px 20px;
+  /* morph shape */
 }
 
 .contactCtaBtn:hover::after {
-  border-radius: 8px 24px 8px 24px; /* Morphing outer border */
+  border-radius: 8px 24px 8px 24px;
+  /* Morphing outer border */
   border-color: #ff8ad8;
 }
 
@@ -1559,7 +1581,8 @@
 @media (max-width: 768px) {
   .contactCtaSection {
     height: 380px;
-    background-attachment: scroll; /* Disable parallax on touch devices */
+    background-attachment: scroll;
+    /* Disable parallax on touch devices */
   }
 
   .contactCtaTitle {
@@ -1585,7 +1608,8 @@
     padding: 8px 21px;
     font-size: 12px;
   }
-  .shopButton{
+
+  .shopButton {
     padding: 8px 21px;
     font-size: 12px;
   }
