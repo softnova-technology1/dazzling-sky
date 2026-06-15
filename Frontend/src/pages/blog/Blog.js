@@ -111,8 +111,8 @@ const Blog = ({ onReadMore }) => {
 
         <div className={styles.contentWrapper}>
           <h1 className={`${styles.headline} ${styles.heroTitle}`}>
-            Make Your Home as 
-            <span className={styles.italicHighlight}> Comfortable</span> as Possible
+            Make Your Home as <br />
+            <span className={styles.italicHighlight}>Comfortable</span> as Possible
           </h1>
 
           <div className={styles.descriptionBlock}>

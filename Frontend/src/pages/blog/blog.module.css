@@ -25,18 +25,34 @@
   position: relative;
   width: 100%;
   height: 60vh;
-  min-height: 400px;
-  padding-top: 80px; /* Offset for fixed navbar */
-  box-sizing: border-box;
+  min-height: 700px;
   background-color: var(--blog-bg-color);
   display: flex;
   align-items: center;
   font-family: var(--font-sans);
   color: var(--blog-text-main);
   overflow: hidden;
+  margin-top: -160px;
+  padding-top: 160px;
 }
 
-.heroImage, .imageArea {
+.heroImage {
+  position: absolute;
+  top: -5%;
+  left: -5%;
+  width: 110%;
+  height: 150%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  image-rendering: high-quality;
+  image-rendering: -webkit-optimize-contrast;
+  filter: contrast(1.1) saturate(1.2) brightness(1.05);
+  z-index: 0;
+  animation: bloom 1.2s ease forwards;
+}
+
+.imageArea {
   position: absolute;
   top: -5%;
   left: -5%;
@@ -45,11 +61,9 @@
   background-size: cover;
   background-position: center right;
   background-repeat: no-repeat;
-  background-attachment: fixed !important;
   image-rendering: high-quality;
   image-rendering: -webkit-optimize-contrast;
   filter: contrast(1.1) saturate(1.2) brightness(1.05);
- 
   z-index: 0;
   animation: bloom 1.2s ease forwards;
 }
@@ -120,9 +134,9 @@
   /* Gradient to darken the left side and blend smoothly to the right */
   background: linear-gradient(
     to right, 
-    rgba(5, 2, 8, 1) 0%, 
-    rgba(5, 2, 8, 0.9) 35%, 
-    rgba(5, 2, 8, 0.3) 65%, 
+    rgba(5, 2, 8, 0.7) 0%, 
+    rgba(5, 2, 8, 0.5) 35%, 
+    rgba(5, 2, 8, 0.1) 65%, 
     rgba(5, 2, 8, 0) 100%
   );
   z-index: 1;
@@ -168,7 +182,7 @@
 
 .headline {
   font-family: var(--font-serif);
-  font-size: 4.8rem;
+  font-size: 3rem;
   font-weight: 400;
   line-height: 1.1;
   text-align:left;
@@ -205,7 +219,7 @@
   margin-top: 1rem;
   margin-bottom: 1.5rem;
   text-align: left;
-  max-width: 480px;
+  max-width: 650px;
   opacity: 0;
   animation: fadeInUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
 }
@@ -285,6 +299,7 @@
   color: white;
   font-size: 2rem;
   opacity: 0.8;
+  display: none;
 }
 
 .scrollIcon {
@@ -306,26 +321,41 @@
 @media (max-width: 768px) {
   .heroContainer {
     background-position: 70% center;
-    padding-top: 70px;
+    min-height: 480px !important;
+    padding: 200px 0 40px 0 !important;
   }
   
   .overlay {
     background: linear-gradient(
       to bottom, 
-      rgba(5, 2, 8, 0.8) 0%, 
-      rgba(5, 2, 8, 0.95) 60%, 
-      rgba(5, 2, 8, 1) 100%
+      rgba(5, 2, 8, 0.4) 0%, 
+      rgba(5, 2, 8, 0.6) 60%, 
+      rgba(5, 2, 8, 0.9) 100%
     );
   }
 
   .contentWrapper {
-    margin-left: 0;
+    margin-left: 5%;
     margin-top: auto;
     padding-bottom: 4rem;
+    align-items: flex-start;
+    text-align: left;
+    background: transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border: none;
+    box-shadow: none;
+    max-width: 85%;
   }
 
   .headline {
-    font-size: 3rem;
+    font-size: 1.8rem;
+    text-align: left;
+  }
+
+  .description {
+    font-size: 0.9rem;
+    line-height: 1.5;
   }
   
   .topLine {
@@ -362,10 +392,12 @@
 
 .neonCard {
   width: 100%;
-  height: 400px; /* Grand, tall editorial height, further increased */
+  min-height: 380px; /* Reduced from 460px to shrink the image and card size */
+  height: auto;
   position: relative;
   background: transparent;
-  display: block;
+  display: flex;
+  flex-direction: column;
   border-radius: 4%; /* Maintains perfect corner masking with the stretched SVG */
   overflow: hidden;
 }
@@ -491,9 +523,9 @@
 
 /* Layer 4: Right HTML Content */
 .rightHtmlContent {
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
+  position: relative;
+  width: 100%;
+  flex: 1;
   z-index: 10;
   display: flex;
   flex-direction: column;
@@ -506,7 +538,7 @@
 
 .topTextSection {
   margin-left: 56%; /* Increased available width while safely clearing the 54% curve */
-  margin-top: 4cqw;
+  margin-top: 3cqw;
   margin-right: 2cqw;
   display: flex;
   flex-direction: column;
@@ -515,7 +547,7 @@
 .bottomTextSection {
   margin-left: 56%; /* Left-aligned perfectly with top text */
   margin-right: 2cqw;
-  margin-bottom: 3cqw;
+  margin-bottom: 2cqw;
   margin-top: auto;
   display: flex;
   flex-direction: column;
@@ -535,7 +567,7 @@
   border: 1px solid rgba(255, 138, 216, 0.4);
   border-radius: 3em;
   font-family: var(--font-sans);
-  font-size: clamp(11px, 1.8cqw, 16px);
+  font-size: clamp(10px, 1.5cqw, 14px);
   color: #ff8ad8;
   background: rgba(224, 68, 198, 0.05);
   letter-spacing: 0.1em;
@@ -559,7 +591,7 @@
 
 .titleLight {
   color: #fff;
-  font-size: clamp(18px, 4cqw, 40px);
+  font-size: clamp(16px, 3.2cqw, 32px);
   font-weight: 300;
   margin-bottom: 0.5cqw;
 }
@@ -573,14 +605,14 @@
   background: linear-gradient(180deg, #ffb3e6, #883c8a);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  font-size: clamp(24px, 5.5cqw, 55px);
+  font-size: clamp(22px, 4.5cqw, 48px);
   font-weight: 600;
   line-height: 1.05;
 }
 
 .subTitle {
   color: #ffb3e6; /* Solid bright pink for better legibility */
-  font-size: clamp(16px, 3cqw, 30px); /* Increased font size */
+  font-size: clamp(14px, 2.5cqw, 26px); /* Reduced font size */
   font-weight: 400;
   line-height: 1.3;
   margin-top: 1.5cqw;
@@ -608,11 +640,11 @@
 
 .cardDesc {
   font-family: var(--font-sans);
-  font-size: clamp(15px, 2.8cqw, 24px);
+  font-size: clamp(13px, 2.2cqw, 20px);
   color: #a69ea1;
   line-height: 1.6;
   margin-top: 1cqw;
-  margin-bottom: 2cqw;
+  margin-bottom: 1.5cqw;
   display: -webkit-box;
   -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
@@ -628,13 +660,13 @@
   /* Pill on left, sharp leaf point on right */
   border-radius: 2em 0.2em 2em 2em;
   font-family: var(--font-sans);
-  font-size: clamp(14px, 2.5cqw, 24px);
+  font-size: clamp(12px, 2cqw, 20px);
   display: flex;
   align-items: center;
   gap: 1em;
   width: fit-content;
   cursor: pointer;
-  margin-bottom: 2.5cqw;
+  margin-bottom: 1.5cqw;
   transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
@@ -645,7 +677,7 @@
 }
 
 .readMoreBtn span {
-  font-size: clamp(16px, 3cqw, 28px);
+  font-size: clamp(14px, 2.5cqw, 24px);
   transition: transform 0.3s ease;
 }
 
@@ -707,4 +739,124 @@
   color: rgba(255, 138, 216, 0.05);
   pointer-events: none;
   z-index: 1;
+}
+
+/* =========================================
+   TABLET VIEW (1024px and below)
+   ========================================= */
+
+@media (max-width:1024px){
+
+  .heroContainer{
+      min-height:450px;
+      height:auto;
+      padding:230px 0 60px 0;
+  }
+
+  .heroImage{
+      background-attachment:scroll !important;
+  }
+
+  .headline{
+      font-size:clamp(2.8rem,5vw,3.8rem);
+  }
+
+  .contentWrapper{
+      margin-left: 5%;
+      padding: 0;
+      align-items: flex-start;
+      text-align: left;
+      background: transparent;
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+      border: none;
+      box-shadow: none;
+      max-width: 65%;
+  }
+  
+  .headline {
+      text-align: left;
+  }
+  
+  .descriptionBlock {
+      text-align: left;
+      align-items: flex-start;
+  }
+
+  .neonGridSection{
+      padding:4rem 4%;
+      row-gap:50px;
+      column-gap:40px;
+  }
+
+  .imageArea{
+      width:55%;
+  }
+
+  .topTextSection,
+  .bottomTextSection{
+      margin-left:52%;
+  }
+
+  .flower{
+      display: none;
+  }
+
+  .neonCard{
+  
+      width: 550px;
+      height:auto;
+      margin-left:70px;
+  }
+}
+
+/* =========================================
+   TABLET PORTRAIT / MOBILE TRANSITION
+   ========================================= */
+
+@media (max-width: 768px) {
+  .neonGridSection {
+    grid-template-columns: 1fr;
+    padding: 3rem 5%;
+    row-gap: 40px;
+  }
+
+  .neonCard {
+    min-height: 280px;
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .headline {
+    font-size: 1.8rem;
+    line-height: 1.2;
+  }
+
+  .descriptionBlock {
+    max-width: 100%;
+  }
+
+  .readMoreBtn {
+    padding: .6em 1.2em;
+  }
+}
+
+@media (max-width: 480px) {
+  .neonGridSection {
+    padding: 2rem 5%;
+    row-gap: 30px;
+  }
+
+  .neonCard {
+    min-height: 250px;
+  }
+
+  .topBadge {
+    padding: 0.4em 1em;
+    gap: 0.5em;
+  }
+
+  .actionBtn {
+    padding: 0.6rem 1.2rem;
+  }
 }
