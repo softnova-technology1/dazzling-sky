@@ -387,26 +387,65 @@
 
 /* Responsiveness */
 @media (max-width: 768px) {
+    .pageTitle {
+        font-size: 32px;
+        line-height: 40px;
+    }
+}
+
+@media (max-width: 576px) {
     .cartItem {
         flex-direction: column;
         align-items: stretch;
+        gap: 16px;
+        padding: 16px;
     }
     
     .itemImageWrapper {
-        width: 100%;
-        height: 200px;
+        width: 100px;
+        height: 100px;
+        align-self: center;
+    }
+    
+    .itemInfo {
+        text-align: center;
+    }
+    
+    .viewDetailBtn {
+        align-self: center;
     }
     
     .itemActions {
         justify-content: space-between;
-        margin-top: 12px;
+        margin-top: 8px;
         padding-top: 12px;
         border-top: 1px solid rgba(255, 255, 255, 0.05);
     }
+}
+
+@media (max-width: 480px) {
+    .stepper {
+        font-size: 11px;
+        gap: 8px;
+        flex-wrap: wrap;
+    }
+    
+    .summarySection {
+        padding: 20px;
+    }
     
     .pageTitle {
-        font-size: 32px;
-        line-height: 40px;
+        font-size: 26px;
+        line-height: 34px;
+    }
+}
+
+@media (max-width: 400px) {
+    .promoContainer {
+        flex-direction: column;
+    }
+    .promoBtn {
+        padding: 12px;
     }
 }
 
@@ -433,5 +472,56 @@
     }
     .itemName {
         font-size: 26px;
+    }
+}
+
+@media (max-width: 425px) {
+    .cartItem {
+        display: grid;
+        grid-template-columns: 80px 1fr;
+        grid-template-rows: auto auto;
+        gap: 16px;
+        padding: 16px;
+        align-items: start;
+    }
+
+    .itemImageWrapper {
+        grid-column: 1;
+        grid-row: 1;
+        width: 80px;
+        height: 80px;
+        margin: 0;
+        align-self: start;
+    }
+
+    .itemInfo {
+        grid-column: 2;
+        grid-row: 1;
+        text-align: left;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+    }
+
+    .itemName {
+        font-size: 16px;
+        white-space: normal;
+    }
+
+    .viewDetailBtn {
+        align-self: flex-start;
+        margin-top: 4px;
+    }
+
+    .itemActions {
+        grid-column: 1 / span 2;
+        grid-row: 2;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 4px;
+        padding-top: 12px;
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
+        width: 100%;
     }
 }

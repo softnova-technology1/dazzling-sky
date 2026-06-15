@@ -1,18 +1,23 @@
 // Home.js — Dazzling Sky Luxury Floral Atelier
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import styles from './home.module.css';
 
 export default function Home() {
   const navigate = useNavigate();
-  const [scrollOffset, setScrollOffset] = useState(0);
+  const flowerWrapperRef = useRef(null);
 
-  // Track scrollOffset on scroll for page effects
+  // Track scrollOffset on scroll for page effects via direct DOM modification for performance
   useEffect(() => {
+    const flowerWrapper = flowerWrapperRef.current;
     const handleScroll = () => {
-      setScrollOffset(window.scrollY);
+      const sy = window.scrollY;
+      if (sy < 1000 && flowerWrapper) {
+        flowerWrapper.style.transform = `translate3d(0, ${sy * 0.35}px, 0) scale(${Math.max(0.7, 1 - sy * 0.0006)})`;
+      }
     };
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll(); // Initial run
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -183,8 +188,8 @@ export default function Home() {
           {/* Right Floating Flower Column */}
           <div className={styles.heroRight}>
             <div
+              ref={flowerWrapperRef}
               className={styles.flowerWrapper}
-              style={{ transform: `translate3d(0, ${scrollOffset * 0.35}px, 0) scale(${Math.max(0.7, 1 - scrollOffset * 0.0006)})` }}
             >
               <div className={styles.flowerFloatContainer}>
                 <img
@@ -221,6 +226,8 @@ export default function Home() {
                 className={styles.accordionImage}
                 alt="Whispering Blooms bouquet with hydrangeas, anemones, and lilies in a ceramic vase"
                 src="/home-1.png"
+                loading="lazy"
+                decoding="async"
               />
             </div>
             <div className={styles.accordionOverlay} />
@@ -241,6 +248,8 @@ export default function Home() {
                 className={styles.accordionImage}
                 alt="Enchanted Petals elegant peach and rose bouquet"
                 src="/home-2.png"
+                loading="lazy"
+                decoding="async"
               />
             </div>
             <div className={styles.accordionOverlay} />
@@ -259,6 +268,8 @@ export default function Home() {
                 className={styles.accordionImage}
                 alt="Harmony Bouquet arrangement in a silver vase"
                 src=" /home-3.png"
+                loading="lazy"
+                decoding="async"
               />
             </div>
             <div className={styles.accordionOverlay} />
@@ -283,6 +294,8 @@ export default function Home() {
                   className={styles.collageBackdrop}
                   alt="Blossomia Flower Store window display and interior shop front"
                   src="/floral_inspirations.png"
+                  loading="lazy"
+                  decoding="async"
                 />
               </div>
               <div className={styles.collageForegroundWrapper}>
@@ -290,6 +303,8 @@ export default function Home() {
                   className={styles.collageForeground}
                   alt="Florist working with green and white flowers"
                   src="/home-4.png"
+                  loading="lazy"
+                  decoding="async"
                 />
               </div>
             </div>
@@ -327,7 +342,7 @@ export default function Home() {
             {/* Product Item 1 */}
             <div className={`${styles.catalogCard} ${styles.revealElement}`}>
               <div className={styles.catalogCardImgBox}>
-                <img alt="Enchanted Petals" src="/home-1.png" />
+                <img alt="Enchanted Petals" src="/home-1.png" loading="lazy" decoding="async" />
               </div>
               <div className={styles.catalogCardFooter}>
                 <div className={styles.catalogCardDetails}>
@@ -348,7 +363,7 @@ export default function Home() {
             {/* Product Item 2 */}
             <div className={`${styles.catalogCard} ${styles.revealElement}`}>
               <div className={styles.catalogCardImgBox}>
-                <img alt="Serene Bliss" src="/home-3.png" />
+                <img alt="Serene Bliss" src="/home-3.png" loading="lazy" decoding="async" />
               </div>
               <div className={styles.catalogCardFooter}>
                 <div className={styles.catalogCardDetails}>
@@ -373,26 +388,36 @@ export default function Home() {
                   className={styles.flowerMainImage}
                   src="/open more.png"
                   alt="3D Flower Bouquet"
+                  loading="lazy"
+                  decoding="async"
                 />
                 <img
                   className={`${styles.flowerPetal} ${styles.petal1}`}
                   src="/part2.png"
                   alt=""
+                  loading="lazy"
+                  decoding="async"
                 />
                 <img
                   className={`${styles.flowerPetal} ${styles.petal2}`}
                   src="/part3.png"
                   alt=""
+                  loading="lazy"
+                  decoding="async"
                 />
                 <img
                   className={`${styles.flowerPetal} ${styles.petal3}`}
                   src="/part4.png"
                   alt=""
+                  loading="lazy"
+                  decoding="async"
                 />
                 <img
                   className={`${styles.flowerPetal} ${styles.petal4}`}
                   src="/part3.png"
                   alt=""
+                  loading="lazy"
+                  decoding="async"
                 />
               </div>
               <Link to="/shop" className={styles.openMoreBtn}>
@@ -403,7 +428,7 @@ export default function Home() {
             {/* Product Item 4 */}
             <div className={`${styles.catalogCard} ${styles.revealElement}`}>
               <div className={styles.catalogCardImgBox}>
-                <img alt="Whispering Meadows" src="/home-2.png" />
+                <img alt="Whispering Meadows" src="/home-2.png" loading="lazy" decoding="async" />
               </div>
               <div className={styles.catalogCardFooter}>
                 <div className={styles.catalogCardDetails}>
@@ -424,7 +449,7 @@ export default function Home() {
             {/* Product Item 5 */}
             <div className={`${styles.catalogCard} ${styles.revealElement}`}>
               <div className={styles.catalogCardImgBox}>
-                <img alt="Floral Harmony" src="/home-4.png" />
+                <img alt="Floral Harmony" src="/home-4.png" loading="lazy" decoding="async" />
               </div>
               <div className={styles.catalogCardFooter}>
                 <div className={styles.catalogCardDetails}>
@@ -445,7 +470,7 @@ export default function Home() {
             {/* Product Item 6 */}
             <div className={`${styles.catalogCard} ${styles.revealElement}`}>
               <div className={styles.catalogCardImgBox}>
-                <img alt="Springtime Serenade" src="/home-5.png" />
+                <img alt="Springtime Serenade" src="/home-5.png" loading="lazy" decoding="async" />
               </div>
               <div className={styles.catalogCardFooter}>
                 <div className={styles.catalogCardDetails}>
@@ -485,6 +510,8 @@ export default function Home() {
                   className={styles.premiumImage}
                   alt="Minimalist Vase Floral Detail"
                   src="/floral_collections.png"
+                  loading="lazy"
+                  decoding="async"
                 />
                 <div className={styles.imageOverlayGradient} />
                 <div className={styles.premiumCardTag}>
@@ -504,6 +531,8 @@ export default function Home() {
                   className={styles.premiumImage}
                   alt="Floral Bouquet Close-up Detail"
                   src="/flr2.png"
+                  loading="lazy"
+                  decoding="async"
                 />
                 <div className={styles.imageOverlayGradient} />
               </div>
@@ -519,6 +548,8 @@ export default function Home() {
                   className={styles.premiumImage}
                   alt="Premium Floral Arrangement Showcase"
                   src="/int.png"
+                  loading="lazy"
+                  decoding="async"
                 />
                 <div className={styles.imageOverlayGradient} />
               </div>
@@ -576,6 +607,8 @@ export default function Home() {
                 src="/contact.png"
                 alt="Luxury Floral Arrangement Atelier"
                 className={styles.contactAccentImg}
+                loading="lazy"
+                decoding="async"
               />
               <div className={styles.contactAccentOverlay}>
                 <div className={styles.contactAccentQuoteContainer}>

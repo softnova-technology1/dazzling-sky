@@ -12,13 +12,19 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.5rem 20px;
+  padding: 1rem 16px;
   z-index: 100;
   background: transparent;
   pointer-events: none;
 }
 
 @media (min-width: 768px) {
+  .homepage-header {
+    padding: 1.5rem 40px;
+  }
+}
+
+@media (min-width: 1025px) {
   .homepage-header {
     padding: 2rem 80px;
   }
@@ -31,12 +37,18 @@
 }
 
 .homepage-header-logo img {
-  height: 100px;
+  height: 60px;
   filter: invert(1);
   transition: opacity 0.3s ease;
 }
 
 @media (min-width: 768px) {
+  .homepage-header-logo img {
+    height: 80px;
+  }
+}
+
+@media (min-width: 1025px) {
   .homepage-header-logo img {
     height: 120px;
   }
