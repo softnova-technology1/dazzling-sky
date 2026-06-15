@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { blogData as flowersData } from '../../data/Blogdata';
 import styles from './blog.module.css';
-import bgImage from '../../images/purple_flowers_bg.png';
+import bgImage from '../../images/purple.png';
 import card1 from '../../images/card1.jpg';
 import card2 from '../../images/card2.jpg';
 import card3 from '../../images/card3.jpg';
@@ -111,7 +111,7 @@ const Blog = ({ onReadMore }) => {
 
         <div className={styles.contentWrapper}>
           <h1 className={`${styles.headline} ${styles.heroTitle}`}>
-            Make Your Home as
+            Make Your Home as 
             <span className={styles.italicHighlight}> Comfortable</span> as Possible
           </h1>
 

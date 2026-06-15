@@ -104,7 +104,7 @@ const About = () => {
             </div>
             
             <h1 className={styles.title}>
-              Make Your Home as<br />Comfortable as Possible
+              Make Your Home as <br /> Comfortable as Possible
             </h1>
             
             <div className={styles.description}>

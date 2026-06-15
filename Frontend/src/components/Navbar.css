@@ -1,67 +1,86 @@
 .navbar-container {
   width: 100%;
-  padding: 10px 40px;
+  padding: 20px 40px; /* Pushed down slightly from the top */
   position: fixed;
   top: 0;
   left: 0;
   z-index: 1000;
+  display: flex;
+  justify-content: center; /* Centers the floating pill */
+  pointer-events: none; /* Allows clicking through the empty space around the pill */
 }
 
 .navbar-content {
+  pointer-events: auto;
+  width: 95%; 
+  max-width: 1400px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 4px 24px; /* Reduced padding to make it slimmer */
-  background: linear-gradient(90deg, rgba(136, 60, 138, 0.3) 0%, rgba(255, 138, 216, 0.15) 50%, rgba(136, 60, 138, 0.3) 100%); /* Much brighter purple gradient so the shape is visible */
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border-radius: 50px; /* Fully rounded pill shape */
-  border: 1px solid rgba(255, 138, 216, 0.5); /* Stronger border outline */
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8), 0 0 30px rgba(255, 138, 216, 0.2); /* Outer glow and strong shadow */
+  padding: 12px 32px; 
+  background: rgba(30, 20, 30, 0.4); /* Reverted to subtle frosted glass */
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border-radius: 16px; /* Reverted to normal rounded corners */
+  border: 1px solid rgba(255, 255, 255, 0.1); 
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); 
   transition: all 0.3s ease;
   position: relative;
 }
 
 /* Unique Animated Glow Border on Hover */
 .navbar-content:hover {
-  border-color: rgba(255, 138, 216, 0.5);
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6), inset 0 0 25px rgba(255, 138, 216, 0.15);
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
 }
 
 /* Left Links */
 .nav-links {
   display: flex;
   gap: 28px;
-  flex: 1;
+  flex: 1 1 0; /* Force equal width for perfect centering */
+  align-items: center;
 }
 
 .nav-link {
-  font-size: 0.9rem; /* Slightly smaller font */
+  font-size: 0.95rem; 
   font-weight: 500;
-  color: #ffffff; /* Pure white for maximum visibility */
+  color: #ffffff; /* Pure white text */
   text-decoration: none;
   position: relative;
-  padding: 6px 14px; /* Reduced padding */
-  border-radius: 30px;
+  padding: 8px 0;
   transition: all 0.3s ease;
-  border: 1px solid transparent;
+  white-space: nowrap;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: #ff8ad8; /* Reverted to pink underline */
+  transition: width 0.4s ease;
 }
 
 .nav-link:hover {
-  color: #ff8ad8;
-  background: rgba(255, 138, 216, 0.08);
-  border-color: rgba(255, 138, 216, 0.2);
-  box-shadow: 0 0 15px rgba(255, 138, 216, 0.1);
-  transform: translateY(-2px);
+  color: #ff8ad8; /* Reverted to pink hover */
+}
+
+.nav-link:hover::after {
+  width: 100%;
 }
 
 /* Center Logo */
 .nav-logo {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  flex: 1;
 }
 
 .nav-logo a {
@@ -71,17 +90,11 @@
 }
 
 .nav-logo-img {
-  height: 120px;
+  height: 80px;
   width: auto;
   object-fit: contain;
-  margin: -24px 0; /* Allows logo to be larger than the navbar itself */
-  height: 65px; /* Reduced from 90px to make the navbar shorter */
-  width: auto;
-  object-fit: contain;
-  margin: -8px 0; /* Reduced negative margin */
-  /* Since the theme is dark and the logo is black, we invert it so it shows up beautifully in white/light-gray */
-  filter: invert(1) brightness(2) drop-shadow(0 0 8px rgba(179, 136, 255, 0.4));
-  transition: transform 0.3s ease;
+  margin: -12px 0;
+  transition: all 0.4s ease;
 }
 
 .nav-logo-img:hover {
@@ -92,50 +105,48 @@
 .nav-icons {
   display: flex;
   justify-content: flex-end;
+  align-items: center;
   gap: 24px;
-  flex: 1;
+  flex: 1 1 0; /* Force equal width for perfect centering */
 }
 
 .icon-btn {
-  background: rgba(255, 255, 255, 0.08); /* Lighter glass background so the circle is visible */
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 50%;
-  color: #ffffff; /* Pure white icons for maximum visibility */
+  background: transparent; 
+  border: none;
+  color: #ffffff; 
   cursor: pointer;
-  padding: 8px; /* Reduced padding */
+  padding: 8px;
   transition: all 0.3s ease;
-  opacity: 0.8;
-  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative; 
 }
 
+/* Removed the gold divider */
+
 .icon-btn:hover {
-  color: #fff;
-  background: linear-gradient(90deg, #883c8a, #ff8ad8);
-  border-color: #ff8ad8;
-  transform: translateY(-3px) rotate(5deg);
-  box-shadow: 0 5px 15px rgba(255, 138, 216, 0.4);
+  color: #ff8ad8; /* Reverted to pink hover */
+  transform: translateY(-2px);
 }
 
 .badge {
   position: absolute;
-  top: 0;
-  right: 0;
-  background: linear-gradient(135deg, #883c8a, #ff8ad8);
+  top: 1px;
+  right: 1px; 
+  background: linear-gradient(135deg, #883c8a, #ff8ad8); /* Reverted to original pink gradient */
   color: #ffffff;
   font-size: 10px;
   font-weight: 700;
-  min-width: 16px;
-  height: 16px;
-  border-radius: 8px;
+  min-width: 18px;
+  height: 18px;
+  border-radius: 9px;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 0 4px;
   box-shadow: 0 0 8px rgba(255, 138, 216, 0.4);
-  animation: badgePop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+  animation: badgePop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
 }
 
 @keyframes badgePop {
@@ -148,4 +159,209 @@
   .nav-links, .nav-icons {
     display: none;
   }
+  
+  .navbar-container {
+    padding: 12px 16px;
+  }
+  
+  .navbar-content {
+    padding: 8px 16px;
+    border-radius: 12px;
+  }
+  
+  .nav-logo-img {
+    height: 54px;
+    margin: 0;
+  }
+}
+
+/* Mobile Toggle & Icons */
+.mobile-menu-toggle,
+.mobile-nav-icons {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .mobile-menu-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    padding: 6px;
+    z-index: 1001;
+    transition: color 0.3s ease;
+  }
+  
+  .mobile-menu-toggle:hover {
+    color: #ff8ad8;
+  }
+  
+  .mobile-nav-icons {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .mobile-nav-icons .icon-btn {
+    padding: 6px;
+  }
+}
+
+/* Mobile Drawer Styles */
+.mobile-drawer-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(6, 4, 10, 0.65);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 998;
+  transition: opacity 0.4s ease;
+}
+
+.mobile-drawer-overlay.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.mobile-drawer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 320px;
+  max-width: 80vw;
+  height: 100vh;
+  background: linear-gradient(135deg, rgba(13, 9, 20, 0.98) 0%, rgba(20, 12, 32, 0.95) 100%);
+  border-right: 1px solid rgba(255, 138, 216, 0.15);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  z-index: 999;
+  transform: translateX(-100%);
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow-y: auto;
+  box-shadow: 20px 0 50px rgba(0, 0, 0, 0.8);
+}
+
+.mobile-drawer.open {
+  transform: translateX(0);
+}
+
+.mobile-drawer-content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 4rem 2rem 2.5rem;
+  box-sizing: border-box;
+}
+
+.mobile-drawer-brand {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 3.5rem;
+}
+
+.mobile-drawer-logo {
+  height: 64px;
+  width: auto;
+  object-fit: contain;
+  filter: invert(1);
+  margin-left: -8px;
+  margin-bottom: 6px;
+}
+
+.mobile-drawer-tagline {
+  font-size: 8px;
+  color: #ff8ad8;
+  letter-spacing: 0.25em;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.mobile-drawer-links {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-bottom: auto;
+}
+
+.mobile-drawer-link {
+  display: flex;
+  align-items: center;
+  font-size: 1.4rem;
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 300;
+  transition: all 0.3s ease;
+  padding: 4px 0;
+}
+
+.mobile-drawer-link:hover {
+  color: #ff8ad8;
+  transform: translateX(6px);
+}
+
+.mobile-link-num {
+  font-size: 10px;
+  font-weight: 600;
+  color: #ff8ad8;
+  opacity: 0.6;
+  margin-right: 1rem;
+  width: 20px;
+}
+
+.mobile-drawer-footer {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.mobile-drawer-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  margin-bottom: 0.5rem;
+}
+
+.mobile-action-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #9e8fb8;
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-decoration: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px 0;
+  text-align: left;
+  transition: color 0.3s ease;
+}
+
+.mobile-action-btn:hover {
+  color: #ff8ad8;
+}
+
+.mobile-footer-title {
+  font-size: 8px;
+  color: #ff8ad8;
+  letter-spacing: 0.15em;
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+
+.mobile-footer-text {
+  font-size: 11px;
+  color: #9e8fb8;
+  opacity: 0.8;
 }
