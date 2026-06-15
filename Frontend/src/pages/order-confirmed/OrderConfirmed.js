@@ -1,21 +1,17 @@
 import React from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { PRODUCTS } from '../../data/productsData';
 import styles from './orderConfirmed.module.css';
 
 export default function OrderConfirmed() {
-    const navigate = useNavigate();
+
 
     // Load purchased items from checkout
     const [purchasedItems] = React.useState(() => {
         const localCheckout = localStorage.getItem('dazzling_sky_checkout_items');
         if (localCheckout) {
             try {
-                const parsed = JSON.parse(localCheckout);
-                return parsed.map(item => {
-                    const prod = PRODUCTS.find(p => p.id === item.id);
-                    return prod ? { product: prod, quantity: item.quantity } : null;
-                }).filter(item => item !== null);
+                return JSON.parse(localCheckout);
             } catch (e) {
                 console.error(e);
             }
@@ -30,7 +26,6 @@ export default function OrderConfirmed() {
             localStorage.removeItem('dazzling_sky_cart');
             window.dispatchEvent(new Event('cart_updated'));
         }
-        localStorage.removeItem('dazzling_sky_checkout_items');
         localStorage.removeItem('dazzling_sky_checkout_source');
     }, []);
 
@@ -134,10 +129,6 @@ export default function OrderConfirmed() {
                             <span>Continue Shopping</span>
                             <span className="material-symbols-outlined">arrow_right_alt</span>
                         </Link>
-                        <button className={styles.invoiceBtn} onClick={() => window.print()}>
-                            <span className="material-symbols-outlined">download</span>
-                            <span>Print Invoice</span>
-                        </button>
                     </div>
                 </div>
 

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { PRODUCTS } from '../../data/productsData';
+
 import styles from './payment.module.css';
 
 export default function Payment() {
@@ -23,11 +23,7 @@ export default function Payment() {
         const localCheckout = localStorage.getItem('dazzling_sky_checkout_items');
         if (localCheckout) {
             try {
-                const parsed = JSON.parse(localCheckout);
-                return parsed.map(item => {
-                    const prod = PRODUCTS.find(p => p.id === item.id);
-                    return prod ? { product: prod, quantity: item.quantity } : null;
-                }).filter(item => item !== null);
+                return JSON.parse(localCheckout);
             } catch (e) {
                 console.error(e);
             }
@@ -63,8 +59,14 @@ export default function Payment() {
     const tax = subtotal * 0.08;
     const total = subtotal + shippingCost + tax;
 
-    const handlePlaceOrder = (e) => {
+    const handlePlaceOrder = async (e) => {
         e.preventDefault();
+        
+        const token = localStorage.getItem('customerToken');
+        if (!token) {
+            alert('Please login to place an order.');
+            return;
+        }
         
         if (activeMethod === 'card') {
             if (!cardData.cardholderName || !cardData.cardNumber || !cardData.expiry || !cardData.cvv) {
@@ -73,10 +75,63 @@ export default function Payment() {
             }
         }
 
-        // Generate a random order number
-        const randomNum = Math.floor(100000 + Math.random() * 900000);
-        setOrderNumber(`DS-${randomNum}`);
-        setShowSuccess(true);
+        const addressObjStr = localStorage.getItem('dazzling_sky_checkout_address_obj');
+        if (!addressObjStr) {
+            alert('Missing shipping address. Please go back to delivery step.');
+            return;
+        }
+        const shippingAddress = JSON.parse(addressObjStr);
+
+        const orderItems = checkoutItems.map(item => ({
+            name: item.product.name,
+            quantity: item.quantity,
+            image: item.product.image || 'no-image',
+            price: item.product.price,
+            product: item.product.id || item.product._id
+        }));
+
+        try {
+            const response = await fetch('http://localhost:5000/api/orders', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
+                body: JSON.stringify({
+                    orderItems,
+                    shippingAddress,
+                    paymentMethod: activeMethod,
+                    taxPrice: tax,
+                    shippingPrice: shippingCost,
+                    totalPrice: total
+                })
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                setOrderNumber(data._id);
+                
+                localStorage.removeItem('dazzling_sky_cart');
+                window.dispatchEvent(new Event('cart_updated'));
+                
+                await fetch('http://localhost:5000/api/users/cart/sync', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify({ cart: [] })
+                });
+
+                setShowSuccess(true);
+            } else {
+                const errData = await response.json();
+                alert(`Error placing order: ${errData.message}`);
+            }
+        } catch (error) {
+            alert('Network error while placing order.');
+            console.error(error);
+        }
     };
 
     const handleCloseSuccess = () => {

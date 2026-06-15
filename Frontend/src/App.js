@@ -17,17 +17,29 @@ import OrderConfirmed from './pages/order-confirmed/OrderConfirmed';
 import Wishlist from './pages/wishlist/Wishlist';
 import Blog from './pages/blog/Blog';
 import BlogDetails from './pages/blog/BlogDetails';
+import Admin from './pages/admin/Admin';
+import AdminLogin from './pages/admin/AdminLogin';
 import './App.css';
 
 function MainLayout() {
   const location = useLocation();
   const isHomepage = location.pathname === '/';
+  const isAdminRoute = location.pathname.startsWith('/admin');
   const [isOffcanvasOpen, setIsOffcanvasOpen] = useState(false);
   const [selectedFlower, setSelectedFlower] = useState(null);
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [location.pathname]);
+
+  if (isAdminRoute) {
+    return (
+      <Routes>
+        <Route path="/admin/login" element={<AdminLogin />} />
+        <Route path="/admin/*" element={<Admin />} />
+      </Routes>
+    );
+  }
 
   return (
     <div className="App">

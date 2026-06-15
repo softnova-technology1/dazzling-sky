@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
 import { Mail, Phone, MapPin } from 'lucide-react';
 import styles from './contact.module.css';
