@@ -541,7 +541,7 @@
 
 .floatingPetal1 {
   top: 15%;
-  left: 45%;
+  left: 55%;
   width: 48px;
   height: 48px;
   animation: floatPetalA 12s ease-in-out infinite;
@@ -1200,7 +1200,7 @@
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
-  text-align: left;
+  text-align: justify;
 }
 
 .storyTextContent p {
@@ -1470,6 +1470,8 @@
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.35),
     inset 0 1px 0 rgba(255, 255, 255, 0.04);
   cursor: pointer;
+  perspective: 1000px;
+  transform-style: preserve-3d;
 }
 
 .openMoreCard::before {
@@ -1495,6 +1497,10 @@
 }
 
 .openMoreBtn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1);
   display: inline-flex;
   flex-direction: column;
   align-items: center;
@@ -1506,9 +1512,12 @@
   font-weight: var(--fontWeight-label-caps);
   letter-spacing: var(--letterSpacing-label-caps);
   text-transform: uppercase;
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+    color 0.4s ease,
+    letter-spacing 0.4s ease;
   padding: 2rem;
   text-align: center;
+  z-index: 10;
 }
 
 .openMoreBtn::before {
@@ -1529,6 +1538,7 @@
 .openMoreCard:hover .openMoreBtn {
   color: #fff;
   letter-spacing: 0.2em;
+  transform: translate(-50%, 65px) scale(0.8);
 }
 
 .openMoreCard:hover .openMoreBtn::before {
@@ -1536,6 +1546,87 @@
   border-color: rgba(255, 138, 216, 0.8);
   box-shadow: 0 0 20px rgba(255, 138, 216, 0.25);
   transform: translateX(4px);
+}
+
+/* 3D Flower Container styling */
+.flower3DContainer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 200px;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+  pointer-events: none;
+  opacity: 0;
+  transform-style: preserve-3d;
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.openMoreCard:hover .flower3DContainer {
+  opacity: 1;
+}
+
+/* Main center flower */
+.flowerMainImage {
+  width: 250px;
+  height: 250px;
+  object-fit: contain;
+  filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.5)) drop-shadow(0 0 20px rgba(255, 138, 216, 0.25));
+  transform: translate3d(0, 0, -120px) scale(0.4) rotate(0deg);
+  transition: transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.openMoreCard:hover .flowerMainImage {
+  transform: translate3d(0, -10px, 30px) scale(1.1) rotate(8deg);
+}
+
+/* Individual petals styling */
+.flowerPetal {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+  opacity: 0;
+  pointer-events: none;
+  filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.3));
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.petal1 {
+  transform: translate3d(0, 0, -100px) scale(0.1) rotate(0deg);
+}
+.openMoreCard:hover .petal1 {
+  transform: translate3d(-70px, -65px, 80px) scale(0.95) rotate(45deg);
+  opacity: 0.9;
+}
+
+.petal2 {
+  transform: translate3d(0, 0, -100px) scale(0.1) rotate(0deg);
+}
+.openMoreCard:hover .petal2 {
+  transform: translate3d(70px, -55px, 100px) scale(0.85) rotate(-35deg);
+  opacity: 0.95;
+}
+
+.petal3 {
+  transform: translate3d(0, 0, -100px) scale(0.1) rotate(0deg);
+}
+.openMoreCard:hover .petal3 {
+  transform: translate3d(-60px, 60px, 60px) scale(0.8) rotate(-15deg);
+  opacity: 0.85;
+}
+
+.petal4 {
+  transform: translate3d(0, 0, -100px) scale(0.1) rotate(0deg);
+}
+.openMoreCard:hover .petal4 {
+  transform: translate3d(65px, 65px, 90px) scale(0.9) rotate(60deg);
+  opacity: 0.9;
 }
 
 .catalogCtaContainer {
@@ -1675,7 +1766,7 @@
 
 @media (min-width: 1024px) {
   .premiumGalleryGrid {
-    grid-template-columns: 1.25fr 0.85fr 0.9fr;
+    grid-template-columns: 0.9fr 0.85fr 1.25fr;
     gap: 3rem;
   }
 }
@@ -1742,8 +1833,13 @@
   aspect-ratio: 4 / 2.8;
 }
 
+.premiumCardMedium {
+  height: 100%;
+}
+
 .premiumCardMedium .premiumImgWrapper {
   aspect-ratio: 3 / 4;
+  height: 100%;
 }
 
 .premiumCardPortrait .premiumImgWrapper {
@@ -2093,10 +2189,43 @@
   height: 100%;
   background: linear-gradient(
     to bottom,
-    rgba(20, 14, 30, 0) 0%,
-    rgba(20, 14, 30, 0.4) 100%
+    rgba(20, 14, 30, 0.1) 0%,
+    rgba(20, 14, 30, 0.75) 100%
   );
   pointer-events: none;
+  display: flex;
+  align-items: flex-end;
+  padding: 1.5rem;
+  box-sizing: border-box;
+}
+
+.contactAccentQuoteContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  text-align: left;
+}
+
+.contactAccentQuote {
+  font-family: var(--font-body-md-family);
+  font-size: 13px;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.95);
+  font-style: italic;
+  margin: 0 !important;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.85);
+}
+
+.contactAccentAuthor {
+  font-family: var(--font-label-caps-family);
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  color: var(--primary);
+  margin: 0 !important;
+  font-weight: 600;
+  text-transform: uppercase;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.85);
 }
 
 .contactInfoList {
@@ -2175,10 +2304,30 @@
   border: 1px solid rgba(179, 170, 193, 0.348);
   border-radius: var(--borderRadius-xl);
   padding: 3rem;
-  margin-top: 7rem;
   box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
   position: relative;
   overflow: hidden;
+}
+
+.formContentHeader {
+  margin-bottom: 2rem;
+  text-align: left;
+}
+
+.formTitle {
+  font-family: var(--font-headline-sm-family);
+  font-size: 1.8rem;
+  color: #ffffff;
+  margin-bottom: 0.5rem;
+  font-weight: 300;
+  letter-spacing: 0.05em;
+}
+
+.formSubtitle {
+  font-family: var(--font-body-md-family);
+  font-size: 13px;
+  color: rgba(229, 226, 225, 0.7);
+  line-height: 1.5;
 }
 
 .glassFormCard::before {

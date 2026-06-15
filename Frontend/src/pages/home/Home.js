@@ -1,8 +1,10 @@
 // Home.js — Dazzling Sky Luxury Floral Atelier
 import React, { useState, useEffect } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
 import styles from './home.module.css';
 
 export default function Home() {
+  const navigate = useNavigate();
   const [scrollOffset, setScrollOffset] = useState(0);
 
   // Track scrollOffset on scroll for page effects
@@ -164,13 +166,15 @@ export default function Home() {
               Providing joy, one flower at a time — <span className={styles.italicPrimary}>transforming petals</span> into perfect moments
             </h1>
             <p className={styles.heroSubtitle}>
-              Experience a refined online destination for fresh, artistically handcrafted flower bouquets. Each arrangement is thoughtfully created with love, creativity, and the finest premium blooms.
+              Experience a refined online destination for fresh, artistically handcrafted flower bouquets.
+              Each arrangement is thoughtfully created with love, creativity, and the finest premium blooms.
+              Share happiness, express heartfelt emotions, and mark life’s special moments with flowers that truly speak for you.
             </p>
             <div className={styles.heroButtonContainer}>
-              <button className={styles.btnShopUnique}>
+              <button className={styles.btnShopUnique} onClick={() => navigate('/shop')}>
                 SHOP COLLECTION
               </button>
-              <button className={styles.btnStory}>
+              <button className={styles.btnStory} onClick={() => navigate('/about')}>
                 OUR STORY
               </button>
             </div>
@@ -207,7 +211,7 @@ export default function Home() {
             <span className={styles.featuredLabel}>EXQUISITE SELECTION</span>
             <h2 className={styles.sectionTitle}>Unveiling Our Popular Bouquet Collection</h2>
           </div>
-          <a className={styles.viewAllLink} href="#">VIEW ALL SERIES</a>
+          <Link to="/shop" className={styles.viewAllLink}>VIEW ALL SERIES</Link>
         </div>
         <div className={styles.accordionGrid}>
           {/* Card 1: Whispering Blooms */}
@@ -224,7 +228,7 @@ export default function Home() {
               <div className={styles.accordionTitleGroup}>
                 <h3>Whispering Blooms</h3>
                 <p className={styles.accordionSubtitle}>At Our Store, we take pride in offering a stunning selection of the most popular flowers that capture hearts and inspire joy.</p>
-                <a href="/shop" className={styles.seeCatalogBtn}>See Catalog &rarr;</a>
+                <Link to="/shop" className={styles.seeCatalogBtn}>See Catalog &rarr;</Link>
               </div>
               <span className={styles.accordionPrice}>from 50 SGD</span>
             </div>
@@ -303,9 +307,9 @@ export default function Home() {
                 <p>
                   With meticulous attention to detail, our skilled florists handpick the freshest blossoms, crafting enchanting arrangements that become symbols of love, joy, and beauty in life's precious moments. Whether you want to surprise a loved one or decorate an event, Blossomia Flower Store is the perfect choice.
                 </p>
-                <a href="/about" className={styles.storyReadMoreBtn}>
+                <Link to="/about" className={styles.storyReadMoreBtn}>
                   Read More &rarr;
-                </a>
+                </Link>
               </div>
             </div>
           </div>
@@ -364,9 +368,36 @@ export default function Home() {
 
             {/* Button Card (3rd slot) */}
             <div className={`${styles.openMoreCard} ${styles.revealElement}`}>
-              <a href="#catalog" className={styles.openMoreBtn}>
+              <div className={styles.flower3DContainer}>
+                <img
+                  className={styles.flowerMainImage}
+                  src="/open more.png"
+                  alt="3D Flower Bouquet"
+                />
+                <img
+                  className={`${styles.flowerPetal} ${styles.petal1}`}
+                  src="/part2.png"
+                  alt=""
+                />
+                <img
+                  className={`${styles.flowerPetal} ${styles.petal2}`}
+                  src="/part3.png"
+                  alt=""
+                />
+                <img
+                  className={`${styles.flowerPetal} ${styles.petal3}`}
+                  src="/part4.png"
+                  alt=""
+                />
+                <img
+                  className={`${styles.flowerPetal} ${styles.petal4}`}
+                  src="/part3.png"
+                  alt=""
+                />
+              </div>
+              <Link to="/shop" className={styles.openMoreBtn}>
                 Open More &rarr;
-              </a>
+              </Link>
             </div>
 
             {/* Product Item 4 */}
@@ -447,6 +478,40 @@ export default function Home() {
           </div>
 
           <div className={styles.premiumGalleryGrid}>
+            {/* Card 3: Vertical Portrait Showcase Card */}
+            <div className={`${styles.premiumCardPortrait} ${styles.revealElement}`}>
+              <div className={styles.premiumImgWrapper}>
+                <img
+                  className={styles.premiumImage}
+                  alt="Minimalist Vase Floral Detail"
+                  src="/floral_collections.png"
+                />
+                <div className={styles.imageOverlayGradient} />
+                <div className={styles.premiumCardTag}>
+                  <span>BOUQUETS</span>
+                </div>
+              </div>
+              <div className={styles.premiumCardContentOverlay}>
+                {/* <h3>Botanical Wonders</h3> */}
+                {/* <p>Follow us today and embark on a blooming journey that will ignite your passion for all things floral.</p> */}
+              </div>
+            </div>
+
+            {/* Card 2: Medium Detail Card */}
+            <div className={`${styles.premiumCardMedium} ${styles.revealElement}`}>
+              <div className={styles.premiumImgWrapper}>
+                <img
+                  className={styles.premiumImage}
+                  alt="Floral Bouquet Close-up Detail"
+                  src="/flr2.png"
+                />
+                <div className={styles.imageOverlayGradient} />
+              </div>
+              <div className={styles.premiumCardTag}>
+                <span>BOUQUETS</span>
+              </div>
+            </div>
+
             {/* Card 1: Large Featured Card */}
             <div className={`${styles.premiumCardLarge} ${styles.revealElement}`}>
               <div className={styles.premiumImgWrapper}>
@@ -459,48 +524,17 @@ export default function Home() {
               </div>
               <div className={styles.premiumCardContent}>
                 <p className={styles.premiumDesc}>
-                  Be the first to know about our exciting events, exclusive offers, and new arrivals. Join our floral community and let us fill your feed with beauty and botanical wonders.
+                  Be the first to know about our exciting events, exclusive offers, and new arrivals. Join our floral community and let us fill your feed with beauty and botanical wonders. Follow us today and embark on a blooming journey that will ignite your passion for all things floral.
                 </p>
                 <div className={styles.premiumBtnWrapper}>
                   <button
                     className={styles.premiumContactBtn}
-                    onClick={() => document.getElementById('contact-section')?.scrollIntoView({ behavior: 'smooth' })}
+                    onClick={() => navigate('/contacts')}
                   >
                     <span>Contact Us</span>
                     <span className={styles.btnArrow}>&rarr;</span>
                   </button>
                 </div>
-              </div>
-            </div>
-
-            {/* Card 2: Medium Detail Card */}
-            <div className={`${styles.premiumCardMedium} ${styles.revealElement}`}>
-              <div className={styles.premiumImgWrapper}>
-                <img
-                  className={styles.premiumImage}
-                  alt="Floral Bouquet Close-up Detail"
-                  src="/flr2.jpg"
-                />
-                <div className={styles.imageOverlayGradient} />
-              </div>
-              <div className={styles.premiumCardTag}>
-                <span>BOUQUETS</span>
-              </div>
-            </div>
-
-            {/* Card 3: Vertical Portrait Showcase Card */}
-            <div className={`${styles.premiumCardPortrait} ${styles.revealElement}`}>
-              <div className={styles.premiumImgWrapper}>
-                <img
-                  className={styles.premiumImage}
-                  alt="Minimalist Vase Floral Detail"
-                  src="/floral_collections.png"
-                />
-                <div className={styles.imageOverlayGradient} />
-              </div>
-              <div className={styles.premiumCardContentOverlay}>
-                <h3>Botanical Wonders</h3>
-                <p>Follow us today and embark on a blooming journey that will ignite your passion for all things floral.</p>
               </div>
             </div>
           </div>
@@ -543,7 +577,14 @@ export default function Home() {
                 alt="Luxury Floral Arrangement Atelier"
                 className={styles.contactAccentImg}
               />
-              <div className={styles.contactAccentOverlay} />
+              <div className={styles.contactAccentOverlay}>
+                <div className={styles.contactAccentQuoteContainer}>
+                  <p className={styles.contactAccentQuote}>
+                    “Two lunar months revealed Earth’s fragile beauty against vast silence, transforming my view of our place in the universe.”
+                  </p>
+                  <p className={styles.contactAccentAuthor}>— Irinel Traista</p>
+                </div>
+              </div>
             </div>
 
             {/* Contact Info Items */}
@@ -588,6 +629,13 @@ export default function Home() {
                 <div className={styles.formCardHeaderDot} />
                 <div className={styles.formCardHeaderDot} />
                 <div className={styles.formCardHeaderDot} />
+              </div>
+
+              <div className={styles.formContentHeader}>
+                <h3 className={styles.formTitle}>Let’s connect constellations</h3>
+                <p className={styles.formSubtitle}>
+                  Let's align our constellations! Reach out and let the magic of collaboration illuminate our skies.
+                </p>
               </div>
 
               <form className={styles.contactForm} onSubmit={(e) => e.preventDefault()}>
