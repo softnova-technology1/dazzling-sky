@@ -1,0 +1,159 @@
+/* Admin CSS Module - Sleek & Premium Design */
+
+.loginContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
+  font-family: 'Inter', -apple-system, sans-serif;
+}
+
+.loginCard {
+  background: #ffffff;
+  width: 100%;
+  max-width: 440px;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease;
+}
+
+.loginCard:hover {
+  transform: translateY(-5px);
+}
+
+.loginHeader {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.logo {
+  width: 180px;
+  margin-bottom: 20px;
+}
+
+.loginHeader h2 {
+  font-size: 24px;
+  color: #1a1a1a;
+  margin: 0 0 10px 0;
+  font-weight: 600;
+  letter-spacing: -0.5px;
+}
+
+.loginHeader p {
+  color: #666;
+  font-size: 14px;
+  margin: 0;
+}
+
+.errorMessage {
+  background: #fff0f0;
+  color: #e53e3e;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 14px;
+  margin-bottom: 20px;
+  text-align: center;
+  border: 1px solid #fed7d7;
+}
+
+.inputGroup {
+  margin-bottom: 20px;
+}
+
+.inputGroup label {
+  display: block;
+  font-size: 13px;
+  color: #4a5568;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.inputWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.inputIcon {
+  position: absolute;
+  left: 14px;
+  color: #a0aec0;
+}
+
+.inputWrapper input {
+  width: 100%;
+  padding: 14px 40px;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 10px;
+  font-size: 15px;
+  color: #2d3748;
+  transition: all 0.2s ease;
+  background: #f8fafc;
+}
+
+.inputWrapper input:focus {
+  outline: none;
+  border-color: #2b6cb0;
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(43, 108, 176, 0.1);
+}
+
+.inputWrapper input::placeholder {
+  color: #a0aec0;
+}
+
+.eyeBtn {
+  position: absolute;
+  right: 14px;
+  background: none;
+  border: none;
+  color: #a0aec0;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s ease;
+}
+
+.eyeBtn:hover {
+  color: #4a5568;
+}
+
+.loginButton {
+  width: 100%;
+  padding: 16px;
+  background: #1a202c;
+  color: #ffffff;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-top: 10px;
+}
+
+.loginButton:hover {
+  background: #2d3748;
+  transform: translateY(-1px);
+}
+
+.loginButton:active {
+  transform: translateY(1px);
+}
+
+.loginButton:disabled {
+  background: #718096;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.loginFooter {
+  text-align: center;
+  margin-top: 30px;
+  font-size: 12px;
+  color: #a0aec0;
+}
