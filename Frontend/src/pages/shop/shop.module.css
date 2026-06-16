@@ -135,7 +135,7 @@
 
 .heroTitle {
     font-family: var(--font-serif);
-    font-size: 72px;
+    font-size:  72px;
     font-weight: 600;
     line-height: 80px;
     letter-spacing: -0.02em;
@@ -173,6 +173,7 @@
 .heroSubtitle {
     font-size: 18px;
     line-height: 28px;
+    font-weight: 300;
     color: var(--on-surface-variant);
     /* max-width: 448px; */
     /* text-align: center; */

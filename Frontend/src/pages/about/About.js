@@ -99,12 +99,12 @@ const About = () => {
           {/* Left Column: Text and CTA Content */}
           <div className={styles.contentColumn}>
             <div className={styles.subtitle}>
-              <span className={styles.dot}>•</span> FLOWER CLUB <span className={styles.dot}>•</span> 
-              <span className={styles.separator}>|</span> ONLINE FLOWER BOUTIQUE
+              <span className={styles.dot}>•</span> LUXURY FLORAL ATELIER <span className={styles.dot}>•</span> 
+              <span className={styles.separator}>|</span> CURATED FRESH BLOOMS
             </div>
             
             <h1 className={styles.title}>
-              Make Your Home as <br /> Comfortable as Possible
+              Make Your Home as <br /> <span className={styles.highlight}>Comfortable</span> as Possible
             </h1>
             
             <div className={styles.description}>
