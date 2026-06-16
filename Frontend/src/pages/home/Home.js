@@ -1,5 +1,5 @@
 // Home.js — Dazzling Sky Luxury Floral Atelier
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import styles from './home.module.css';
 

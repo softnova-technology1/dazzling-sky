@@ -2,26 +2,26 @@ import React, { useEffect, useRef } from 'react';
 import { blogData as flowersData } from '../../data/Blogdata';
 import styles from './blog.module.css';
 import bgImage from '../../images/purple.png';
+import floatingBouquet from '../../images/floating_bouquet_ai.png';
 import card1 from '../../images/card1.jpg';
 import card2 from '../../images/card2.jpg';
 import card3 from '../../images/card3.jpg';
 import card4 from '../../images/card4.jpg';
 import card5 from '../../images/card5.jpg';
-import card6 from '../../images/card6.png';
+import card6 from '../../images/card6.jpg';
 import card7 from '../../images/card7.jpg';
-import card8 from '../../images/card8.jpeg';
-import card9 from '../../images/card9.jpeg';
-import card10 from '../../images/card10.jpeg';
+import card8 from '../../images/card8.jpg';
+import card9 from '../../images/card9.jpg';
+import card10 from '../../images/card10.jpg';
 import card11 from '../../images/card11.jpg';
-import card12 from '../../images/card12.jpeg';
-import floatingBouquet from '../../images/floating_bouquet_ai.png';
+import card12 from '../../images/card12.jpg';
 import card13 from '../../images/card13.jpg';
 import card14 from '../../images/card14.jpg';
 import card15 from '../../images/card15.jpg';
 import card16 from '../../images/card16.jpg';
-import card17 from '../../images/card17.jpeg';
-import card18 from '../../images/card18.jpeg';
-import card19 from '../../images/card19.jpeg';
+import card17 from '../../images/card17.jpg';
+import card18 from '../../images/card18.jpg';
+import card19 from '../../images/card19.jpg';
 import card20 from '../../images/card20.jpg';
 import card21 from '../../images/card21.jpg';
 import card22 from '../../images/card22.jpg';
@@ -62,6 +62,29 @@ export const getCardImage = (id) => {
   }
 };
 export { flowersData };
+
+export const getCardStyle = (id) => {
+  switch (id) {
+    case 14:
+      return {
+        backgroundImage: `url(${getCardImage(id)})`,
+        backgroundPosition: '68% center',
+        backgroundSize: 'cover'
+      };
+    case 17:
+      return {
+        backgroundImage: `url(${getCardImage(id)})`,
+        backgroundPosition: '85% center',
+        backgroundSize: 'cover'
+      };
+    default:
+      return {
+        backgroundImage: `url(${getCardImage(id)})`,
+        backgroundPosition: 'center',
+        backgroundSize: 'cover'
+      };
+  }
+};
 
 
 
@@ -135,7 +158,10 @@ const Blog = ({ onReadMore }) => {
             <div className={styles.neonCard}>
 
               {/* Layer 1: Left Image Area (SVG will mask the right side) */}
-              <div className={styles.imageArea} style={{ backgroundImage: `url(${getCardImage(flower.id)})` }}>
+              <div 
+                className={styles.imageArea} 
+                style={getCardStyle(flower.id)}
+              >
               </div>
 
 

@@ -1,37 +1,96 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { PRODUCTS } from '../../data/productsData';
 import styles from './cart.module.css';
 
 export default function Cart() {
     const navigate = useNavigate();
+    const [, setDbProducts] = useState([]);
     
     // Initialize cart items from localStorage, or use defaults if empty
-    const [cartItems, setCartItems] = useState(() => {
-        const localCart = localStorage.getItem('dazzling_sky_cart');
-        if (localCart) {
-            try {
-                const parsed = JSON.parse(localCart);
-                return parsed.map(item => {
-                    const prod = PRODUCTS.find(p => p.id === item.id);
-                    return prod ? { product: prod, quantity: item.quantity } : null;
-                }).filter(item => item !== null);
-            } catch (e) {
-                console.error(e);
-            }
-        }
-        // Default items if localStorage is empty
-        const defaultItems = [
-            { product: PRODUCTS.find(p => p.id === 1) || PRODUCTS[0], quantity: 1 },
-            { product: PRODUCTS.find(p => p.id === 2) || PRODUCTS[1], quantity: 2 },
-            { product: PRODUCTS.find(p => p.id === 3) || PRODUCTS[2], quantity: 1 }
-        ].filter(item => item.product !== undefined);
-        localStorage.setItem('dazzling_sky_cart', JSON.stringify(defaultItems.map(item => ({ id: item.product.id, quantity: item.quantity }))));
-        return defaultItems;
-    });
+    const [cartItems, setCartItems] = useState([]);
+    // The cart initialization logic has been moved to useEffect
 
     const [promoCode, setPromoCode] = useState('');
     const [discount, setDiscount] = useState(0);
+
+    // Fetch Products and setup cart
+    useEffect(() => {
+        const loadProductsAndCart = async () => {
+            let allProducts = [...PRODUCTS];
+            try {
+                const response = await fetch('http://localhost:5000/api/products');
+                if (response.ok) {
+                    const data = await response.json();
+                    const formattedDbProducts = data.map(prod => ({
+                        id: prod._id,
+                        name: prod.name,
+                        price: prod.price,
+                        image: prod.imageUrl,
+                        collection: prod.category || 'Exclusive',
+                    }));
+                    setDbProducts(formattedDbProducts);
+                    allProducts = [...formattedDbProducts, ...PRODUCTS];
+                }
+            } catch (error) {
+                console.error("Failed to fetch products:", error);
+            }
+
+            const localCart = localStorage.getItem('dazzling_sky_cart');
+            if (localCart) {
+                try {
+                    const parsed = JSON.parse(localCart);
+                    const items = parsed.map(item => {
+                        const prod = allProducts.find(p => p.id === item.id);
+                        return prod ? { product: prod, quantity: item.quantity } : null;
+                    }).filter(item => item !== null);
+                    setCartItems(items);
+                    return;
+                } catch (e) {
+                    console.error(e);
+                }
+            } else {
+                setCartItems([]);
+                return;
+            }
+            
+            // Default items if localStorage is empty
+            const defaultItems = [
+                { product: allProducts.find(p => p.id === 1) || allProducts[0], quantity: 1 },
+                { product: allProducts.find(p => p.id === 2) || allProducts[1], quantity: 2 },
+            ].filter(item => item.product !== undefined);
+            localStorage.setItem('dazzling_sky_cart', JSON.stringify(defaultItems.map(item => ({ id: item.product.id, quantity: item.quantity }))));
+            setCartItems(defaultItems);
+        };
+        
+        loadProductsAndCart();
+
+        const handleCartUpdate = () => {
+            loadProductsAndCart();
+        };
+
+        window.addEventListener('cart_updated', handleCartUpdate);
+        return () => window.removeEventListener('cart_updated', handleCartUpdate);
+    }, []);
+
+    const syncToDB = async (items) => {
+        const token = localStorage.getItem('customerToken');
+        if (token) {
+            const formattedCart = items.map(item => ({ product: item.product.id, quantity: item.quantity }));
+            try {
+                await fetch('http://localhost:5000/api/users/cart/sync', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify({ cart: formattedCart })
+                });
+            } catch (err) {
+                console.error("Cart sync failed", err);
+            }
+        }
+    };
 
     const updateQuantity = (productId, amount) => {
         setCartItems(prev => {
@@ -42,6 +101,7 @@ export default function Cart() {
             );
             localStorage.setItem('dazzling_sky_cart', JSON.stringify(updated.map(item => ({ id: item.product.id, quantity: item.quantity }))));
             window.dispatchEvent(new Event('cart_updated'));
+            syncToDB(updated);
             return updated;
         });
     };
@@ -51,13 +111,13 @@ export default function Cart() {
             const updated = prev.filter(item => item.product.id !== productId);
             localStorage.setItem('dazzling_sky_cart', JSON.stringify(updated.map(item => ({ id: item.product.id, quantity: item.quantity }))));
             window.dispatchEvent(new Event('cart_updated'));
+            syncToDB(updated);
             return updated;
         });
     };
 
     const handleCheckout = () => {
-        const checkoutItems = cartItems.map(item => ({ id: item.product.id, quantity: item.quantity }));
-        localStorage.setItem('dazzling_sky_checkout_items', JSON.stringify(checkoutItems));
+        localStorage.setItem('dazzling_sky_checkout_items', JSON.stringify(cartItems));
         localStorage.setItem('dazzling_sky_checkout_source', 'cart');
         navigate('/checkout');
     };

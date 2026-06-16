@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Heart, User, ShoppingCart, Menu, X } from 'lucide-react';
+import { Heart, User, ShoppingCart, LogOut, Menu, X } from 'lucide-react';
 import logoImage from '../images/logo-black.png';
+import AuthPopup from './AuthPopup';
 import './Navbar.css';
 
 const Navbar = () => {
   const [cartCount, setCartCount] = useState(0);
   const [wishlistCount, setWishlistCount] = useState(0);
+  const [isAuthPopupOpen, setIsAuthPopupOpen] = useState(false);
+  const [user, setUser] = useState(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const updateCounts = () => {
@@ -17,9 +20,24 @@ const Navbar = () => {
 
       const wishlist = JSON.parse(localStorage.getItem('dazzling_sky_wishlist') || '[]');
       setWishlistCount(wishlist.length);
+      
+      const customerData = localStorage.getItem('customerData');
+      if (customerData) {
+        setUser(JSON.parse(customerData));
+      } else {
+        setUser(null);
+      }
     } catch (e) {
       console.error('Error loading counts in Navbar', e);
     }
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem('customerToken');
+    localStorage.removeItem('customerData');
+    localStorage.removeItem('dazzling_sky_cart');
+    setUser(null);
+    window.dispatchEvent(new Event('cart_updated'));
   };
 
   useEffect(() => {
@@ -40,7 +58,6 @@ const Navbar = () => {
     <>
       <nav className="navbar-container">
         <div className="navbar-content">
-          
           {/* Mobile Menu Toggle Button */}
           <button 
             className="mobile-menu-toggle" 
@@ -72,9 +89,20 @@ const Navbar = () => {
               <Heart size={20} strokeWidth={1.5} />
               {wishlistCount > 0 && <span className="badge">{wishlistCount}</span>}
             </Link>
-            <button className="icon-btn" aria-label="Profile">
-              <User size={20} strokeWidth={1.5} />
-            </button>
+            
+            {user ? (
+              <div style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
+                <span style={{ fontSize: '14px', fontWeight: '500', color: '#ffffff' }}>Hi, {user.name.split(' ')[0]}</span>
+                <button className="icon-btn" onClick={handleLogout} title="Log out" aria-label="Log out">
+                  <LogOut size={20} strokeWidth={1.5} />
+                </button>
+              </div>
+            ) : (
+              <button className="icon-btn" onClick={() => setIsAuthPopupOpen(true)} aria-label="Profile">
+                <User size={20} strokeWidth={1.5} />
+              </button>
+            )}
+
             <Link to="/cart" className="icon-btn" aria-label="Cart">
               <ShoppingCart size={20} strokeWidth={1.5} />
               {cartCount > 0 && <span className="badge">{cartCount}</span>}
@@ -127,8 +155,16 @@ const Navbar = () => {
               <Link to="/wishlist" className="mobile-action-btn" onClick={() => setIsMobileMenuOpen(false)}>
                 <Heart size={18} strokeWidth={1.5} /> Wishlist ({wishlistCount})
               </Link>
-              <button className="mobile-action-btn">
-                <User size={18} strokeWidth={1.5} /> Profile
+              <button 
+                className="mobile-action-btn" 
+                onClick={() => {
+                  setIsMobileMenuOpen(false);
+                  if (user) handleLogout();
+                  else setIsAuthPopupOpen(true);
+                }}
+              >
+                {user ? <LogOut size={18} strokeWidth={1.5} /> : <User size={18} strokeWidth={1.5} />} 
+                {user ? 'Log Out' : 'Profile'}
               </button>
             </div>
             <p className="mobile-footer-title">VISIT THE ATELIER</p>
@@ -136,6 +172,15 @@ const Navbar = () => {
           </div>
         </div>
       </div>
+      
+      {isAuthPopupOpen && (
+        <AuthPopup 
+          onClose={() => setIsAuthPopupOpen(false)} 
+          onLoginSuccess={(userData) => {
+            setUser(userData);
+          }} 
+        />
+      )}
     </>
   );
 };

@@ -182,7 +182,7 @@
 
 .headline {
   font-family: var(--font-serif);
-  font-size: 3rem;
+  font-size: 48px;
   font-weight: 400;
   line-height: 1.1;
   text-align:left;
@@ -224,7 +224,18 @@
   animation: fadeInUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
 }
 
-.description, .subDescription {
+.description {
+  font-family: var(--font-body-lg-family);
+  font-size: 15px;
+  font-weight: var(--fontWeight-body-lg);
+  line-height: 1.6;
+  color: var(--on-surface-variant);
+  margin-bottom: 3.5rem;
+  max-width: 44rem;
+  opacity: 0.95;
+}
+
+.subDescription {
   font-size: 1rem;
   line-height: 1.7;
   color: var(--blog-text-muted);
@@ -472,7 +483,7 @@
 .imageArea {
   position: absolute;
   top: 0; left: 0;
-  width: 60%; /* Wide enough to sit under the mask bulge */
+  width: 75%; /* Wide enough to sit under the mask bulge */
   height: 100%;
   background-size: cover;
   background-position: center;
@@ -790,7 +801,7 @@
   }
 
   .imageArea{
-      width:55%;
+      width:75%;
   }
 
   .topTextSection,
