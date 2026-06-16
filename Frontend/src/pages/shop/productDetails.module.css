@@ -1,7 +1,12 @@
+:root {
+    --font-serif: 'Playfair Display', serif;
+    --font-sans: 'Hanken Grotesk', sans-serif;
+}
+
 .detailsPageWrapper {
     background-color: #0A0A0A;
     color: #e5e2e1;
-    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-family: var(--font-sans);
     min-height: 100vh;
     padding-bottom: 80px;
 }
@@ -179,7 +184,7 @@
 }
 
 .productName {
-    font-family: 'Bodoni Moda', serif;
+    font-family: var(--font-serif);
     font-size: 48px;
     font-weight: 500;
     line-height: 56px;
@@ -232,7 +237,7 @@
 .price {
     font-size: 32px;
     font-weight: 500;
-    font-family: 'Bodoni Moda', serif;
+    font-family: var(--font-serif);
     color: #ff8ad8;
 }
 
@@ -245,8 +250,15 @@
 .descriptionText {
     font-size: 18px;
     line-height: 28px;
-    color: rgba(229, 226, 225, 0.8);
+    /* color: rgba(229, 226, 225, 0.8); */
     margin: 0;
+    font-family: var(--font-body-lg-family);
+    font-size: var(--fontSize-body-lg);
+    font-weight: var(--fontWeight-body-lg);
+    line-height: 1.6;
+    color: var(--on-surface-variant);
+    /* max-width: 448px; */
+    opacity: 0.95;
 }
 
 .actionGroup {
@@ -628,7 +640,7 @@
 }
 
 .tabHeading {
-    font-family: 'Bodoni Moda', serif;
+    font-family: var(--font-serif);
     font-size: 32px;
     line-height: 40px;
     font-weight: 400;
@@ -753,7 +765,7 @@
 }
 
 .reviewsHeading {
-    font-family: 'Bodoni Moda', serif;
+    font-family: var(--font-serif);
     font-size: 32px;
     font-weight: 400;
     line-height: 40px;
@@ -887,7 +899,7 @@
 }
 
 .relatedHeading {
-    font-family: 'Bodoni Moda', serif;
+    font-family: var(--font-serif);
     font-size: 32px;
     font-weight: 400;
     line-height: 40px;
@@ -968,7 +980,7 @@
 }
 
 .faqHeading {
-    font-family: 'Bodoni Moda', serif;
+    font-family: var(--font-serif);
     font-size: 32px;
     font-weight: 400;
     line-height: 40px;
