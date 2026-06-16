@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { PRODUCTS } from '../../data/productsData';
+
 import styles from './shipping.module.css';
 
 export default function Shipping() {
@@ -59,11 +59,7 @@ export default function Shipping() {
         const localCheckout = localStorage.getItem('dazzling_sky_checkout_items');
         if (localCheckout) {
             try {
-                const parsed = JSON.parse(localCheckout);
-                return parsed.map(item => {
-                    const prod = PRODUCTS.find(p => p.id === item.id);
-                    return prod ? { product: prod, quantity: item.quantity } : null;
-                }).filter(item => item !== null);
+                return JSON.parse(localCheckout);
             } catch (e) {
                 console.error(e);
             }
@@ -189,6 +185,14 @@ export default function Shipping() {
         if (activeAddr) {
             const formattedAddrStr = `${activeAddr.firstName} ${activeAddr.lastName}, ${activeAddr.address}, ${activeAddr.city}, ${activeAddr.state} ${activeAddr.zipCode}`;
             localStorage.setItem('dazzling_sky_checkout_address', formattedAddrStr);
+            localStorage.setItem('dazzling_sky_checkout_address_obj', JSON.stringify({
+                fullName: `${activeAddr.firstName} ${activeAddr.lastName}`,
+                address: activeAddr.address,
+                city: activeAddr.city,
+                postalCode: activeAddr.zipCode,
+                phone: activeAddr.phone,
+                email: activeAddr.email
+            }));
         }
         navigate('/payment');
     };

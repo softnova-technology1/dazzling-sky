@@ -20,10 +20,9 @@ export default function Shop() {
 
     const [clickedProductId, setClickedProductId] = useState(null);
     const [searchQuery, setSearchQuery] = useState('');
-    const [priceRange, setPriceRange] = useState(500);
+    const [priceRange, setPriceRange] = useState(2000);
+    const [selectedCategory, setSelectedCategory] = useState('all');
     const [selectedColor, setSelectedColor] = useState('all');
-    const [selectedOccasion, setSelectedOccasion] = useState('all');
-    const [selectedFlowerType, setSelectedFlowerType] = useState('all');
     const [rating5, setRating5] = useState(false);
     const [rating4, setRating4] = useState(false);
     const [inStockOnly, setInStockOnly] = useState(false);
@@ -32,8 +31,9 @@ export default function Shop() {
         const local = localStorage.getItem('dazzling_sky_wishlist');
         return local ? JSON.parse(local) : [];
     });
-    const [cart, setCart] = useState([1, 2, 3]); // default initial cart count as in HTML
     const [popupProduct, setPopupProduct] = useState(null);
+    // Database Products State
+    const [dbProducts, setDbProducts] = useState([]);
     const [showMobileFilters, setShowMobileFilters] = useState(false);
 
     // Pagination State
@@ -42,10 +42,10 @@ export default function Shop() {
     const catalogRef = useRef(null);
 
     const handleResetFilters = () => {
-        setPriceRange(500);
+        setSearchQuery('');
+        setPriceRange(2000);
         setSelectedColor('all');
-        setSelectedOccasion('all');
-        setSelectedFlowerType('all');
+        setSelectedCategory('all');
         setRating5(false);
         setRating4(false);
         setInStockOnly(false);
@@ -63,6 +63,25 @@ export default function Shop() {
         });
     };
 
+    const syncCartToDB = async (cart) => {
+        const token = localStorage.getItem('customerToken');
+        if (token) {
+            const formattedCart = cart.map(item => ({ product: item.id, quantity: item.quantity }));
+            try {
+                await fetch('http://localhost:5000/api/users/cart/sync', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify({ cart: formattedCart })
+                });
+            } catch (err) {
+                console.error("Cart sync failed", err);
+            }
+        }
+    };
+
     const addToCart = (product) => {
         const existingCart = JSON.parse(localStorage.getItem('dazzling_sky_cart') || '[]');
         const existingItemIndex = existingCart.findIndex(item => item.id === product.id);
@@ -73,6 +92,7 @@ export default function Shop() {
         }
         localStorage.setItem('dazzling_sky_cart', JSON.stringify(existingCart));
         window.dispatchEvent(new Event('cart_updated'));
+        syncCartToDB(existingCart);
         setPopupProduct(product);
         // Auto close toast/popup after 4 seconds
         setTimeout(() => {
@@ -87,10 +107,39 @@ export default function Shop() {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }, [location]);
 
+    // Fetch Products from Backend
+    useEffect(() => {
+        const fetchProducts = async () => {
+            try {
+                const response = await fetch('http://localhost:5000/api/products');
+                const data = await response.json();
+                
+                // Map database fields
+                const formattedDbProducts = data.map(prod => ({
+                    id: prod._id,
+                    name: prod.name,
+                    price: prod.price,
+                    image: prod.imageUrl,
+                    collection: prod.category || 'Exclusive',
+                    category: prod.category || 'all',
+                    color: 'all', // We can't automatically detect color from image yet
+                    rating: 5, 
+                    inStock: prod.stock > 0,
+                    tag: 'NEW'
+                }));
+                
+                setDbProducts(formattedDbProducts);
+            } catch (error) {
+                console.error("Failed to fetch products from DB:", error);
+            }
+        };
+        fetchProducts();
+    }, []);
+
     // Reset pagination to page 1 whenever filters change
     useEffect(() => {
         setCurrentPage(1);
-    }, [searchQuery, priceRange, selectedColor, selectedOccasion, selectedFlowerType, inStockOnly, sortBy]);
+    }, [searchQuery, priceRange, selectedColor, selectedCategory, inStockOnly, sortBy]);
 
     const handlePageChange = (pageNum) => {
         setCurrentPage(pageNum);
@@ -110,13 +159,15 @@ export default function Shop() {
     };
 
     const filteredProducts = useMemo(() => {
-        return PRODUCTS.filter(prod => {
-
+        const allProducts = [...dbProducts, ...PRODUCTS];
+        
+        return allProducts.filter(prod => {
             if (searchQuery && !prod.name.toLowerCase().includes(searchQuery.toLowerCase())) return false;
             if (prod.price > priceRange) return false;
             if (selectedColor !== 'all' && prod.color !== selectedColor) return false;
-            if (selectedOccasion !== 'all' && prod.occasion !== selectedOccasion) return false;
-            if (selectedFlowerType !== 'all' && prod.flowerType !== selectedFlowerType) return false;
+            // Map prod.category or prod.occasion to our unified selectedCategory
+            const prodCat = prod.category || prod.occasion || 'all';
+            if (selectedCategory !== 'all' && prodCat.toLowerCase() !== selectedCategory.toLowerCase()) return false;
             if (inStockOnly && !prod.inStock) return false;
             if (rating5 && prod.rating !== 5) return false;
             if (rating4 && prod.rating !== 4) return false;
@@ -126,7 +177,7 @@ export default function Shop() {
             if (sortBy === 'price-high') return b.price - a.price;
             return 0; // default (featured)
         });
-    }, [searchQuery, priceRange, selectedColor, selectedOccasion, selectedFlowerType, inStockOnly, rating5, rating4, sortBy]);
+    }, [dbProducts, searchQuery, priceRange, selectedColor, selectedCategory, inStockOnly, rating5, rating4, sortBy]);
 
     // Slice products for current page
     const paginatedProducts = useMemo(() => {
@@ -197,7 +248,7 @@ export default function Shop() {
                             <input
                                 type="range"
                                 min="50"
-                                max="500"
+                                max="2000"
                                 value={priceRange}
                                 onChange={(e) => setPriceRange(Number(e.target.value))}
                                 className={styles.rangeInput}
@@ -205,39 +256,24 @@ export default function Shop() {
                             <div className={styles.priceLabels}>
                                 <span>$50</span>
                                 <span>${priceRange}</span>
-                                <span>$500+</span>
+                                <span>$2000+</span>
                             </div>
                         </div>
 
-                        {/* Occasion Filter */}
+                        {/* Category Filter */}
                         <div className={styles.filterGroup}>
-                            <p className={styles.filterLabel}>Occasion</p>
+                            <p className={styles.filterLabel}>Category</p>
                             <select
-                                value={selectedOccasion}
-                                onChange={(e) => setSelectedOccasion(e.target.value)}
+                                value={selectedCategory}
+                                onChange={(e) => setSelectedCategory(e.target.value)}
                                 className={styles.sidebarSelect}
                             >
-                                <option value="all">All Occasions</option>
-                                <option value="Anniversary">Anniversary</option>
-                                <option value="Birthday">Birthday</option>
-                                <option value="Romance">Romance</option>
-                                <option value="Wedding">Wedding Exclusive</option>
-                            </select>
-                        </div>
-
-                        {/* Flower Type Filter */}
-                        <div className={styles.filterGroup}>
-                            <p className={styles.filterLabel}>Flower Type</p>
-                            <select
-                                value={selectedFlowerType}
-                                onChange={(e) => setSelectedFlowerType(e.target.value)}
-                                className={styles.sidebarSelect}
-                            >
-                                <option value="all">All Flowers</option>
-                                <option value="Roses">Roses</option>
-                                <option value="Peonies">Peonies</option>
-                                <option value="Orchids">Orchids</option>
-                                <option value="Lilies">Lilies</option>
+                                <option value="all">All Categories</option>
+                                <option value="Bouquets">Bouquets</option>
+                                <option value="Vases">Vases</option>
+                                <option value="Wedding">Wedding</option>
+                                <option value="Gifts">Gifts</option>
+                                <option value="Potted Plants">Potted Plants</option>
                             </select>
                         </div>
 
@@ -310,7 +346,18 @@ export default function Shop() {
                 {/* Product Grid Area */}
                 <section className={styles.productsSection}>
                     <div className={styles.productsMeta}>
-                        <p className={styles.metaCount}>Showing {filteredProducts.length} of 142 arrangements</p>
+                        <div style={{ display: 'flex', gap: '16px', flex: 1, maxWidth: '400px' }}>
+                            <div style={{ position: 'relative', width: '100%' }}>
+                                <span className="material-symbols-outlined" style={{ position: 'absolute', left: '16px', top: '50%', transform: 'translateY(-50%)', color: '#a3a3a3', fontSize: '20px' }}>search</span>
+                                <input 
+                                    type="text" 
+                                    placeholder="Search products..." 
+                                    value={searchQuery}
+                                    onChange={(e) => setSearchQuery(e.target.value)}
+                                    style={{ width: '100%', padding: '12px 16px 12px 48px', borderRadius: '8px', background: '#111111', border: '1px solid rgba(255,138,216,0.2)', color: '#fff', outline: 'none' }}
+                                />
+                            </div>
+                        </div>
                         <div className={styles.metaActions}>
                             <button
                                 className={styles.mobileFilterToggle}
@@ -332,6 +379,7 @@ export default function Shop() {
                             </div>
                         </div>
                     </div>
+                    <p className={styles.metaCount} style={{ marginBottom: '24px' }}>Showing {filteredProducts.length} arrangements</p>
 
                     <div className={styles.productsGrid}>
                         {paginatedProducts.map(prod => (

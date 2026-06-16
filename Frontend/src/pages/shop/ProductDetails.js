@@ -6,7 +6,12 @@ import styles from './productDetails.module.css';
 export default function ProductDetails() {
     const { id } = useParams();
     const navigate = useNavigate();
-    const product = PRODUCTS.find(p => p.id === parseInt(id, 10));
+    
+    const localProduct = PRODUCTS.find(p => p.id.toString() === id.toString());
+    const [dbProduct, setDbProduct] = useState(null);
+    const [isLoadingDb, setIsLoadingDb] = useState(!localProduct);
+    
+    const product = localProduct || dbProduct;
 
     const [selectedImage, setSelectedImage] = useState('');
     const [quantity, setQuantity] = useState(1);
@@ -15,6 +20,31 @@ export default function ProductDetails() {
     const [isBuying, setIsBuying] = useState(false);
     const [isAdding, setIsAdding] = useState(false);
     const [isWished, setIsWished] = useState(false);
+
+    useEffect(() => {
+        if (!localProduct) {
+            setIsLoadingDb(true);
+            fetch('http://localhost:5000/api/products')
+                .then(res => res.json())
+                .then(data => {
+                    const found = data.find(p => p._id === id);
+                    if (found) {
+                        setDbProduct({
+                            id: found._id,
+                            name: found.name,
+                            price: found.price,
+                            image: found.imageUrl,
+                            collection: found.category || 'Exclusive',
+                            rating: 5,
+                            inStock: found.stock > 0,
+                            description: found.description || ''
+                        });
+                    }
+                })
+                .catch(err => console.error("Error fetching db product:", err))
+                .finally(() => setIsLoadingDb(false));
+        }
+    }, [id, localProduct]);
 
     useEffect(() => {
         if (product) {
@@ -26,6 +56,10 @@ export default function ProductDetails() {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
     }, [product, id]);
+
+    if (isLoadingDb) {
+        return <div style={{ textAlign: 'center', paddingTop: '100px', color: '#fff' }}>Loading product details...</div>;
+    }
 
     if (!product) {
         return (
@@ -40,7 +74,7 @@ export default function ProductDetails() {
     }
 
     // Get 4 related products
-    const relatedProducts = PRODUCTS.filter(p => p.id !== product.id).slice(0, 4);
+    const relatedProducts = PRODUCTS.filter(p => p.id.toString() !== product.id.toString()).slice(0, 4);
 
     const toggleFaq = (key) => {
         setFaqOpen(prev => ({ ...prev, [key]: !prev[key] }));
@@ -61,7 +95,7 @@ export default function ProductDetails() {
 
     const handleBuyNowClick = () => {
         setIsBuying(true);
-        const checkoutItems = [{ id: product.id, quantity: quantity }];
+        const checkoutItems = [{ product: product, quantity: quantity }];
         localStorage.setItem('dazzling_sky_checkout_items', JSON.stringify(checkoutItems));
         localStorage.setItem('dazzling_sky_checkout_source', 'direct');
         

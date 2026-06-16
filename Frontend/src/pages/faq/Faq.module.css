@@ -8,6 +8,7 @@
   margin-top: -160px; /* Pull up to hide behind transparent navbar */
   background-color: #000;
   color: #fff;
+  font-family: 'Hanken Grotesk', sans-serif;
 }
 
 /* Dark Theme Split Arch Hero */
@@ -23,7 +24,7 @@
   background-position: center;
   background-attachment: fixed;
   z-index: 1;
-  padding: 160px 40px 80px; 
+  padding: 220px 40px 80px; 
 }
 
 
@@ -56,7 +57,7 @@
 }
 
 .dark-arch-content-left .arch-title {
-  font-family: serif;
+  font-family: 'Playfair Display', serif;
   font-size: 4.2rem;
   font-weight: 500;
   color: #fff; 
@@ -147,7 +148,7 @@
 }
 
 .curved-text-light {
-  font-family: serif;
+  font-family: 'Playfair Display', serif;
   font-size: 18px;
   fill: #e0d4f5; /* Light purple to stand out against dark background */
   letter-spacing: 6px;
@@ -265,7 +266,7 @@
 }
 
 .faq-category-title {
-  font-family: serif;
+  font-family: 'Playfair Display', serif;
   font-size: 2.2rem;
   color: #fff;
   margin-bottom: 30px;

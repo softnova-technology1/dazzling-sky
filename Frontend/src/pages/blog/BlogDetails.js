@@ -48,16 +48,14 @@ const BlogDetails = ({ flower, onBack, onSelectFlower }) => {
           </button>
 
           <h1 className={`${styles.headline} ${styles.heroTitle}`}>
-            Make Your Home as 
-            <span className={styles.italicHighlight}> Comfortable</span> as Possible
+            Make Your Home as <br />
+            <span className={styles.italicHighlight}>Comfortable</span> as Possible
           </h1>
 
           <div className={styles.descriptionBlock}>
             <p className={styles.description}>
               Make your home as comfortable as possible with the natural charm of fresh flowers.
-            </p>
-            <p className={styles.description}>
-              Add comfort and elegance to your home with beautifully crafted fresh flower bouquets.
+        Add comfort and elegance to your home with beautifully crafted fresh flower bouquets.
             </p>
           </div>
         </div>

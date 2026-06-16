@@ -4,6 +4,7 @@
   background-color: #000000;
   overflow-x: hidden;
   position: relative;
+  margin-top: -160px;
 }
 
 /* Hero Section Wrapper */
@@ -15,7 +16,7 @@
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  padding: 60px 40px;
+  padding: 240px 40px 60px 40px;
   box-sizing: border-box;
 }
 
@@ -191,7 +192,6 @@
   padding: 16px 44px;
   cursor: pointer;
   width: 150px;
-  height:30px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -307,26 +307,45 @@
 /* Responsive Styles */
 @media (max-width: 1024px) {
   .heroSection {
-    padding: 60px 24px;
+    padding: 200px 20px 40px 20px;
   }
   
   .heroCard {
     grid-template-columns: 1fr;
-    max-width: 640px;
+    max-width: 500px;
     min-height: auto;
   }
 
   .contentColumn {
-    padding: 48px 40px;
+    padding: 28px 24px;
     order: 2;
+    text-align: center;
+    align-items: center;
+  }
+
+  .subtitle {
+    justify-content: center;
+  }
+
+  .shopButton {
+    padding: 10px 28px;
+    font-size: 14px;
+    width: 130px;
   }
 
   .imageColumn {
-    height: 380px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 200px;
+    padding: 12px 0;
     order: 1;
   }
   
   .mainImage {
+    max-width: 90%;
+    max-height: 100%;
+    object-fit: contain;
     border-radius: 0;
   }
   
@@ -339,65 +358,83 @@
     margin-bottom: 30px;
   }
 
+  .bgTextTop,
+  .bgTextBottom {
+    display: none;
+  }
+
   .flowerTopRightWrapper {
     top: -100px;
     right: -100px;
+    z-index: 4;
   }
   .flowerTopRight {
-    width: 320px;
+    width: 240px;
   }
 
   .flowerBottomLeftWrapper {
     bottom: -120px;
     left: -120px;
+    z-index: 4;
   }
   .flowerBottomLeft {
-    width: 320px;
+    width: 240px;
   }
 }
 
 @media (max-width: 576px) {
   .heroSection {
-    padding: 40px 16px;
+    padding: 200px 12px 24px 12px;
   }
 
   .contentColumn {
-    padding: 36px 24px;
+    padding: 28px 20px;
+    text-align: center;
+    align-items: center;
   }
 
   .imageColumn {
-    height: 280px;
+    height: 240px;
+    padding: 8px 0;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .imageColumn .mainImage {
+    max-width: 88%;
+    max-height: 100%;
+    object-fit: contain;
   }
 
   .title {
-    font-size: 28px;
+    font-size: 26px;
     line-height: 1.3;
+    text-align: center;
+  }
+
+  .description {
+    text-align: center;
+    font-size: 13.5px;
   }
 
   .subtitle {
     font-size: 10px;
     letter-spacing: 0.15em;
+    justify-content: center;
   }
 
-  .flowerTopRightWrapper {
-    top: -60px;
-    right: -60px;
-  }
-  .flowerTopRight {
-    width: 220px;
+  .shopButton {
+    margin: 0 auto;
   }
 
+  .flowerTopRightWrapper,
   .flowerBottomLeftWrapper {
-    bottom: -80px;
-    left: -80px;
-  }
-  .flowerBottomLeft {
-    width: 220px;
+    display: none;
   }
   
   .bgTextTop,
   .bgTextBottom {
-    font-size: 16vw;
+    display: none;
   }
 }
 
@@ -529,16 +566,16 @@
 /* Responsiveness for Story Section */
 @media (max-width: 968px) {
   .storySection {
-    padding: 80px 24px 100px 24px;
+    padding: 60px 32px 80px 32px;
   }
 
   .storyContainer {
     grid-template-columns: 1fr;
-    gap: 48px;
+    gap: 40px;
   }
 
   .storyImageWrapper {
-    max-width: 640px;
+    max-width: 440px;
     margin: 0 auto;
     border-radius: 180px 180px 12px 12px;
   }
@@ -554,44 +591,80 @@
   }
 
   .storyTitle {
-    font-size: 36px;
+    font-size: 34px;
+    text-align: left;
+  }
+
+  .storyContent {
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .storyDivider {
+    margin-left: 0;
+    margin-right: auto;
+  }
+
+  .storyText {
+    text-align: left;
+  }
+
+  .signatureContainer {
+    align-items: flex-start;
   }
 }
 
 @media (max-width: 576px) {
   .storySection {
-    padding: 60px 16px 80px 16px;
+    padding: 48px 20px 60px 20px;
   }
 
   .storyContainer {
-    gap: 36px;
+    gap: 32px;
   }
 
   .storyImageWrapper {
-    border-radius: 140px 140px 8px 8px;
+    max-width: 280px;
+    border-radius: 130px 130px 8px 8px;
   }
 
   .storyImageWrapper::after {
     top: 10px;
     left: -10px;
-    border-radius: 140px 140px 8px 8px;
+    border-radius: 130px 130px 8px 8px;
   }
 
   .storyImage {
-    border-radius: 140px 140px 8px 8px;
+    border-radius: 130px 130px 8px 8px;
   }
 
   .storyTitle {
-    font-size: 30px;
+    font-size: 28px;
+    font-weight: 600;
+    text-align: left;
+  }
+
+  .storyContent {
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .storyDivider {
+    margin-left: 0;
   }
 
   .storyText {
-    font-size: 14px;
-    line-height: 1.7;
+    font-size: 13.5px;
+    line-height: 1.75;
+    text-align: left;
   }
 
   .signatureText {
-    font-size: 40px;
+    font-size: 38px;
+  }
+
+  .signatureContainer {
+    align-items: flex-start;
   }
 }
 
@@ -826,7 +899,7 @@
 /* Responsiveness for Explore Section */
 @media (max-width: 968px) {
   .exploreSection {
-    padding: 60px 24px 100px 24px;
+    padding: 15px 24px 45px 24px;
   }
 
   .exploreGrid {
@@ -846,6 +919,15 @@
     max-width: 85%;
   }
 
+  .exploreCard:nth-child(2) .cardOverlay {
+    background: linear-gradient(to right,
+      rgba(0,0,0,0.92) 0%,
+      rgba(0,0,0,0.7) 35%,
+      rgba(0,0,0,0.15) 70%,
+      transparent 100%
+    );
+  }
+
   .cardTitle {
     font-size: 28px;
   }
@@ -860,7 +942,7 @@
 
 @media (max-width: 576px) {
   .exploreSection {
-    padding: 60px 16px 100px 16px;
+    padding: 0px 16px 100px 16px;
   }
 
   .exploreHeader {
@@ -872,17 +954,38 @@
   }
 
   .cardTitle {
-    font-size: 28px;
+    font-size: 26px;
   }
 
   .exploreCard {
-    height: 340px;
-    padding: 24px;
+    height: 320px;
+  }
+
+  /* On mobile, all cards: overlay from bottom, text at bottom-left */
+  .exploreCard:nth-child(1) .cardOverlay,
+  .exploreCard:nth-child(2) .cardOverlay {
+    background: linear-gradient(
+      to top,
+      rgba(0,0,0,0.95) 0%,
+      rgba(0,0,0,0.75) 40%,
+      rgba(0,0,0,0.1) 75%,
+      transparent 100%
+    );
+  }
+
+  .exploreCard:nth-child(1) .cardContent,
+  .exploreCard:nth-child(2) .cardContent {
+    left: 20px;
+    right: 20px;
+    bottom: 24px;
+    text-align: left;
+    max-width: 100%;
   }
 
   .cardDesc {
-    font-size: 13.5px;
-    margin-bottom: 20px;
+    font-size: 13px;
+    margin-bottom: 16px;
+    line-height: 1.55;
   }
 }
 
@@ -1082,7 +1185,7 @@
 
 @media (max-width: 768px) {
   .chooseSection {
-    padding: 60px 24px 100px 24px;
+    padding: 25px 24px 100px 24px;
   }
   
   .chooseHeader {
@@ -1096,7 +1199,7 @@
 
 @media (max-width: 576px) {
   .chooseSection {
-    padding: 50px 16px 80px 16px;
+    padding: 0px 16px 80px 16px;
   }
 
   .chooseGrid {
@@ -1133,7 +1236,7 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
-  margin-bottom: 80px;
+  margin-bottom: 60px;
 }
 
 .valuesSubtitle {
@@ -1278,7 +1381,11 @@
 
 @media (max-width: 768px) {
   .valuesSection {
-    padding: 60px 24px 100px 24px;
+    padding: 30px 24px 80px 24px;
+  }
+
+  .valuesHeader {
+    margin-bottom: 48px;
   }
 
   .valuesTitle {
@@ -1296,20 +1403,41 @@
 
 @media (max-width: 576px) {
   .valuesSection {
-    padding: 50px 16px 80px 16px;
+    padding: 0px 16px 40px 16px;
+  }
+
+  .valuesHeader {
+    margin-bottom: 36px;
   }
 
   .valuesTitle {
-    font-size: 30px;
+    font-size: 28px;
+  }
+
+  .valuesSubtitle {
+    font-size: 10px;
   }
 
   .editorialGrid {
     grid-template-columns: 1fr;
-    gap: 36px 0;
+    gap: 32px 0;
   }
 
   .editorialItem {
     text-align: left;
+  }
+
+  .itemTitle {
+    font-size: 22px;
+    font-weight: 600;
+  }
+
+  .itemNum {
+    font-size: 40px;
+  }
+
+  .itemDesc {
+    font-size: 13.5px;
   }
 }
 
@@ -1455,6 +1583,11 @@
   }
 
   .contactCtaBtn {
-    padding: 14px 38px;
+    padding: 8px 21px;
+    font-size: 12px;
+  }
+  .shopButton{
+    padding: 8px 21px;
+    font-size: 12px;
   }
 }
