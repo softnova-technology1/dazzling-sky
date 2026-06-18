@@ -19,6 +19,8 @@ import Blog from './pages/blog/Blog';
 import BlogDetails from './pages/blog/BlogDetails';
 import Admin from './pages/admin/Admin';
 import AdminLogin from './pages/admin/AdminLogin';
+import Terms from './pages/terms/Terms';
+import Privacy from './pages/privacy/Privacy';
 import './App.css';
 
 function MainLayout() {
@@ -120,6 +122,8 @@ function MainLayout() {
             )
           } />
           <Route path="/faq" element={<FAQ />} />
+          <Route path="/terms" element={<Terms />} />
+          <Route path="/privacy" element={<Privacy />} />
         </Routes>
       </main>
       <Footer />

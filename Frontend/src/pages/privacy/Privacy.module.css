@@ -1,0 +1,148 @@
+.privacyContainer {
+  padding: 80px 5%;
+  width: 100%;
+  max-width: 1600px;
+  margin: 0 auto;
+  font-family: 'Inter', sans-serif;
+  color: #fff;
+  background-color: transparent;
+}
+
+.heroSection {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.heroTitle {
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 20px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.heroSubtitle {
+  font-size: 1.1rem;
+  color: #c9bfd9;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.privacyContent {
+  background: transparent;
+  padding: 0;
+  border: none;
+  box-shadow: none;
+}
+
+.privacySection {
+  margin-bottom: 40px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.privacySection:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.sectionHeader {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 25px;
+}
+
+.sectionNumber {
+  background: transparent;
+  color: #c9bfd9;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 400;
+  font-size: 1.2rem;
+  flex-shrink: 0;
+  font-family: serif;
+}
+
+.sectionTitle {
+  font-size: 1.8rem;
+  font-weight: 500;
+  color: #fff;
+  margin: 0;
+  letter-spacing: 0.5px;
+}
+
+.sectionBody {
+  padding-left: 65px;
+}
+
+.subsectionTitle {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #e0d8ea;
+  margin-top: 30px;
+  margin-bottom: 12px;
+  letter-spacing: 0.5px;
+}
+
+.sectionBody p {
+  color: #a395b8;
+  line-height: 1.8;
+  margin-bottom: 18px;
+  font-size: 1.05rem;
+  font-weight: 300;
+}
+
+.sectionBody ul {
+  list-style-type: none;
+  padding-left: 0;
+  margin-bottom: 18px;
+  color: #a395b8;
+}
+
+.sectionBody li {
+  margin-bottom: 10px;
+  line-height: 1.8;
+  font-weight: 300;
+  position: relative;
+  padding-left: 20px;
+}
+
+.sectionBody li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: #c9bfd9;
+}
+
+.sectionBody p:last-child,
+.sectionBody ul:last-child {
+  margin-bottom: 0;
+}
+
+@media (max-width: 768px) {
+  .privacyContainer {
+    padding: 60px 15px;
+  }
+  
+  .heroTitle {
+    font-size: 2.5rem;
+  }
+  
+  .sectionBody {
+    padding-left: 0;
+    margin-top: 20px;
+  }
+  
+  .sectionHeader {
+    margin-bottom: 20px;
+  }
+}
