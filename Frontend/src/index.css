@@ -9,6 +9,8 @@
   --glass-border: rgba(179, 136, 255, 0.15);
   --nav-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
   --glass-blur: blur(16px);
+  --font-body-lg-family: "Hanken Grotesk", sans-serif;
+  --font-display-lg-family: "Playfair Display", serif;
 }
 
 * {

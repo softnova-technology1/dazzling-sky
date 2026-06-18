@@ -1,29 +1,34 @@
 .navbar-container {
   width: 100%;
-  padding: 20px 40px; /* Pushed down slightly from the top */
+  padding: 20px 40px;
+  /* Pushed down slightly from the top */
   position: fixed;
   top: 0;
   left: 0;
   z-index: 1000;
   display: flex;
-  justify-content: center; /* Centers the floating pill */
-  pointer-events: none; /* Allows clicking through the empty space around the pill */
+  justify-content: center;
+  /* Centers the floating pill */
+  pointer-events: none;
+  /* Allows clicking through the empty space around the pill */
 }
 
 .navbar-content {
   pointer-events: auto;
-  width: 95%; 
+  width: 95%;
   max-width: 1400px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 12px 32px; 
-  background: rgba(30, 20, 30, 0.4); /* Reverted to subtle frosted glass */
+  padding: 12px 32px;
+  background: rgba(30, 20, 30, 0.4);
+  /* Reverted to subtle frosted glass */
   backdrop-filter: blur(15px);
   -webkit-backdrop-filter: blur(15px);
-  border-radius: 16px; /* Reverted to normal rounded corners */
-  border: 1px solid rgba(255, 255, 255, 0.1); 
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); 
+  border-radius: 16px;
+  /* Reverted to normal rounded corners */
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
   transition: all 0.3s ease;
   position: relative;
 }
@@ -38,14 +43,16 @@
 .nav-links {
   display: flex;
   gap: 28px;
-  flex: 1 1 0; /* Force equal width for perfect centering */
+  flex: 1 1 0;
+  /* Force equal width for perfect centering */
   align-items: center;
 }
 
 .nav-link {
-  font-size: 0.95rem; 
+  font-size: 0.95rem;
   font-weight: 500;
-  color: #ffffff; /* Pure white text */
+  color: #ffffff;
+  /* Pure white text */
   text-decoration: none;
   position: relative;
   padding: 8px 0;
@@ -60,12 +67,14 @@
   height: 2px;
   bottom: 0;
   left: 0;
-  background-color: #ff8ad8; /* Reverted to pink underline */
+  background-color: #ff8ad8;
+  /* Reverted to pink underline */
   transition: width 0.4s ease;
 }
 
 .nav-link:hover {
-  color: #ff8ad8; /* Reverted to pink hover */
+  color: #ff8ad8;
+  /* Reverted to pink hover */
 }
 
 .nav-link:hover::after {
@@ -107,34 +116,37 @@
   justify-content: flex-end;
   align-items: center;
   gap: 24px;
-  flex: 1 1 0; /* Force equal width for perfect centering */
+  flex: 1 1 0;
+  /* Force equal width for perfect centering */
 }
 
 .icon-btn {
-  background: transparent; 
+  background: transparent;
   border: none;
-  color: #ffffff; 
+  color: #ffffff;
   cursor: pointer;
   padding: 8px;
   transition: all 0.3s ease;
   display: flex;
   align-items: center;
   justify-content: center;
-  position: relative; 
+  position: relative;
 }
 
 /* Removed the gold divider */
 
 .icon-btn:hover {
-  color: #ff8ad8; /* Reverted to pink hover */
+  color: #ff8ad8;
+  /* Reverted to pink hover */
   transform: translateY(-2px);
 }
 
 .badge {
   position: absolute;
   top: 1px;
-  right: 1px; 
-  background: linear-gradient(135deg, #883c8a, #ff8ad8); /* Reverted to original pink gradient */
+  right: 1px;
+  background: linear-gradient(135deg, #883c8a, #ff8ad8);
+  /* Reverted to original pink gradient */
   color: #ffffff;
   font-size: 10px;
   font-weight: 700;
@@ -150,25 +162,34 @@
 }
 
 @keyframes badgePop {
-  0% { transform: scale(0.5); opacity: 0; }
-  100% { transform: scale(1); opacity: 1; }
+  0% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
-  .nav-links, .nav-icons {
+
+  .nav-links,
+  .nav-icons {
     display: none;
   }
-  
+
   .navbar-container {
     padding: 12px 16px;
   }
-  
+
   .navbar-content {
     padding: 8px 16px;
     border-radius: 12px;
   }
-  
+
   .nav-logo-img {
     height: 54px;
     margin: 0;
@@ -194,17 +215,17 @@
     z-index: 1001;
     transition: color 0.3s ease;
   }
-  
+
   .mobile-menu-toggle:hover {
     color: #ff8ad8;
   }
-  
+
   .mobile-nav-icons {
     display: flex;
     align-items: center;
     gap: 8px;
   }
-  
+
   .mobile-nav-icons .icon-btn {
     padding: 6px;
   }

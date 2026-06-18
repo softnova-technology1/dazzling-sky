@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..700;1,400..700&family=Hanken+Grotesk:wght@300;400;500;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap');
 
 :root {
@@ -23,8 +23,36 @@
     --on-surface-variant: #e0bec3;
     --on-primary-container: #ffffff;
 
-    --font-serif: 'Bodoni Moda', serif;
-    --font-sans: 'Plus Jakarta Sans', sans-serif;
+    /* Fonts matching home.module.css */
+    --font-label-caps-family: "Hanken Grotesk", sans-serif;
+    --font-headline-sm-family: "Playfair Display", serif;
+    --font-body-lg-family: "Hanken Grotesk", sans-serif;
+    --font-display-lg-mobile-family: "Playfair Display", serif;
+    --font-headline-md-family: "Playfair Display", serif;
+    --font-body-md-family: "Hanken Grotesk", sans-serif;
+    --font-display-lg-family: "Playfair Display", serif;
+
+    /* Font Sizes & Weights matching home.module.css */
+    --fontSize-label-caps: 12px;
+    --fontWeight-label-caps: 500;
+    --letterSpacing-label-caps: 0.15em;
+
+    --fontSize-headline-sm: 24px;
+
+    --fontSize-body-lg: 18px;
+    --fontWeight-body-lg: 300;
+
+    --fontSize-display-lg-mobile: 48px;
+
+    --fontSize-headline-md: 40px;
+
+    --fontSize-body-md: 16px;
+    --fontWeight-body-md: 400;
+
+    --fontSize-display-lg: 60px;
+
+    --font-serif: var(--font-headline-md-family);
+    --font-sans: var(--font-body-md-family);
     --transition-smooth: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
@@ -135,7 +163,7 @@
 
 .heroTitle {
     font-family: var(--font-serif);
-    font-size: 72px;
+    font-size:  72px;
     font-weight: 600;
     line-height: 80px;
     letter-spacing: -0.02em;
@@ -171,11 +199,13 @@
 }
 
 .heroSubtitle {
-    font-size: 18px;
-    line-height: 28px;
+    font-family: var(--font-body-lg-family);
+    font-size: var(--fontSize-body-lg);
+    font-weight: var(--fontWeight-body-lg);
+    line-height: 1.6;
     color: var(--on-surface-variant);
     /* max-width: 448px; */
-    /* text-align: center; */
+    opacity: 0.95;
 }
 
 .heroActions {
@@ -1223,7 +1253,9 @@
 }
 
 .newsletterSubtitle {
-    font-size: 18px;
+    font-family: var(--font-body-lg-family);
+    font-size: var(--fontSize-body-lg);
+    font-weight: var(--fontWeight-body-lg);
     color: var(--on-surface-variant);
     margin: 0;
 }
