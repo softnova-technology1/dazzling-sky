@@ -374,12 +374,20 @@
   }
 }
 
+.neonGridWrapper {
+  width: 100%;
+  background: #000;
+}
+
 .neonGridSection {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 550px)); /* 3 cards per row */
   row-gap: 70px;
   column-gap: 100px; /* Increased column gap */
   padding: 5rem 5%;
+  max-width: 1440px;
+  margin: 0 auto;
+  box-sizing: border-box;
   background: #000;
   justify-content: center;
 }

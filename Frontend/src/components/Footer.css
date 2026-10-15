@@ -27,7 +27,9 @@
 }
 
 .footer-container {
-  max-width: 95%;
+  max-width: 1440px;
+  width: 100%;
+  box-sizing: border-box;
   margin: 0 auto;
   padding: 50px 40px 30px; /* Reduced top padding to decrease gap */
   position: relative;

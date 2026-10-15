@@ -290,7 +290,7 @@
 
 .detailsContent {
   padding: 5rem 10%;
-  max-width: 1200px;
+  max-width: 1440px;
   margin: 0 auto;
 }
 
@@ -419,7 +419,7 @@
 }
 
 .contentGrid {
-  max-width: 1200px;
+  max-width: 1440px;
   margin: 100px auto 0 auto;
   padding: 0 5% 5rem 5%;
   display: grid;

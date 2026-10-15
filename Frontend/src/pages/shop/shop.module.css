@@ -57,17 +57,47 @@
 }
 
 .shopContainer {
-    /* background-color: var(--background); */
+    position: relative;
+    background-color: #121113;
     color: var(--on-surface);
     font-family: var(--font-sans);
     min-height: 100vh;
     overflow-x: clip;
     /* Prevents horizontal scrollbar while keeping position: sticky active */
     letter-spacing: -0.01em;
-    /* padding-top: 20px; */
     padding-bottom: 20px;
     width: 100%;
     box-sizing: border-box;
+}
+
+/* Atmospheric Full-Bleed Background Layer */
+.shopBgFixed {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-image: url('../../images/shop_bg.jpg');
+    background-size: cover;
+    background-position: center 25%;
+    background-repeat: no-repeat;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.38;
+    filter: saturate(1.15) brightness(0.68);
+    transform: translateZ(0);
+}
+
+.shopBgOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: radial-gradient(circle at 50% 20%, rgba(136, 60, 138, 0.22) 0%, transparent 65%),
+        linear-gradient(180deg, rgba(6, 2, 12, 0.65) 0%, rgba(6, 2, 12, 0.82) 45%, rgba(4, 1, 8, 0.94) 100%);
+    z-index: 1;
+    pointer-events: none;
 }
 
 /* Glass panel */
@@ -81,14 +111,44 @@
     width: 100%;
 }
 
+.heroAndBannerWrapper {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    margin-top: -86px;
+    padding-top: 86px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+}
+
+@media (min-width: 901px) {
+    .heroAndBannerWrapper {
+        height: 100vh;
+        min-height: 100vh;
+        max-height: 100vh;
+    }
+}
+
+@media (max-width: 900px) {
+    .heroAndBannerWrapper {
+        height: auto;
+        min-height: 100vh;
+        padding-bottom: 24px;
+    }
+}
+
 .heroSection {
     position: relative;
-    padding-top: 40px;
-    padding-bottom: 40px;
-    overflow: hidden;
-    min-height: 480px;
+    width: 100%;
+    flex: 1;
+    min-height: 0;
+    box-sizing: border-box;
     display: flex;
     align-items: center;
+    justify-content: center;
 }
 
 .heroGlows {
@@ -104,8 +164,6 @@
     left: -25%;
     width: 600px;
     height: 600px;
-    /* background-color: rgba(255, 138, 216, 0.08); */
-    /* Pink glow */
     border-radius: 50%;
     filter: blur(120px);
 }
@@ -116,45 +174,45 @@
     right: -25%;
     width: 600px;
     height: 600px;
-    /* background-color: rgba(136, 60, 138, 0.08); */
-    /* Magenta glow */
     border-radius: 50%;
     filter: blur(120px);
 }
 
 .heroContainer {
-    max-width: 1280px;
+    max-width: 1440px;
     margin: 0 auto;
-    padding: 0 24px;
+    padding: 0 32px;
     position: relative;
     z-index: 10;
     width: 100%;
+    box-sizing: border-box;
 }
 
 .heroGrid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 80px;
+    gap: 32px;
     align-items: center;
+    width: 100%;
 }
 
 @media (min-width: 768px) {
     .heroGrid {
         grid-template-columns: repeat(2, 1fr);
         gap: 32px;
-        margin-top: -50px;
+        margin-top: 0;
     }
 }
 
 .heroTextCol {
     display: flex;
     flex-direction: column;
-    gap: 24px;
+    gap: 16px;
     text-align: left;
 }
 
 .heroTagline {
-    font-size: 12px;
+    font-size: 11.5px;
     font-weight: 500;
     letter-spacing: 0.3em;
     color: var(--primary);
@@ -163,30 +221,31 @@
 
 .heroTitle {
     font-family: var(--font-serif);
-    font-size:  72px;
+    font-size: clamp(34px, 3.8vw, 60px);
     font-weight: 600;
-    line-height: 80px;
+    line-height: 1.15;
     letter-spacing: -0.02em;
+    margin: 0;
 }
 
 @media (max-width: 1024px) {
     .heroTitle {
-        font-size: 52px;
-        line-height: 60px;
+        font-size: 46px;
+        line-height: 52px;
     }
 }
 
 @media (max-width: 900px) {
     .heroTitle {
         font-size: 38px;
-        line-height: 46px;
+        line-height: 44px;
     }
 }
 
 @media (max-width: 768px) {
     .heroTitle {
-        font-size: 34px;
-        line-height: 42px;
+        font-size: 32px;
+        line-height: 38px;
     }
 }
 
@@ -200,19 +259,20 @@
 
 .heroSubtitle {
     font-family: var(--font-body-lg-family);
-    font-size: var(--fontSize-body-lg);
+    font-size: clamp(14px, 1.05vw, 16px);
     font-weight: var(--fontWeight-body-lg);
-    line-height: 1.6;
+    line-height: 1.5;
     color: var(--on-surface-variant);
-    /* max-width: 448px; */
+    margin: 0;
+    max-width: 520px;
     opacity: 0.95;
 }
 
 .heroActions {
     display: flex;
     align-items: center;
-    gap: 24px;
-    padding-top: 16px;
+    gap: 20px;
+    padding-top: 6px;
 }
 
 @media (max-width: 480px) {
@@ -226,7 +286,7 @@
     .btnPrimary,
     .btnOutline {
         width: 100%;
-        padding: 16px 20px !important;
+        padding: 14px 20px !important;
         text-align: center;
     }
 }
@@ -236,8 +296,8 @@
     background: linear-gradient(90deg, #883c8a, #ff8ad8);
     color: #ffffff;
     border: none;
-    padding: 16px 60px;
-    font-size: 14px;
+    padding: 13px 48px;
+    font-size: 13.5px;
     font-weight: 600;
     letter-spacing: 0.05em;
     text-transform: uppercase;
@@ -260,8 +320,8 @@
     backdrop-filter: blur(20px);
     border: 1.5px solid #ff8ad8;
     color: var(--on-surface);
-    padding: 16px 60px;
-    font-size: 14px;
+    padding: 13px 48px;
+    font-size: 13.5px;
     font-weight: 600;
     letter-spacing: 0.05em;
     text-transform: uppercase;
@@ -296,6 +356,9 @@
     z-index: 10;
     overflow: visible;
     aspect-ratio: 1/1;
+    max-width: min(460px, calc(100vh - 310px));
+    max-height: min(460px, calc(100vh - 310px));
+    margin: 0 auto;
     background: none;
     backdrop-filter: none;
     border: none;
@@ -360,36 +423,43 @@
 }
 
 @media (max-width: 1024px) {
+
     .btnPrimary,
     .btnOutline {
         padding: 14px 36px;
     }
+
     .promoBadge {
         bottom: -20px;
         left: -10px;
         padding: 16px;
         width: 200px;
     }
+
     .promoTitle {
         font-size: 24px;
     }
 }
 
 @media (max-width: 900px) {
+
     .btnPrimary,
     .btnOutline {
         padding: 12px 28px;
         font-size: 13px;
     }
+
     .promoBadge {
         bottom: -15px;
         left: -5px;
         padding: 12px;
         width: 180px;
     }
+
     .promoTitle {
         font-size: 20px;
     }
+
     .heroSubtitle {
         font-size: 15px;
         line-height: 22px;
@@ -397,20 +467,24 @@
 }
 
 @media (max-width: 768px) {
+
     .btnPrimary,
     .btnOutline {
         padding: 10px 24px;
         font-size: 12px;
     }
+
     .promoBadge {
         bottom: -10px;
         left: -5px;
         padding: 10px;
         width: 160px;
     }
+
     .promoTitle {
         font-size: 18px;
     }
+
     .heroSubtitle {
         font-size: 14px;
         line-height: 20px;
@@ -420,10 +494,12 @@
 
 /* Main Layout Grid */
 .mainLayoutGrid {
-    max-width: 1280px;
+    position: relative;
+    z-index: 2;
+    max-width: 1440px;
     margin: 0 auto 80px auto;
     /* Centered layout */
-    padding: 0 24px 90px 24px;
+    padding: 32px 32px 90px 32px;
     /* Optimized padding to fit screen resolutions */
     display: grid;
     grid-template-columns: 1fr;
@@ -698,34 +774,35 @@
         outline: none;
         transition: var(--transition-smooth);
     }
-    
+
     .mobileFilterToggle:hover {
         border-color: var(--primary);
         box-shadow: 0 0 12px rgba(255, 138, 216, 0.15);
         background-color: rgba(255, 255, 255, 0.08);
     }
-    
+
     .mobileFilterToggle span {
         font-size: 20px;
     }
-    
+
     .filterSidebar {
         position: static;
         width: 100%;
         display: none !important;
     }
-    
+
     .filterSidebar.showFilters {
         display: block !important;
         margin-bottom: 24px;
         animation: slideDown 0.3s ease-out forwards;
     }
-    
+
     @keyframes slideDown {
         from {
             opacity: 0;
             transform: translateY(-10px);
         }
+
         to {
             opacity: 1;
             transform: translateY(0);
@@ -756,7 +833,7 @@
         flex-direction: column;
         width: 100%;
     }
-    
+
     .mobileFilterToggle,
     .sortWrapper,
     .sortSelect {
@@ -902,6 +979,23 @@
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
 }
 
+.outOfStockBadge {
+    background: linear-gradient(135deg, #ef4444 0%, #b91c1c 100%) !important;
+    color: #ffffff !important;
+    font-size: 10px !important;
+    font-weight: 800 !important;
+    letter-spacing: 0.08em;
+    padding: 5px 12px !important;
+    box-shadow: 0 4px 15px rgba(239, 68, 68, 0.5) !important;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    z-index: 5;
+}
+
+.outOfStockImage {
+    opacity: 0.55;
+    filter: grayscale(0.4) contrast(0.9);
+}
+
 .wishlistBtn {
     position: absolute;
     top: 12px;
@@ -946,10 +1040,21 @@
 }
 
 @keyframes heartBeat {
-    0% { transform: scale(1); }
-    30% { transform: scale(1.4); }
-    60% { transform: scale(0.85); }
-    100% { transform: scale(1); }
+    0% {
+        transform: scale(1);
+    }
+
+    30% {
+        transform: scale(1.4);
+    }
+
+    60% {
+        transform: scale(0.85);
+    }
+
+    100% {
+        transform: scale(1);
+    }
 }
 
 .productOverlay {
@@ -1131,6 +1236,19 @@
     transform: scale(0.95);
 }
 
+.cartBtnDisabled {
+    background-color: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid rgba(239, 68, 68, 0.35) !important;
+    color: #f87171 !important;
+    cursor: not-allowed !important;
+    opacity: 0.6;
+    box-shadow: none !important;
+}
+
+.cartBtnDisabled:hover {
+    transform: none !important;
+}
+
 /* Pagination */
 .pagination {
     display: flex;
@@ -1183,9 +1301,11 @@
 
 /* Newsletter Section */
 .newsletterSection {
-    max-width: 1280px;
+    position: relative;
+    z-index: 2;
+    max-width: 1440px;
     margin: 0 auto 80px;
-    padding: 0 24px;
+    padding: 0 32px;
 }
 
 .newsletterCard {
@@ -1330,37 +1450,12 @@
 
 /* 4K and Ultra-wide screens support */
 @media (min-width: 1920px) {
-    .mainLayoutGrid {
-        max-width: 1600px;
-    }
-
-    .heroContainer {
-        max-width: 1600px;
-    }
-
-    .newsletterSection {
-        max-width: 1600px;
-    }
-
     .productsGrid {
         grid-template-columns: repeat(4, 1fr);
     }
 }
 
 @media (min-width: 2560px) {
-    .mainLayoutGrid {
-        max-width: 2200px;
-        grid-template-columns: 320px 1fr;
-    }
-
-    .heroContainer {
-        max-width: 2200px;
-    }
-
-    .newsletterSection {
-        max-width: 2200px;
-    }
-
     .productsGrid {
         grid-template-columns: repeat(5, 1fr);
     }
@@ -1552,6 +1647,7 @@
         transform: translateY(50px) scale(0.9);
         opacity: 0;
     }
+
     to {
         transform: translateY(0) scale(1);
         opacity: 1;
@@ -1559,9 +1655,17 @@
 }
 
 @keyframes checkPop {
-    0% { transform: scale(0.7); }
-    50% { transform: scale(1.2); }
-    100% { transform: scale(1); }
+    0% {
+        transform: scale(0.7);
+    }
+
+    50% {
+        transform: scale(1.2);
+    }
+
+    100% {
+        transform: scale(1);
+    }
 }
 
 @media (max-width: 768px) {
@@ -1569,10 +1673,12 @@
         padding: 48px 20px;
         border-radius: 2rem;
     }
+
     .newsletterTitle {
         font-size: 32px;
         line-height: 40px;
     }
+
     .newsletterSubtitle {
         font-size: 16px;
         line-height: 24px;
@@ -1585,12 +1691,366 @@
         left: 20px;
         right: 20px;
     }
+
     .cartPopupCard {
         max-width: 100%;
         gap: 16px;
         padding: 12px 16px;
     }
+
     .popupBtnView {
         padding: 8px 12px;
+    }
+}
+
+/* ==========================================================================
+   CUSTOMIZE BOKEH (Bespoke Floral Banner & Sticky FAB)
+   ========================================================================== */
+
+.customizeBannerOuter {
+    width: 100%;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 32px 20px 32px;
+    box-sizing: border-box;
+    position: relative;
+    z-index: 15;
+    flex-shrink: 0;
+}
+
+.customizeSlimBanner {
+    width: 100%;
+    background: linear-gradient(135deg, rgba(14, 7, 25, 0.94) 0%, rgba(27, 12, 48, 0.9) 45%, rgba(35, 15, 63, 0.94) 100%);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(192, 132, 252, 0.35);
+    border-radius: 20px;
+    box-shadow: 0 10px 32px rgba(0, 0, 0, 0.65), 0 0 25px rgba(136, 60, 138, 0.22), inset 0 1px 0 rgba(255, 138, 216, 0.25);
+    position: relative;
+    overflow: hidden;
+    z-index: 10;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.customizeSlimBanner:hover {
+    border-color: rgba(255, 138, 216, 0.55);
+    box-shadow: 0 14px 40px rgba(0, 0, 0, 0.75), 0 0 32px rgba(192, 132, 252, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+/* Subtle floral ornament background pattern */
+.customizeSlimBanner::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+        radial-gradient(circle at 12% 50%, rgba(136, 60, 138, 0.2) 0%, transparent 45%),
+        radial-gradient(circle at 88% 50%, rgba(192, 132, 252, 0.15) 0%, transparent 40%),
+        radial-gradient(ellipse at center, rgba(255, 138, 216, 0.08) 0%, transparent 60%);
+    pointer-events: none;
+}
+
+/* Subtle decorative lavender line glow */
+.customizeSlimBanner::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 15%;
+    right: 15%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #c084fc, #ff8ad8, transparent);
+    opacity: 0.9;
+}
+
+.customizeBannerContainer {
+    width: 100%;
+    margin: 0 auto;
+    padding: 20px 34px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    position: relative;
+    z-index: 2;
+    box-sizing: border-box;
+}
+
+.customizeBannerLeft {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex: 1;
+    min-width: 0;
+}
+
+.customizeBannerBadge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, rgba(136, 60, 138, 0.4) 0%, rgba(30, 14, 50, 0.95) 100%);
+    border: 1.5px solid rgba(255, 138, 216, 0.55);
+    box-shadow: 0 0 20px rgba(192, 132, 252, 0.35), inset 0 0 10px rgba(255, 138, 216, 0.2);
+    flex-shrink: 0;
+    transition: all 0.3s ease;
+}
+
+.customizeSlimBanner:hover .customizeBannerBadge {
+    transform: scale(1.08) rotate(6deg);
+    border-color: #ff8ad8;
+    box-shadow: 0 0 25px rgba(255, 138, 216, 0.6), inset 0 0 14px rgba(255, 138, 216, 0.35);
+}
+
+.badgeFlowerIcon {
+    color: #ff8ad8;
+    filter: drop-shadow(0 0 8px rgba(255, 138, 216, 0.7));
+}
+
+.customizeBannerTextGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.titleRow {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.customizeBannerTitle {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: 0.3px;
+    margin: 0;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.atelierTag {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 3px 10px;
+    border-radius: 9999px;
+    background: linear-gradient(135deg, rgba(255, 138, 216, 0.15) 0%, rgba(136, 60, 138, 0.25) 100%);
+    border: 1px solid rgba(255, 138, 216, 0.4);
+    color: #ff8ad8;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.bannerFeaturesRow {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.featureChip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 3px 11px;
+    border-radius: 9999px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(192, 132, 252, 0.25);
+    color: rgba(233, 213, 255, 0.9);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.2px;
+    transition: all 0.25s ease;
+}
+
+.featureChip:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 138, 216, 0.45);
+    color: #ffffff;
+    transform: translateY(-1px);
+}
+
+.chipIcon {
+    color: #ff8ad8;
+    filter: drop-shadow(0 0 4px rgba(255, 138, 216, 0.5));
+}
+
+.customizeBannerBtn {
+    background: linear-gradient(135deg, #883c8a 0%, #a855f7 50%, #ff8ad8 100%);
+    color: #ffffff;
+    font-family: 'Inter', -apple-system, sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.4px;
+    padding: 13px 28px;
+    border-radius: 9999px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    cursor: pointer;
+    white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    box-shadow: 0 4px 20px rgba(136, 60, 138, 0.5), 0 0 16px rgba(255, 138, 216, 0.35);
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    overflow: hidden;
+    animation: dsGlowPulse 2.8s infinite ease-in-out;
+}
+
+.btnArrowIcon {
+    transition: transform 0.25s ease;
+}
+
+.customizeBannerBtn:hover .btnArrowIcon {
+    transform: translateX(4px);
+}
+
+.customizeBannerBtn::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    transform: skewX(-20deg);
+    transition: 0.5s;
+}
+
+.customizeBannerBtn:hover {
+    transform: translateY(-2px) scale(1.025);
+    box-shadow: 0 6px 26px rgba(168, 85, 247, 0.7), 0 0 22px rgba(255, 138, 216, 0.55);
+    color: #ffffff;
+}
+
+.customizeBannerBtn:hover::after {
+    left: 140%;
+}
+
+.customizeBannerBtn:active {
+    transform: translateY(0) scale(0.98);
+}
+
+@keyframes dsGlowPulse {
+
+    0%,
+    100% {
+        box-shadow: 0 4px 18px rgba(136, 60, 138, 0.45), 0 0 12px rgba(255, 138, 216, 0.3);
+    }
+
+    50% {
+        box-shadow: 0 4px 26px rgba(168, 85, 247, 0.8), 0 0 24px rgba(255, 138, 216, 0.6);
+    }
+}
+
+/* Sticky Floating Action Button (FAB) */
+.customizeFab {
+    position: fixed;
+    bottom: 32px;
+    right: 32px;
+    z-index: 999;
+    background: linear-gradient(135deg, #130922 0%, #1f0d38 50%, #2b114d 100%);
+    color: #ffffff;
+    border: 1.5px solid rgba(192, 132, 252, 0.65);
+    border-radius: 9999px;
+    padding: 12px 22px;
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    font-family: 'Inter', -apple-system, sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    cursor: pointer;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.7), 0 0 20px rgba(192, 132, 252, 0.4);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    animation: dsFabPulse 3s infinite ease-in-out;
+    opacity: 0;
+    transform: translateY(20px) scale(0.9);
+    pointer-events: none;
+}
+
+.customizeFabVisible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
+}
+
+.customizeFab:hover {
+    transform: translateY(-4px) scale(1.05);
+    border-color: #ff8ad8;
+    color: #ffffff;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.8), 0 0 28px rgba(255, 138, 216, 0.65);
+    background: linear-gradient(135deg, #1e0f36 0%, #2e1252 100%);
+}
+
+.customizeFab:active {
+    transform: translateY(-1px) scale(0.97);
+}
+
+.customizeFabFlower {
+    font-size: 18px;
+    display: inline-block;
+    filter: drop-shadow(0 0 6px rgba(255, 138, 216, 0.6));
+}
+
+@keyframes dsFabPulse {
+
+    0%,
+    100% {
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.7), 0 0 16px rgba(192, 132, 252, 0.35);
+    }
+
+    50% {
+        box-shadow: 0 8px 35px rgba(0, 0, 0, 0.8), 0 0 26px rgba(255, 138, 216, 0.6);
+    }
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    .customizeBannerOuter {
+        padding: 0 16px 16px 16px;
+    }
+
+    .customizeBannerContainer {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 14px 18px;
+        gap: 12px;
+        text-align: center;
+    }
+
+    .customizeBannerLeft {
+        flex-direction: column;
+        gap: 8px;
+        text-align: center;
+    }
+
+    .customizeBannerTitle {
+        font-size: 16px;
+        justify-content: center;
+    }
+
+    .customizeBannerSubtitle {
+        font-size: 11.5px;
+    }
+
+    .customizeBannerBtn {
+        justify-content: center;
+        width: 100%;
+        padding: 11px 18px;
+        font-size: 13px;
+    }
+
+    .customizeFab {
+        bottom: 22px;
+        right: 18px;
+        padding: 10px 18px;
+        font-size: 13px;
     }
 }

@@ -26,10 +26,18 @@ const upload = multer({
   }
 });
 
+const { adminMiddleware } = require('../middleware/authMiddleware');
+
 // Define routes
 router.get('/', productController.getAllProducts);
-router.post('/', upload.single('image'), productController.createProduct);
-router.put('/:id', upload.single('image'), productController.updateProduct);
-router.delete('/:id', productController.deleteProduct);
+router.get('/inventory/all', adminMiddleware, productController.getInventory);
+router.put('/inventory/quick-update/:id', adminMiddleware, productController.quickUpdateStock);
+router.put('/inventory/bulk-update', adminMiddleware, productController.bulkUpdateStock);
+router.get('/sku/generate', productController.getNextSku);
+router.get('/:id', productController.getProductById);
+router.put('/toggle-status/:id', adminMiddleware, productController.toggleProductStatus);
+router.post('/', adminMiddleware, upload.single('image'), productController.createProduct);
+router.put('/:id', adminMiddleware, upload.single('image'), productController.updateProduct);
+router.delete('/:id', adminMiddleware, productController.deleteProduct);
 
 module.exports = router;

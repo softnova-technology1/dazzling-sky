@@ -62,7 +62,7 @@ exports.createInitialAdmin = async (req, res) => {
     });
 
     await admin.save();
-    res.status(201).json({ message: 'Initial admin created successfully (admin@dazzlingsky.com / admin123)' });
+    res.status(201).json({ message: 'Initial admin created successfully' });
   } catch (error) {
     res.status(500).json({ message: 'Error creating admin', error: error.message });
   }

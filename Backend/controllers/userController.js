@@ -94,9 +94,15 @@ exports.loginCustomer = async (req, res) => {
 exports.syncCart = async (req, res) => {
   try {
     const { cart } = req.body; // Expecting array of { product: productId, quantity: number }
-    const userId = req.user.userId;
+    const userId = req.user.userId || req.user.id;
+    const mongoose = require('mongoose');
 
-    const user = await User.findByIdAndUpdate(userId, { cart }, { new: true }).populate('cart.product');
+    // Filter valid MongoDB ObjectIds to prevent CastError with static products
+    const validCart = Array.isArray(cart) 
+      ? cart.filter(item => item && item.product && mongoose.Types.ObjectId.isValid(item.product))
+      : [];
+
+    const user = await User.findByIdAndUpdate(userId, { cart: validCart }, { new: true }).populate('cart.product');
     
     if (!user) return res.status(404).json({ message: 'User not found' });
 

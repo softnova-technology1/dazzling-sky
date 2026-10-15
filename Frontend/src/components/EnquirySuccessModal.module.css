@@ -1,0 +1,239 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(5, 2, 9, 0.82);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: 20px;
+  animation: dsFadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.modalCard {
+  position: relative;
+  width: 100%;
+  max-width: 520px;
+  background: radial-gradient(circle at 50% 0%, rgba(255, 138, 216, 0.16) 0%, #120c19 65%, #0a0610 100%);
+  border: 1px solid rgba(255, 138, 216, 0.35);
+  border-radius: 24px;
+  padding: 44px 36px 36px;
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.85), 0 0 50px rgba(255, 138, 216, 0.18);
+  text-align: center;
+  overflow: hidden;
+  animation: dsPopUp 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+.closeBtn {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #a39cb3;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.closeBtn:hover {
+  background: rgba(255, 138, 216, 0.2);
+  color: #ffffff;
+  border-color: rgba(255, 138, 216, 0.4);
+  transform: rotate(90deg);
+}
+
+.iconWrapper {
+  position: relative;
+  width: 86px;
+  height: 86px;
+  margin: 0 auto 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pulsingHalo {
+  position: absolute;
+  inset: -8px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 138, 216, 0.35) 0%, transparent 70%);
+  animation: dsPulse 2.5s infinite ease-in-out;
+}
+
+.iconOuterRing {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1px dashed rgba(255, 138, 216, 0.45);
+  animation: dsSpinSlow 20s linear infinite;
+}
+
+.iconCore {
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #883c8a 0%, #ff8ad8 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  box-shadow: 0 10px 30px rgba(255, 138, 216, 0.4);
+}
+
+.brandLabel {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 3.5px;
+  text-transform: uppercase;
+  color: #ff8ad8;
+  margin-bottom: 10px;
+}
+
+.title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 30px;
+  font-weight: 500;
+  color: #ffffff;
+  letter-spacing: 0.5px;
+  margin: 0 0 10px;
+  line-height: 1.25;
+}
+
+.subtitle {
+  font-size: 14px;
+  color: #c4b5fd;
+  font-weight: 400;
+  line-height: 1.6;
+  margin: 0 0 24px;
+  padding: 0 10px;
+}
+
+.detailsReceipt {
+  background: rgba(22, 14, 32, 0.7);
+  border: 1px solid rgba(255, 138, 216, 0.2);
+  border-radius: 14px;
+  padding: 16px 20px;
+  margin-bottom: 28px;
+  text-align: left;
+}
+
+.receiptRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 0;
+  font-size: 13px;
+}
+
+.receiptLabel {
+  color: #9c8fb3;
+}
+
+.receiptValue {
+  color: #ffffff;
+  font-weight: 500;
+  text-align: right;
+  max-width: 260px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.attachmentBadge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #ff8ad8;
+  font-size: 12px;
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px dashed rgba(255, 255, 255, 0.1);
+}
+
+.actionsContainer {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.primaryBtn {
+  background: linear-gradient(90deg, #883c8a 0%, #ff8ad8 100%);
+  color: #ffffff;
+  border: none;
+  padding: 14px 26px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 24px rgba(255, 138, 216, 0.3);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+  min-width: 170px;
+  justify-content: center;
+}
+
+.primaryBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(255, 138, 216, 0.45);
+  filter: brightness(1.08);
+}
+
+.secondaryBtn {
+  background: rgba(255, 255, 255, 0.05);
+  color: #e2d9f3;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 14px 22px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  flex: 1;
+  min-width: 140px;
+}
+
+.secondaryBtn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  border-color: rgba(255, 138, 216, 0.3);
+}
+
+@keyframes dsFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes dsPopUp {
+  0% {
+    opacity: 0;
+    transform: scale(0.92) translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes dsPulse {
+  0%, 100% { transform: scale(1); opacity: 0.4; }
+  50% { transform: scale(1.15); opacity: 0.8; }
+}
+
+@keyframes dsSpinSlow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
